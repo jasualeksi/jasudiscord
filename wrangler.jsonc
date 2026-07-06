@@ -2,6 +2,10 @@
   "name": "jasudiscord",
   "compatibility_date": "2026-07-06",
   "main": "./src/index.mjs",
+  "vars": {
+    "DISCORD_APPLICATION_ID": "380477708831559873",
+    "DISCORD_GUILD_ID": "1519042780364673044"
+  },
   "assets": {
     "directory": "./public",
     "binding": "ASSETS"
