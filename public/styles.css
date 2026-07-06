@@ -78,7 +78,7 @@ body {
   min-height: 100svh;
   align-items: center;
   justify-content: center;
-  gap: clamp(18px, 4vmin, 28px);
+  gap: clamp(10px, 2.5vmin, 18px);
   padding: max(20px, env(safe-area-inset-top)) max(20px, env(safe-area-inset-right)) max(20px, env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left));
 }
 
