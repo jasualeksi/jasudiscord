@@ -56,7 +56,7 @@ body {
   font-weight: 800;
 }
 
-.brand video {
+.brand img {
   width: 34px;
   height: 34px;
   flex: 0 0 auto;
@@ -346,7 +346,7 @@ body {
     font-size: 12px;
   }
 
-  .brand video {
+  .brand img {
     width: 30px;
     height: 30px;
   }
