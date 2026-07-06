@@ -22,11 +22,11 @@ body {
   gap: 10px;
   min-height: 46px;
   padding: 0 18px;
-  border: 1px solid rgb(111 224 255 / 42%);
+  border: 1px solid rgb(111 234 255 / 42%);
   border-radius: 8px;
   color: #ffffff;
   background:
-    linear-gradient(135deg, rgb(26 116 255 / 92%), rgb(0 215 255 / 74%)),
+    linear-gradient(135deg, rgb(26 116 255 / 92%), rgba(0, 174, 255, 0.74)),
     rgb(10 48 130 / 86%);
   box-shadow:
     0 16px 32px rgb(0 0 0 / 38%),
