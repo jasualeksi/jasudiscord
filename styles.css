@@ -1,0 +1,136 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  background: #050505 url("assets/background.jpg") center / cover no-repeat;
+  overflow: hidden;
+  touch-action: manipulation;
+}
+
+.discord-button {
+  position: fixed;
+  top: max(18px, env(safe-area-inset-top));
+  right: max(18px, env(safe-area-inset-right));
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 46px;
+  padding: 0 18px;
+  border: 1px solid rgb(111 224 255 / 42%);
+  border-radius: 8px;
+  color: #ffffff;
+  background:
+    linear-gradient(135deg, rgb(26 116 255 / 92%), rgb(0 215 255 / 74%)),
+    rgb(10 48 130 / 86%);
+  box-shadow:
+    0 16px 32px rgb(0 0 0 / 38%),
+    0 0 28px rgb(0 195 255 / 30%),
+    inset 0 1px 0 rgb(255 255 255 / 24%);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0;
+  line-height: 1;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    filter 160ms ease;
+}
+
+.discord-button img {
+  width: 21px;
+  height: 21px;
+  flex: 0 0 auto;
+}
+
+.discord-button:hover {
+  border-color: rgb(188 248 255 / 78%);
+  box-shadow:
+    0 18px 38px rgb(0 0 0 / 42%),
+    0 0 36px rgb(0 221 255 / 46%),
+    inset 0 1px 0 rgb(255 255 255 / 32%);
+  filter: brightness(1.07);
+  transform: translateY(-1px);
+}
+
+.discord-button:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.discord-button:focus-visible {
+  outline: 3px solid rgb(160 243 255 / 72%);
+  outline-offset: 4px;
+}
+
+.page {
+  display: grid;
+  min-height: 100vh;
+  min-height: 100svh;
+  place-items: center;
+  padding: max(20px, env(safe-area-inset-top)) max(20px, env(safe-area-inset-right)) max(20px, env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left));
+}
+
+.logo {
+  display: block;
+  width: clamp(220px, 42vmin, 420px);
+  height: auto;
+  max-width: 88vw;
+  max-height: 72svh;
+  object-fit: contain;
+  filter: drop-shadow(0 18px 34px rgb(0 0 0 / 55%));
+}
+
+@supports (min-height: 100dvh) {
+  .page {
+    min-height: 100dvh;
+  }
+
+  .logo {
+    max-height: 72dvh;
+  }
+}
+
+@media (max-width: 640px) {
+  body {
+    background-position: center;
+    background-size: cover;
+  }
+
+  .discord-button {
+    top: max(14px, env(safe-area-inset-top));
+    right: max(14px, env(safe-area-inset-right));
+    min-height: 42px;
+    gap: 8px;
+    padding: 0 14px;
+    font-size: 12px;
+  }
+
+  .discord-button img {
+    width: 19px;
+    height: 19px;
+  }
+
+  .logo {
+    width: clamp(210px, 68vw, 340px);
+    max-width: 86vw;
+  }
+}
+
+@media (min-width: 900px) and (hover: hover) {
+  body {
+    background-attachment: fixed;
+  }
+}
