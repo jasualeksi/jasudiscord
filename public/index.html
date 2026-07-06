@@ -8,14 +8,40 @@
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link rel="apple-touch-icon" href="assets/logo.png">
     <link rel="stylesheet" href="styles.css">
+    <script src="commands.js" defer></script>
   </head>
   <body>
-    <main class="page">
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="Jasu Discord">
+        <img src="assets/logo.png" alt="">
+        <span>Jasu〡Discord</span>
+      </a>
+      <nav class="topnav" aria-label="Päänavigaatio">
+        <a href="#commands">Discord komennot</a>
+      </nav>
+    </header>
+
+    <main class="page" id="top">
       <img class="logo" src="assets/logo.png" alt="Jasu Discord" fetchpriority="high">
       <a class="discord-button" href="https://discord.gg/MHqmuTnGms" target="_blank" rel="noopener noreferrer" aria-label="Liity Discordiin">
         <img src="assets/discord-white-icon.png" alt="">
         <span>liity discordiin</span>
       </a>
     </main>
+
+    <section class="commands-section" id="commands" aria-labelledby="commands-title">
+      <div class="commands-shell">
+        <div class="section-heading">
+          <p>Discord bot</p>
+          <h1 id="commands-title">Komennot</h1>
+        </div>
+        <div class="commands-grid" id="commands-list" aria-live="polite">
+          <article class="command-card command-card--status">
+            <h2>Ladataan komentoja...</h2>
+            <p>Haetaan botin nykyiset komennot Discordista.</p>
+          </article>
+        </div>
+      </div>
+    </section>
   </body>
 </html>

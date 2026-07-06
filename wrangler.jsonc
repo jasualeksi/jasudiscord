@@ -1,7 +1,9 @@
 {
   "name": "jasudiscord",
   "compatibility_date": "2026-07-06",
+  "main": "./src/index.mjs",
   "assets": {
-    "directory": "./public"
+    "directory": "./public",
+    "binding": "ASSETS"
   }
 }
