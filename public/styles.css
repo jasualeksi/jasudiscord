@@ -16,10 +16,6 @@ body {
 }
 
 .discord-button {
-  position: fixed;
-  top: max(18px, env(safe-area-inset-top));
-  right: max(18px, env(safe-area-inset-right));
-  z-index: 10;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -76,10 +72,13 @@ body {
 }
 
 .page {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
   min-height: 100svh;
-  place-items: center;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(18px, 4vmin, 28px);
   padding: max(20px, env(safe-area-inset-top)) max(20px, env(safe-area-inset-right)) max(20px, env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left));
 }
 
@@ -110,8 +109,6 @@ body {
   }
 
   .discord-button {
-    top: max(14px, env(safe-area-inset-top));
-    right: max(14px, env(safe-area-inset-right));
     min-height: 42px;
     gap: 8px;
     padding: 0 14px;
