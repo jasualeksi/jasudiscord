@@ -2,11 +2,11 @@
 
 Static website for `jasudiscord.com`.
 
-## Cloudflare Pages settings
+## Cloudflare Workers & Pages Git settings
 
-- Framework preset: `None`
 - Build command: leave empty
-- Build output directory: `/`
+- Deploy command: `npx wrangler deploy`
+- Root directory: `/`
 - Production branch: `main`
 
-After Cloudflare Pages is connected to the GitHub repository, every push to `main` deploys automatically.
+After Cloudflare is connected to the GitHub repository, every push to `main` deploys automatically.
