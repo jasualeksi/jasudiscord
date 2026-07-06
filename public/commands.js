@@ -32,7 +32,6 @@ function renderCommands(commands) {
   commandsList.innerHTML = commands.map((command) => {
     const name = command.type === 1 ? `/${command.name}` : command.name;
     const description = command.description || "Ei kuvausta.";
-    const scope = command.scope === "guild" ? "serveri" : "globaali";
     const type = commandTypeLabels[command.type] || "komento";
     const optionCount = Array.isArray(command.options) ? command.options.length : 0;
 
@@ -41,7 +40,6 @@ function renderCommands(commands) {
         <h2>${escapeHtml(name)}</h2>
         <p>${escapeHtml(description)}</p>
         <div class="command-meta">
-          <span class="command-pill">${escapeHtml(scope)}</span>
           <span class="command-pill">${escapeHtml(type)}</span>
           ${optionCount ? `<span class="command-pill">${optionCount} asetusta</span>` : ""}
         </div>
