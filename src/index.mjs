@@ -52,10 +52,13 @@ async function fetchDiscordCommands(env, scope) {
     });
 
     if (!response.ok) {
+      const errorText = await response.text();
+
       return {
         ok: false,
         scope: request.scope,
-        status: response.status
+        status: response.status,
+        errorText
       };
     }
 
@@ -81,7 +84,7 @@ async function fetchDiscordCommands(env, scope) {
       status: 502,
       data: {
         title: "Discord API ei vastannut oikein",
-        message: `Komentojen haku epäonnistui kohdassa ${failed.scope}. Tarkista bot token ja application id Cloudflaressa.`
+        message: `Komentojen haku epäonnistui kohdassa ${failed.scope}. Discord status: ${failed.status}. ${failed.errorText || "Tarkista bot token, application id ja guild id Cloudflaressa."}`
       }
     };
   }
