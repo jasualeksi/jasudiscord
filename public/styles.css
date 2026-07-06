@@ -173,21 +173,43 @@ body {
 }
 
 .commands-section {
+  position: relative;
+  isolation: isolate;
   min-height: 100vh;
   min-height: 100svh;
-  padding: 96px max(20px, env(safe-area-inset-right)) max(42px, env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left));
+  margin-top: -18vh;
+  padding: 26vh max(20px, env(safe-area-inset-right)) max(56px, env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left));
   background:
-    linear-gradient(180deg, rgb(2 9 22 / 18%), rgb(2 12 34 / 84%)),
-    rgb(3 10 24 / 62%);
+    linear-gradient(
+      180deg,
+      rgb(2 10 26 / 0%) 0%,
+      rgb(2 12 34 / 34%) 18%,
+      rgb(2 12 34 / 72%) 46%,
+      rgb(2 12 34 / 88%) 100%
+    );
+}
+
+.commands-section::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 22% 28%, rgb(0 204 255 / 14%), transparent 30%),
+    radial-gradient(circle at 78% 18%, rgb(34 118 255 / 18%), transparent 34%);
+  content: "";
 }
 
 .commands-shell {
-  width: min(920px, 100%);
+  width: min(1040px, 100%);
   margin: 0 auto;
 }
 
 .section-heading {
-  margin-bottom: 22px;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 24px;
 }
 
 .section-heading p {
@@ -209,21 +231,52 @@ body {
 
 .commands-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 12px;
 }
 
 .command-card {
-  min-height: 132px;
-  padding: 18px;
-  border: 1px solid rgb(111 224 255 / 24%);
+  position: relative;
+  min-height: 126px;
+  overflow: hidden;
+  padding: 18px 18px 17px;
+  border: 1px solid rgb(139 232 255 / 20%);
   border-radius: 8px;
   background:
-    linear-gradient(145deg, rgb(9 56 132 / 58%), rgb(2 19 50 / 76%)),
-    rgb(4 16 38 / 82%);
+    linear-gradient(145deg, rgb(17 95 207 / 30%), rgb(2 18 48 / 58%)),
+    rgb(4 18 46 / 48%);
   box-shadow:
-    0 16px 34px rgb(0 0 0 / 30%),
+    0 14px 30px rgb(0 0 0 / 24%),
+    0 0 26px rgb(0 190 255 / 8%),
     inset 0 1px 0 rgb(255 255 255 / 12%);
+  backdrop-filter: blur(10px);
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    background 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.command-card::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgb(115 231 255 / 84%), transparent);
+  content: "";
+}
+
+.command-card:hover {
+  border-color: rgb(151 240 255 / 36%);
+  background:
+    linear-gradient(145deg, rgb(20 112 232 / 38%), rgb(2 22 58 / 64%)),
+    rgb(4 18 46 / 54%);
+  box-shadow:
+    0 18px 38px rgb(0 0 0 / 28%),
+    0 0 34px rgb(0 190 255 / 13%),
+    inset 0 1px 0 rgb(255 255 255 / 16%);
+  transform: translateY(-2px);
 }
 
 .command-card h2 {
@@ -252,10 +305,10 @@ body {
   min-height: 24px;
   align-items: center;
   padding: 0 8px;
-  border: 1px solid rgb(111 224 255 / 20%);
+  border: 1px solid rgb(111 224 255 / 24%);
   border-radius: 999px;
   color: rgb(211 248 255 / 88%);
-  background: rgb(0 156 255 / 15%);
+  background: rgb(0 156 255 / 18%);
   font-size: 11px;
   font-weight: 800;
 }
