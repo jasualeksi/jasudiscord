@@ -239,6 +239,13 @@ body {
   margin-bottom: 12px;
 }
 
+.feedback-panel__intro {
+  margin: -4px 0 14px;
+  color: rgb(218 248 255 / 72%);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
 .feedback-panel__heading p {
   margin: 0;
   color: rgb(132 235 255 / 86%);
@@ -688,22 +695,6 @@ body {
   .logo {
     width: clamp(210px, 68vw, 340px);
     max-width: 86vw;
-  }
-}
-
-@media (min-width: 1180px) {
-  .feedback-panel {
-    position: fixed;
-    top: 104px;
-    bottom: 28px;
-    left: 24px;
-    z-index: 8;
-    width: 330px;
-    margin: 0;
-  }
-
-  .feedback-list {
-    max-height: calc(100vh - 214px);
   }
 }
 
