@@ -18,13 +18,24 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.topbar {
+.nav-shell {
   position: fixed;
   top: max(10px, env(safe-area-inset-top));
   left: 50%;
   z-index: 20;
   display: flex;
-  width: min(920px, calc(100% - 28px));
+  width: min(1040px, calc(100% - 24px));
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transform: translateX(-50%);
+}
+
+.topbar {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: 920px;
   min-height: 44px;
   align-items: center;
   justify-content: space-between;
@@ -38,7 +49,6 @@ body {
     0 0 28px rgb(0 195 255 / 16%),
     inset 0 1px 0 rgb(255 255 255 / 12%);
   backdrop-filter: blur(14px);
-  transform: translateX(-50%);
 }
 
 .brand,
@@ -90,22 +100,28 @@ body {
 }
 
 .social-nav {
-  position: fixed;
-  top: max(10px, env(safe-area-inset-top));
-  left: calc(50% + 472px);
-  z-index: 21;
   display: flex;
+  flex: 0 0 auto;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+  padding: 4px;
+  border: 1px solid rgb(111 224 255 / 20%);
+  border-radius: 12px;
+  background: rgb(4 18 42 / 52%);
+  box-shadow:
+    0 18px 34px rgb(0 0 0 / 28%),
+    inset 0 1px 0 rgb(255 255 255 / 10%);
+  backdrop-filter: blur(14px);
 }
 
 .social-nav a {
   display: grid;
-  width: 46px;
-  height: 46px;
+  width: 42px;
+  height: 42px;
   place-items: center;
   border-radius: 12px;
-  filter: drop-shadow(0 14px 24px rgb(0 0 0 / 34%));
+  overflow: hidden;
+  filter: drop-shadow(0 10px 16px rgb(0 0 0 / 28%));
   transition:
     transform 160ms ease,
     filter 160ms ease;
@@ -119,10 +135,11 @@ body {
 }
 
 .social-nav img {
-  width: 46px;
-  height: 46px;
+  width: 42px;
+  height: 42px;
   display: block;
   border-radius: 12px;
+  object-fit: cover;
 }
 
 .topnav a:hover {
@@ -683,9 +700,12 @@ body {
     background-size: cover;
   }
 
-  .topbar {
-    width: min(100% - 20px, 520px);
+  .nav-shell {
+    width: min(100% - 16px, 520px);
     gap: 6px;
+  }
+
+  .topbar {
     padding: 6px;
   }
 
@@ -705,20 +725,20 @@ body {
   }
 
   .social-nav {
-    top: max(60px, calc(env(safe-area-inset-top) + 58px));
-    right: 10px;
-    left: auto;
-    gap: 8px;
+    gap: 5px;
+    padding: 3px;
+    border-radius: 10px;
   }
 
   .social-nav a {
-    width: 38px;
-    height: 38px;
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
   }
 
   .social-nav img {
-    width: 38px;
-    height: 38px;
+    width: 34px;
+    height: 34px;
     border-radius: 10px;
   }
 
