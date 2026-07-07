@@ -3,6 +3,7 @@ const commandSearch = document.querySelector("#command-search");
 const categoryTabs = document.querySelector("#category-tabs");
 const serverWidget = document.querySelector("#server-widget");
 const serverStats = document.querySelector("#server-stats");
+const feedbackList = document.querySelector("#feedback-list");
 
 const inviteUrl = "https://discord.gg/MHqmuTnGms";
 const commandTypeLabels = {
@@ -92,6 +93,45 @@ function renderStatus(title, text) {
       <p>${escapeHtml(text)}</p>
     </article>
   `;
+}
+
+function formatMessageTime(value) {
+  return new Intl.DateTimeFormat("fi-FI", {
+    day: "2-digit",
+    month: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit"
+  }).format(new Date(value));
+}
+
+function renderFeedbackStatus(text) {
+  feedbackList.innerHTML = `
+    <article class="feedback-item feedback-item--status">
+      <p>${escapeHtml(text)}</p>
+    </article>
+  `;
+}
+
+function renderFeedback(messages) {
+  if (!messages.length) {
+    renderFeedbackStatus("Palautteita ei löytynyt vielä.");
+    return;
+  }
+
+  feedbackList.innerHTML = messages.map((message) => `
+    <article class="feedback-item">
+      <div class="feedback-avatar">
+        ${message.avatarUrl ? `<img src="${escapeHtml(message.avatarUrl)}" alt="">` : `<span>${escapeHtml(message.authorName.slice(0, 1).toUpperCase())}</span>`}
+      </div>
+      <div class="feedback-content">
+        <div class="feedback-meta">
+          <strong>${escapeHtml(message.authorName)}</strong>
+          <time datetime="${escapeHtml(message.createdAt)}">${escapeHtml(formatMessageTime(message.createdAt))}</time>
+        </div>
+        <p>${escapeHtml(message.content || "Liite tai embed-viesti")}</p>
+      </div>
+    </article>
+  `).join("");
 }
 
 function getFilteredCommands() {
@@ -216,6 +256,26 @@ async function loadServerWidget() {
   }
 }
 
+async function loadFeedback() {
+  try {
+    const response = await fetch("/api/feedback", {
+      headers: {
+        "Accept": "application/json"
+      }
+    });
+    const data = await response.json();
+
+    if (!response.ok) {
+      renderFeedbackStatus(data.message || "Palautteita ei saatu ladattua.");
+      return;
+    }
+
+    renderFeedback(data.messages || []);
+  } catch {
+    renderFeedbackStatus("Palautteita ei saatu ladattua juuri nyt.");
+  }
+}
+
 categoryTabs.addEventListener("click", (event) => {
   const tab = event.target.closest("[data-category]");
 
@@ -233,3 +293,4 @@ commandSearch.addEventListener("input", () => {
 });
 
 loadCommands().then(loadServerWidget);
+loadFeedback();

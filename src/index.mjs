@@ -163,6 +163,80 @@ async function fetchDiscordServer(env) {
   };
 }
 
+function getAvatarUrl(author) {
+  if (author.avatar) {
+    const extension = author.avatar.startsWith("a_") ? "gif" : "png";
+    return `https://cdn.discordapp.com/avatars/${author.id}/${author.avatar}.${extension}?size=96`;
+  }
+
+  return "";
+}
+
+async function fetchDiscordFeedback(env) {
+  const token = env.DISCORD_BOT_TOKEN;
+  const channelId = env.DISCORD_FEEDBACK_CHANNEL_ID || "1522395762976362576";
+
+  if (!token || !channelId) {
+    return {
+      ok: false,
+      status: 428,
+      data: {
+        title: "Palautekanavan tiedot odottaa asetuksia",
+        message: "Lisää Cloudflareen DISCORD_BOT_TOKEN ja DISCORD_FEEDBACK_CHANNEL_ID."
+      }
+    };
+  }
+
+  const [channelResponse, messagesResponse] = await Promise.all([
+    fetch(`${DISCORD_API}/channels/${channelId}`, {
+      headers: {
+        "Authorization": `Bot ${token}`,
+        "Accept": "application/json"
+      }
+    }),
+    fetch(`${DISCORD_API}/channels/${channelId}/messages?limit=8`, {
+      headers: {
+        "Authorization": `Bot ${token}`,
+        "Accept": "application/json"
+      }
+    })
+  ]);
+
+  if (!channelResponse.ok || !messagesResponse.ok) {
+    return {
+      ok: false,
+      status: 502,
+      data: {
+        title: "Palautteita ei saatu",
+        message: `Discord status: kanava ${channelResponse.status}, viestit ${messagesResponse.status}. Tarkista botin View Channel ja Read Message History -oikeudet.`
+      }
+    };
+  }
+
+  const channel = await channelResponse.json();
+  const messages = await messagesResponse.json();
+
+  return {
+    ok: true,
+    status: 200,
+    data: {
+      channel: {
+        id: channel.id,
+        name: channel.name || "palautteet"
+      },
+      messages: messages
+        .filter((message) => !message.author?.bot)
+        .map((message) => ({
+          id: message.id,
+          content: message.content || "",
+          createdAt: message.timestamp,
+          authorName: message.author?.global_name || message.author?.username || "Discord käyttäjä",
+          avatarUrl: message.author ? getAvatarUrl(message.author) : ""
+        }))
+    }
+  };
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -183,6 +257,15 @@ export default {
       return json(result.data, {
         status: result.status,
         cacheControl: result.ok ? "public, max-age=120" : "no-store"
+      });
+    }
+
+    if (url.pathname === "/api/feedback") {
+      const result = await fetchDiscordFeedback(env);
+
+      return json(result.data, {
+        status: result.status,
+        cacheControl: result.ok ? "public, max-age=45" : "no-store"
       });
     }
 

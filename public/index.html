@@ -28,7 +28,7 @@
           <img src="assets/logo.png" alt="">
         </div>
         <div class="server-widget__content">
-          <p>Discord serveri</p>
+          <p>Discord palvelin</p>
           <h2>Jasu〡Discord</h2>
           <div class="server-widget__stats" id="server-stats">
             <span>Komennot synkattu</span>
@@ -41,6 +41,18 @@
       </article>
     </main>
 
+    <aside class="feedback-panel" aria-labelledby="feedback-title">
+      <div class="feedback-panel__heading">
+        <p>Discord kanava</p>
+        <h2 id="feedback-title">palautteet</h2>
+      </div>
+      <div class="feedback-list" id="feedback-list" aria-live="polite">
+        <article class="feedback-item feedback-item--status">
+          <p>Ladataan palautteita...</p>
+        </article>
+      </div>
+    </aside>
+
     <section class="commands-section" id="commands" aria-labelledby="commands-title">
       <div class="commands-shell">
         <div class="section-heading">
@@ -48,7 +60,7 @@
         </div>
         <div class="commands-toolbar">
           <label class="command-search">
-            <span>Hae komentoa</span>
+            <span>Komento haku</span>
             <input id="command-search" type="search" placeholder="Hae esim. addmoney" autocomplete="off">
           </label>
           <div class="category-tabs" id="category-tabs" aria-label="Komentokategoriat"></div>
