@@ -421,163 +421,19 @@ body {
   filter: drop-shadow(0 18px 34px rgb(0 0 0 / 55%));
 }
 
-.services-section {
-  position: relative;
-  isolation: isolate;
-  min-height: 78vh;
-  min-height: 78svh;
-  padding: 118px max(20px, env(safe-area-inset-right)) 86px max(20px, env(safe-area-inset-left));
-  background:
-    radial-gradient(circle at 18% 24%, rgb(0 205 255 / 13%), transparent 30%),
-    radial-gradient(circle at 82% 18%, rgb(38 111 255 / 16%), transparent 34%),
-    linear-gradient(
-      180deg,
-      rgb(2 12 34 / 0%) 0%,
-      rgb(2 12 34 / 48%) 24%,
-      rgb(2 12 34 / 64%) 100%
-    );
-}
-
-.services-shell {
-  width: min(1120px, 100%);
-  margin: 0 auto;
-}
-
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
-}
-
-.service-card {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  min-height: 270px;
-  gap: 22px;
-  padding: 26px;
-  border: 1px solid rgb(139 232 255 / 20%);
-  border-radius: 8px;
-  background:
-    linear-gradient(145deg, rgb(17 95 207 / 28%), rgb(2 18 48 / 62%)),
-    rgb(4 18 46 / 52%);
-  box-shadow:
-    0 16px 34px rgb(0 0 0 / 26%),
-    0 0 26px rgb(0 190 255 / 8%),
-    inset 0 1px 0 rgb(255 255 255 / 12%);
-  backdrop-filter: blur(10px);
-}
-
-.service-card--wide {
-  grid-column: 1 / -1;
-  min-height: 300px;
-}
-
-.service-card__icon {
-  display: grid;
-  width: 62px;
-  height: 62px;
-  place-items: center;
-  border: 1px solid rgb(111 224 255 / 24%);
-  border-radius: 8px;
-  background:
-    linear-gradient(135deg, rgb(26 116 255 / 78%), rgb(0 190 255 / 46%)),
-    rgb(3 18 48 / 72%);
-  box-shadow:
-    0 12px 24px rgb(0 0 0 / 24%),
-    inset 0 1px 0 rgb(255 255 255 / 14%);
-}
-
-.service-card__icon img {
-  width: 34px;
-  height: 34px;
-}
-
-.service-card__icon span {
-  color: #ffffff;
-  font-size: 18px;
-  font-weight: 900;
-}
-
-.service-card__icon--image {
-  background:
-    linear-gradient(135deg, rgb(149 62 255 / 70%), rgb(0 195 255 / 46%)),
-    rgb(3 18 48 / 72%);
-}
-
-.service-card__icon--price {
-  background:
-    linear-gradient(135deg, rgb(0 205 255 / 62%), rgb(36 95 255 / 64%)),
-    rgb(3 18 48 / 72%);
-}
-
-.service-card h2 {
-  margin: 0 0 12px;
-  color: #ffffff;
-  font-size: clamp(24px, 2.4vw, 32px);
-  line-height: 1.1;
-}
-
-.service-card p {
-  margin: 0;
-  color: rgb(218 248 255 / 80%);
-  font-size: 15px;
-  line-height: 1.6;
-}
-
-.service-card ul {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-  gap: 9px 16px;
-  margin: 20px 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.service-card li {
-  position: relative;
-  padding-left: 18px;
-  color: rgb(235 252 255 / 88%);
-  font-size: 14px;
-  line-height: 1.35;
-}
-
-.service-card li::before {
-  position: absolute;
-  top: 0.48em;
-  left: 0;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: rgb(132 235 255 / 86%);
-  box-shadow: 0 0 12px rgb(0 195 255 / 42%);
-  content: "";
-}
-
-.service-card__body {
-  display: flex;
-  min-width: 0;
-  flex-direction: column;
-}
-
-.service-card__note {
-  margin-top: auto;
-  padding-top: 20px;
-  color: rgb(157 239 255 / 86%);
-  font-weight: 700;
-}
-
 .commands-section {
   position: relative;
   isolation: isolate;
   min-height: 100vh;
   min-height: 100svh;
-  margin-top: -1px;
+  margin-top: 0;
   padding: 84px max(20px, env(safe-area-inset-right)) max(56px, env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left));
   background:
     linear-gradient(
       180deg,
-      rgb(2 12 34 / 64%) 0%,
-      rgb(2 12 34 / 72%) 38%,
+      rgb(2 10 26 / 0%) 0%,
+      rgb(2 12 34 / 34%) 18%,
+      rgb(2 12 34 / 72%) 46%,
       rgb(2 12 34 / 88%) 100%
     );
 }
@@ -916,36 +772,6 @@ body {
     max-width: 86vw;
   }
 
-  .services-section {
-    min-height: auto;
-    padding-top: 76px;
-    padding-bottom: 58px;
-  }
-
-  .services-grid {
-    grid-template-columns: 1fr;
-    gap: 14px;
-  }
-
-  .service-card,
-  .service-card--wide {
-    grid-column: auto;
-  }
-
-  .service-card {
-    grid-template-columns: 1fr;
-    min-height: 0;
-    padding: 22px;
-  }
-
-  .service-card--wide {
-    min-height: 0;
-  }
-
-  .service-card__icon {
-    width: 56px;
-    height: 56px;
-  }
 }
 
 @media (min-width: 1180px) {
