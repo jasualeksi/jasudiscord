@@ -4,7 +4,8 @@
   "main": "./src/index.mjs",
   "vars": {
     "DISCORD_APPLICATION_ID": "1380477708831559873",
-    "DISCORD_GUILD_ID": "1519042780364673044"
+    "DISCORD_GUILD_ID": "1519042780364673044",
+    "DISCORD_INVITE_URL": "https://discord.gg/MHqmuTnGms"
   },
   "assets": {
     "directory": "./public",

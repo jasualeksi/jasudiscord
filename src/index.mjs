@@ -110,6 +110,59 @@ async function fetchDiscordCommands(env, scope) {
   };
 }
 
+async function fetchDiscordServer(env) {
+  const token = env.DISCORD_BOT_TOKEN;
+  const guildId = env.DISCORD_GUILD_ID;
+  const inviteUrl = env.DISCORD_INVITE_URL || "https://discord.gg/MHqmuTnGms";
+
+  if (!token || !guildId) {
+    return {
+      ok: false,
+      status: 428,
+      data: {
+        title: "Discord-serverin tiedot odottaa asetuksia",
+        message: "Lisää Cloudflareen DISCORD_BOT_TOKEN ja DISCORD_GUILD_ID."
+      }
+    };
+  }
+
+  const response = await fetch(`${DISCORD_API}/guilds/${guildId}?with_counts=true`, {
+    headers: {
+      "Authorization": `Bot ${token}`,
+      "Accept": "application/json"
+    }
+  });
+
+  if (!response.ok) {
+    return {
+      ok: false,
+      status: 502,
+      data: {
+        title: "Discord-serverin tietoja ei saatu",
+        message: `Discord status: ${response.status}. Tarkista guild id ja botin oikeudet.`
+      }
+    };
+  }
+
+  const guild = await response.json();
+  const iconUrl = guild.icon
+    ? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.${guild.icon.startsWith("a_") ? "gif" : "png"}?size=256`
+    : "";
+
+  return {
+    ok: true,
+    status: 200,
+    data: {
+      id: guild.id,
+      name: guild.name,
+      iconUrl,
+      inviteUrl,
+      approximateMemberCount: guild.approximate_member_count || 0,
+      approximatePresenceCount: guild.approximate_presence_count || 0
+    }
+  };
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -121,6 +174,15 @@ export default {
       return json(result.data, {
         status: result.status,
         cacheControl: result.ok ? "public, max-age=60" : "no-store"
+      });
+    }
+
+    if (url.pathname === "/api/server") {
+      const result = await fetchDiscordServer(env);
+
+      return json(result.data, {
+        status: result.status,
+        cacheControl: result.ok ? "public, max-age=120" : "no-store"
       });
     }
 

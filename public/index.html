@@ -23,16 +23,35 @@
 
     <main class="page" id="top">
       <img class="logo" src="assets/logo.png" alt="Jasu Discord" fetchpriority="high">
-      <a class="discord-button" href="https://discord.gg/MHqmuTnGms" target="_blank" rel="noopener noreferrer" aria-label="Liity Discordiin">
-        <img src="assets/discord-white-icon.png" alt="">
-        <span>liity discordiin</span>
-      </a>
+      <article class="server-widget" id="server-widget">
+        <div class="server-widget__icon">
+          <img src="assets/logo.png" alt="">
+        </div>
+        <div class="server-widget__content">
+          <p>Discord serveri</p>
+          <h2>Jasu〡Discord</h2>
+          <div class="server-widget__stats" id="server-stats">
+            <span>Komennot synkattu</span>
+          </div>
+        </div>
+        <a class="server-widget__join" href="https://discord.gg/MHqmuTnGms" target="_blank" rel="noopener noreferrer" aria-label="Liity Discordiin">
+          <img src="assets/discord-white-icon.png" alt="">
+          <span>Liity</span>
+        </a>
+      </article>
     </main>
 
     <section class="commands-section" id="commands" aria-labelledby="commands-title">
       <div class="commands-shell">
         <div class="section-heading">
           <h1 id="commands-title">Discord palvelimen komennot</h1>
+        </div>
+        <div class="commands-toolbar">
+          <label class="command-search">
+            <span>Hae komentoa</span>
+            <input id="command-search" type="search" placeholder="Hae esim. addmoney" autocomplete="off">
+          </label>
+          <div class="category-tabs" id="category-tabs" aria-label="Komentokategoriat"></div>
         </div>
         <div class="commands-grid" id="commands-list" aria-live="polite">
           <article class="command-card command-card--status">
