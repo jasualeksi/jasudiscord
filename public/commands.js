@@ -5,6 +5,10 @@ const serverWidget = document.querySelector("#server-widget");
 const serverStats = document.querySelector("#server-stats");
 const feedbackList = document.querySelector("#feedback-list");
 const feedbackControls = document.querySelector("#feedback-controls");
+const imageLightbox = document.querySelector("#image-lightbox");
+const imageLightboxImage = imageLightbox?.querySelector(".image-lightbox__image");
+const imageLightboxClose = imageLightbox?.querySelector(".image-lightbox__close");
+const imageLightboxBackdrop = imageLightbox?.querySelector(".image-lightbox__backdrop");
 
 const inviteUrl = "https://discord.gg/MHqmuTnGms";
 const commandTypeLabels = {
@@ -69,6 +73,59 @@ function setupExclusiveNavMenus() {
         }
       });
     });
+  });
+}
+
+function setupImageLightbox() {
+  if (!imageLightbox || !imageLightboxImage || !imageLightboxClose || !imageLightboxBackdrop) {
+    return;
+  }
+
+  let lastFocusedElement = null;
+
+  const closeLightbox = () => {
+    imageLightbox.classList.remove("is-open");
+    imageLightbox.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("lightbox-open");
+    imageLightboxImage.removeAttribute("src");
+    imageLightboxImage.alt = "";
+
+    if (lastFocusedElement) {
+      lastFocusedElement.focus();
+      lastFocusedElement = null;
+    }
+  };
+
+  const openLightbox = (link) => {
+    const title = link.closest(".portfolio-card")?.querySelector("h2")?.textContent?.trim() || "Portfolio kuva";
+
+    lastFocusedElement = link;
+    imageLightboxImage.src = link.href;
+    imageLightboxImage.alt = title;
+    imageLightbox.classList.add("is-open");
+    imageLightbox.setAttribute("aria-hidden", "false");
+    document.body.classList.add("lightbox-open");
+    imageLightboxClose.focus();
+  };
+
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest(".portfolio-card__action");
+
+    if (!link) {
+      return;
+    }
+
+    event.preventDefault();
+    openLightbox(link);
+  });
+
+  imageLightboxClose.addEventListener("click", closeLightbox);
+  imageLightboxBackdrop.addEventListener("click", closeLightbox);
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && imageLightbox.classList.contains("is-open")) {
+      closeLightbox();
+    }
   });
 }
 
@@ -427,3 +484,4 @@ loadCommands().then(loadServerWidget);
 loadFeedback();
 startCommandPlaceholderLoop();
 setupExclusiveNavMenus();
+setupImageLightbox();

@@ -914,6 +914,104 @@ html[data-page="home"] .feedback-panel {
   transform: translateY(-1px);
 }
 
+.image-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.image-lightbox.is-open {
+  pointer-events: auto;
+  visibility: visible;
+}
+
+.image-lightbox__backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background:
+    radial-gradient(circle at 50% 35%, rgb(0 191 255 / 18%), transparent 42%),
+    rgb(2 7 18 / 74%);
+  opacity: 0;
+  transition: opacity 220ms ease;
+}
+
+.image-lightbox.is-open .image-lightbox__backdrop {
+  opacity: 1;
+}
+
+.image-lightbox__panel {
+  position: relative;
+  display: grid;
+  max-width: min(860px, 92vw);
+  max-height: 86vh;
+  place-items: center;
+  padding: 18px;
+  border: 1px solid rgb(173 245 255 / 62%);
+  border-radius: 14px;
+  background:
+    linear-gradient(145deg, rgb(5 35 78 / 78%), rgb(2 12 32 / 90%)),
+    rgb(2 12 32 / 92%);
+  box-shadow:
+    0 28px 80px rgb(0 0 0 / 56%),
+    0 0 46px rgb(0 221 255 / 26%),
+    inset 0 1px 0 rgb(255 255 255 / 18%);
+  opacity: 0;
+  transform: translateY(18px) scale(.94);
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.image-lightbox.is-open .image-lightbox__panel {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.image-lightbox__image {
+  display: block;
+  width: auto;
+  max-width: min(760px, 82vw);
+  max-height: 74vh;
+  object-fit: contain;
+  border-radius: 10px;
+  filter: drop-shadow(0 24px 38px rgb(0 0 0 / 42%));
+}
+
+.image-lightbox__close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 1px solid rgb(255 255 255 / 22%);
+  border-radius: 999px;
+  color: #ffffff;
+  background: rgb(2 12 32 / 72%);
+  box-shadow: 0 10px 24px rgb(0 0 0 / 28%);
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.image-lightbox__close:hover,
+.image-lightbox__close:focus-visible {
+  border-color: rgb(255 255 255 / 56%);
+  background: rgb(0 156 255 / 32%);
+  outline: none;
+}
+
+body.lightbox-open {
+  overflow: hidden;
+}
+
 .section-heading {
   display: flex;
   align-items: end;
