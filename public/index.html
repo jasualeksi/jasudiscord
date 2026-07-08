@@ -46,12 +46,13 @@
           <a href="/etusivu">Etusivu</a>
           <a href="/bannerit">Bannerit</a>
           <a href="/discord">Discord</a>
-          <details class="nav-more">
-            <summary>Muuta</summary>
+          <div class="nav-more">
+            <input class="nav-more__toggle" id="nav-more-toggle" type="checkbox" aria-label="Avaa muuta valikko">
+            <label class="nav-more__summary" for="nav-more-toggle">Muuta</label>
             <div class="nav-more__menu">
               <a href="/discord-komennot">Discord komennot</a>
             </div>
-          </details>
+          </div>
         </nav>
       </header>
 
@@ -69,6 +70,9 @@
       <div class="home-hero">
         <h1>Jasu | Discord</h1>
         <p>Discord-botit, discord-servut, logot, bannerit, profiilikuvat</p>
+        <div class="home-preview">
+          <img src="/assets/discord-preview.png" alt="Jasu Discord palvelin" onerror="this.closest('.home-preview').hidden = true">
+        </div>
       </div>
     </main>
 
