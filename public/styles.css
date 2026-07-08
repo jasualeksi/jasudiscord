@@ -104,7 +104,14 @@ html[data-page="commands"] .banners-section {
   display: none;
 }
 
-.topnav a {
+.topnav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.topnav a,
+.nav-more summary {
   min-height: 32px;
   justify-content: center;
   padding: 0 11px;
@@ -120,6 +127,49 @@ html[data-page="commands"] .banners-section {
     border-color 160ms ease,
     filter 160ms ease,
     transform 160ms ease;
+}
+
+.nav-more {
+  position: relative;
+}
+
+.nav-more summary {
+  display: inline-flex;
+  align-items: center;
+  list-style: none;
+  cursor: pointer;
+}
+
+.nav-more summary::-webkit-details-marker {
+  display: none;
+}
+
+.nav-more__menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  display: grid;
+  min-width: 180px;
+  padding: 7px;
+  border: 1px solid rgb(111 224 255 / 24%);
+  border-radius: 8px;
+  background: rgb(4 18 42 / 92%);
+  box-shadow:
+    0 18px 34px rgb(0 0 0 / 32%),
+    inset 0 1px 0 rgb(255 255 255 / 10%);
+  backdrop-filter: blur(14px);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition:
+    opacity 160ms ease,
+    transform 160ms ease;
+}
+
+.nav-more[open] .nav-more__menu {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
 }
 
 .social-nav {
@@ -165,7 +215,8 @@ html[data-page="commands"] .banners-section {
   object-fit: cover;
 }
 
-.topnav a:hover {
+.topnav a:hover,
+.nav-more summary:hover {
   border-color: rgb(188 248 255 / 62%);
   background: rgb(0 180 255 / 38%);
   filter: brightness(1.08);
@@ -175,7 +226,8 @@ html[data-page="commands"] .banners-section {
 html[data-page="home"] .topnav a[href="/etusivu"],
 html[data-page="discord"] .topnav a[href="/discord"],
 html[data-page="banners"] .topnav a[href="/bannerit"],
-html[data-page="commands"] .topnav a[href="/discord-komennot"] {
+html[data-page="commands"] .topnav a[href="/discord-komennot"],
+html[data-page="commands"] .nav-more summary {
   border-color: rgb(188 248 255 / 62%);
   background: rgb(0 180 255 / 38%);
 }
@@ -981,12 +1033,34 @@ html[data-page="home"] .feedback-panel {
     gap: 7px;
   }
 
-  .topnav a {
+  .topnav a,
+  .nav-more summary {
     width: 100%;
     min-height: 36px;
     justify-content: start;
     padding: 0 10px;
     font-size: 12px;
+  }
+
+  .nav-more {
+    width: 100%;
+  }
+
+  .nav-more__menu {
+    position: static;
+    min-width: 0;
+    margin-top: 7px;
+    padding: 0 0 0 8px;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+  }
+
+  .nav-more:not([open]) .nav-more__menu {
+    display: none;
   }
 
   .social-nav {
