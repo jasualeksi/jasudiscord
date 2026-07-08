@@ -637,7 +637,7 @@ html[data-page="commands"] .nav-more--extra .nav-more__summary::before {
 .home-hero {
   width: min(1180px, 100%);
   text-align: center;
-  text-shadow: 0 18px 36px rgb(0 0 0 / 52%);
+  text-shadow: none;
 }
 
 .home-hero h1 {
@@ -649,7 +649,7 @@ html[data-page="commands"] .nav-more--extra .nav-more__summary::before {
   font-weight: 900;
   line-height: 0.95;
   -webkit-text-fill-color: #ffffff;
-  text-shadow: 0 3px 7px rgb(0 0 0 / 42%);
+  text-shadow: none;
 }
 
 .home-hero p {
