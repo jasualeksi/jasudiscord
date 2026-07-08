@@ -20,19 +20,35 @@ body {
 
 html[data-page="home"] .discord-page,
 html[data-page="home"] .banners-section,
+html[data-page="home"] .portfolio-section,
 html[data-page="home"] .commands-section,
 html[data-page="discord"] .home-page,
 html[data-page="discord"] .feedback-panel,
 html[data-page="discord"] .banners-section,
+html[data-page="discord"] .portfolio-section,
 html[data-page="discord"] .commands-section,
 html[data-page="banners"] .home-page,
 html[data-page="banners"] .page,
 html[data-page="banners"] .feedback-panel,
+html[data-page="banners"] .portfolio-section,
 html[data-page="banners"] .commands-section,
+html[data-page="logos"] .home-page,
+html[data-page="logos"] .page,
+html[data-page="logos"] .feedback-panel,
+html[data-page="logos"] .banners-section,
+html[data-page="logos"] .avatars-section,
+html[data-page="logos"] .commands-section,
+html[data-page="avatars"] .home-page,
+html[data-page="avatars"] .page,
+html[data-page="avatars"] .feedback-panel,
+html[data-page="avatars"] .banners-section,
+html[data-page="avatars"] .logos-section,
+html[data-page="avatars"] .commands-section,
 html[data-page="commands"] .home-page,
 html[data-page="commands"] .page,
 html[data-page="commands"] .feedback-panel,
-html[data-page="commands"] .banners-section {
+html[data-page="commands"] .banners-section,
+html[data-page="commands"] .portfolio-section {
   display: none;
 }
 
@@ -275,6 +291,11 @@ html[data-page="commands"] .banners-section {
 html[data-page="home"] .topnav a[href="/etusivu"],
 html[data-page="discord"] .topnav a[href="/discord"],
 html[data-page="banners"] .topnav a[href="/bannerit"],
+html[data-page="logos"] .topnav a[href="/logot"],
+html[data-page="avatars"] .topnav a[href="/profiilikuvat"],
+html[data-page="banners"] .nav-more--portfolio .nav-more__summary,
+html[data-page="logos"] .nav-more--portfolio .nav-more__summary,
+html[data-page="avatars"] .nav-more--portfolio .nav-more__summary,
 html[data-page="commands"] .topnav a[href="/discord-komennot"],
 html[data-page="commands"] .nav-more__summary {
   text-shadow:
@@ -285,6 +306,11 @@ html[data-page="commands"] .nav-more__summary {
 html[data-page="home"] .topnav a[href="/etusivu"]::after,
 html[data-page="discord"] .topnav a[href="/discord"]::after,
 html[data-page="banners"] .topnav a[href="/bannerit"]::after,
+html[data-page="logos"] .topnav a[href="/logot"]::after,
+html[data-page="avatars"] .topnav a[href="/profiilikuvat"]::after,
+html[data-page="banners"] .nav-more--portfolio .nav-more__summary::before,
+html[data-page="logos"] .nav-more--portfolio .nav-more__summary::before,
+html[data-page="avatars"] .nav-more--portfolio .nav-more__summary::before,
 html[data-page="commands"] .topnav a[href="/discord-komennot"]::after,
 html[data-page="commands"] .nav-more__summary::before {
   opacity: 1;
@@ -695,6 +721,7 @@ html[data-page="home"] .feedback-panel {
 }
 
 .banners-section,
+.portfolio-section,
 .commands-section {
   position: relative;
   isolation: isolate;
@@ -706,6 +733,7 @@ html[data-page="home"] .feedback-panel {
 }
 
 .banners-section::before,
+.portfolio-section::before,
 .commands-section::before {
   position: absolute;
   inset: 0;
@@ -719,12 +747,18 @@ html[data-page="home"] .feedback-panel {
   padding-bottom: 42px;
 }
 
+.portfolio-section {
+  min-height: auto;
+  padding-bottom: 56px;
+}
+
 .commands-shell {
   width: min(1040px, 100%);
   margin: 0 auto;
 }
 
-.banners-shell {
+.banners-shell,
+.portfolio-shell {
   width: min(1040px, 100%);
   margin: 0 auto;
 }
@@ -821,6 +855,77 @@ html[data-page="home"] .feedback-panel {
   color: rgb(218 248 255 / 76%);
   font-size: 13px;
   line-height: 1.45;
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  gap: 14px;
+}
+
+.portfolio-card {
+  overflow: hidden;
+  border: 2px solid rgb(139 232 255 / 46%);
+  border-radius: 8px;
+  background:
+    linear-gradient(145deg, rgb(16 88 190 / 24%), rgb(2 18 48 / 60%)),
+    rgb(4 18 46 / 48%);
+  box-shadow:
+    0 16px 34px rgb(0 0 0 / 28%),
+    0 0 28px rgb(0 221 255 / 18%),
+    inset 0 1px 0 rgb(255 255 255 / 14%);
+  backdrop-filter: blur(10px);
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.portfolio-card:hover {
+  border-color: rgb(188 248 255 / 78%);
+  box-shadow:
+    0 20px 42px rgb(0 0 0 / 32%),
+    0 0 42px rgb(0 221 255 / 28%),
+    inset 0 1px 0 rgb(255 255 255 / 20%);
+  transform: translateY(-2px);
+}
+
+.portfolio-card__media {
+  display: grid;
+  aspect-ratio: 1;
+  place-items: center;
+  overflow: hidden;
+  background: rgb(2 18 48 / 54%);
+}
+
+.portfolio-card__media img {
+  display: block;
+  width: 78%;
+  height: 78%;
+  object-fit: contain;
+  filter: drop-shadow(0 18px 26px rgb(0 0 0 / 38%));
+}
+
+.portfolio-card__media span {
+  display: inline-flex;
+  min-height: 34px;
+  align-items: center;
+  padding: 0 12px;
+  border: 1px solid rgb(132 235 255 / 34%);
+  border-radius: 8px;
+  color: rgb(232 251 255 / 92%);
+  background: rgb(0 156 255 / 18%);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.portfolio-card h2 {
+  margin: 0;
+  padding: 11px 12px 12px;
+  color: #ffffff;
+  font-size: 15px;
+  line-height: 1.15;
 }
 
 .section-heading {

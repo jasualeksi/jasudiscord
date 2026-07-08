@@ -24,6 +24,8 @@
       document.documentElement.dataset.page = {
         "/discord": "discord",
         "/bannerit": "banners",
+        "/logot": "logos",
+        "/profiilikuvat": "avatars",
         "/discord-komennot": "commands"
       }[window.location.pathname.replace(/\/$/, "")] || "home";
     </script>
@@ -44,8 +46,16 @@
         </label>
         <nav class="topnav" aria-label="Päänavigaatio">
           <a href="/etusivu">Etusivu</a>
-          <a href="/bannerit">Bannerit</a>
           <a href="/discord">Discord</a>
+          <div class="nav-more nav-more--portfolio">
+            <input class="nav-more__toggle" id="nav-portfolio-toggle" type="checkbox" aria-label="Avaa portfolio valikko">
+            <label class="nav-more__summary" for="nav-portfolio-toggle">Portfolio</label>
+            <div class="nav-more__menu">
+              <a href="/bannerit">Bannerit</a>
+              <a href="/logot">Logot</a>
+              <a href="/profiilikuvat">Profiilikuvat</a>
+            </div>
+          </div>
           <div class="nav-more">
             <input class="nav-more__toggle" id="nav-more-toggle" type="checkbox" aria-label="Avaa muuta valikko">
             <label class="nav-more__summary" for="nav-more-toggle">Muuta</label>
@@ -139,6 +149,49 @@
               <div class="banner-card__body">
                 <h2>Bannerin nimi</h2>
               </div>
+            </article>
+          -->
+        </div>
+      </div>
+    </section>
+
+    <section class="portfolio-section logos-section" id="logot" aria-labelledby="logos-title">
+      <div class="portfolio-shell">
+        <div class="section-heading">
+          <h1 id="logos-title">Minun tekemät logot</h1>
+        </div>
+        <div class="portfolio-grid">
+          <article class="portfolio-card">
+            <div class="portfolio-card__media">
+              <img src="/assets/C.png" alt="Logo">
+            </div>
+            <h2>C-logo</h2>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="portfolio-section avatars-section" id="profiilikuvat" aria-labelledby="avatars-title">
+      <div class="portfolio-shell">
+        <div class="section-heading">
+          <h1 id="avatars-title">Minun tekemät profiilikuvat</h1>
+        </div>
+        <div class="portfolio-grid">
+          <article class="portfolio-card portfolio-card--empty">
+            <div class="portfolio-card__media">
+              <span>Lisää profiilikuva</span>
+            </div>
+            <h2>Profiilikuva</h2>
+          </article>
+
+          <!--
+            Lisää uusi profiilikuva kopioimalla tämä kortti:
+
+            <article class="portfolio-card">
+              <div class="portfolio-card__media">
+                <img src="/assets/profiilikuvat/kuvan-nimi.png" alt="Profiilikuva">
+              </div>
+              <h2>Profiilikuvan nimi</h2>
             </article>
           -->
         </div>
