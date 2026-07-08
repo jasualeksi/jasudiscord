@@ -5,21 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#8b8b8b">
     <title>Jasu〡Discord</title>
-    <meta name="description" content="Modernit Discord-palvelimet, botit ja automaatiot juuri sinun yhteisöllesi.">
+    <meta name="description" content="Erotu joukosta omalla Discord-palvelimellasi.">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Jasu | Discord">
     <meta property="og:title" content="Jasu | Discord">
-    <meta property="og:description" content="Modernit Discord-palvelimet, botit ja automaatiot juuri sinun yhteisöllesi.">
+    <meta property="og:description" content="Erotu joukosta omalla Discord-palvelimellasi.">
     <meta property="og:url" content="https://jasudiscord.com/etusivu">
     <meta property="og:locale" content="fi_FI">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Jasu | Discord">
-    <meta name="twitter:description" content="Modernit Discord-palvelimet, botit ja automaatiot juuri sinun yhteisöllesi.">
+    <meta name="twitter:description" content="Erotu joukosta omalla Discord-palvelimellasi.">
     <link rel="canonical" href="https://jasudiscord.com/etusivu">
     <base href="/">
     <link rel="icon" type="image/png" href="/assets/favicon.png">
     <link rel="apple-touch-icon" href="/assets/logo.png">
-    <link rel="stylesheet" href="/styles.css?v=20260709-4">
+    <link rel="stylesheet" href="/styles.css?v=20260709-3">
     <script>
       document.documentElement.dataset.page = {
         "/discord": "discord",
@@ -77,129 +77,23 @@
     </div>
 
     <main class="home-page" id="top">
-      <section class="landing-hero" aria-labelledby="home-title">
-        <div class="home-hero">
-          <p class="hero-eyebrow">JASU / DISCORD</p>
-          <h1 id="home-title">Discord-palvelimia, jotka erottuvat joukosta.</h1>
-          <p class="hero-subtitle">Moderni rakenne, botit ja automaatiot juuri sinun yhteisöllesi.</p>
-          <div class="hero-actions">
-            <a class="home-button home-button--primary" href="#palvelut">Tutustu palveluihin</a>
-            <a class="home-button home-button--secondary" href="https://discord.gg/MHqmuTnGms" target="_blank" rel="noopener noreferrer">Liity Discordiin</a>
-          </div>
-          <p class="hero-trust" aria-label="Luotettava, nopea ja yksilöllinen">
-            <span>Luotettava</span>
-            <span>Nopea</span>
-            <span>Yksilöllinen</span>
-          </p>
+      <div class="home-hero">
+        <h1 data-text="Jasu | Discord">Jasu | Discord</h1>
+        <p data-text="Erotu joukosta omalla Discord-palvelimellasi.">Erotu joukosta omalla Discord-palvelimellasi.</p>
+      </div>
+
+      <aside class="feedback-panel" aria-labelledby="feedback-title">
+        <div class="feedback-panel__heading">
+          <p>ASIAKAS PALAUTTEET</p>
         </div>
-      </section>
-
-      <section class="home-stats home-container" aria-label="Tilastot" data-reveal>
-        <!-- Vaihda nämä placeholder-luvut oikeiksi, kun vahvistetut luvut ovat saatavilla. -->
-        <article class="stat-item">
-          <strong>25+</strong>
-          <span>Projektia</span>
-        </article>
-        <article class="stat-item">
-          <strong>15+</strong>
-          <span>Asiakasta</span>
-        </article>
-        <article class="stat-item">
-          <strong>4.9/5</strong>
-          <span>Arvostelu</span>
-        </article>
-      </section>
-
-      <section class="home-section home-container" aria-labelledby="why-title" data-reveal>
-        <header class="home-section__heading">
-          <p class="section-kicker">TOIMIVA KOKONAISUUS</p>
-          <h2 id="why-title">Miksi Jasu?</h2>
-          <p>Discord-palvelin ei ole vain kasa kanavia. Sen pitää näyttää hyvältä, toimia sujuvasti ja tuntua omalta.</p>
-        </header>
-        <div class="feature-grid">
-          <article class="feature-card">
-            <span class="feature-card__icon" aria-hidden="true">⚡</span>
-            <h3>Nopea toteutus</h3>
-            <p>Selkeä prosessi ja tehokas toteutus ilman turhaa säätöä.</p>
-          </article>
-          <article class="feature-card">
-            <span class="feature-card__icon" aria-hidden="true">BOT</span>
-            <h3>Botit &amp; automaatiot</h3>
-            <p>Tikettijärjestelmät, moderointi, tervetuloviestit ja muut automaatiot.</p>
-          </article>
-          <article class="feature-card">
-            <span class="feature-card__icon" aria-hidden="true">✦</span>
-            <h3>Uniikki ulkoasu</h3>
-            <p>Roolit, kategoriat ja kanavat suunnitellaan juuri sinun yhteisöllesi.</p>
+        <p class="feedback-panel__intro">Palautteet kirjoitetaan Discordissa ja ne päivittyvät tänne automaattisesti.</p>
+        <div class="feedback-list" id="feedback-list" aria-live="polite">
+          <article class="feedback-item feedback-item--status">
+            <p>Ladataan palautteita...</p>
           </article>
         </div>
-      </section>
-
-      <section class="home-section home-container" id="palvelut" aria-labelledby="services-title" data-reveal>
-        <header class="home-section__heading">
-          <p class="section-kicker">MITÄ TEEN</p>
-          <h2 id="services-title">Palvelut</h2>
-          <p>Valitse valmis kokonaisuus tai rakennetaan ratkaisu täysin tarpeidesi mukaan.</p>
-        </header>
-        <div class="service-grid">
-          <article class="service-card">
-            <span class="service-card__number">01</span>
-            <h3>Discord-palvelin</h3>
-            <p>Täysin valmis palvelin alusta loppuun: kanavat, roolit, oikeudet ja rakenne.</p>
-            <a href="/discord">Tutustu <span aria-hidden="true">→</span></a>
-          </article>
-          <article class="service-card">
-            <span class="service-card__number">02</span>
-            <h3>Botit &amp; automaatiot</h3>
-            <p>Moderointi, tiketit, tervetuloviestit ja yhteisön arkea helpottavat automaatiot.</p>
-            <a href="/discord-komennot">Tutustu <span aria-hidden="true">→</span></a>
-          </article>
-          <article class="service-card">
-            <span class="service-card__number">03</span>
-            <h3>Palvelimen uudistus</h3>
-            <p>Vanhan palvelimen rakenne, ulkoasu ja käyttökokemus moderniksi.</p>
-            <a href="/discord">Tutustu <span aria-hidden="true">→</span></a>
-          </article>
-        </div>
-      </section>
-
-      <section class="testimonials-section home-container" aria-labelledby="feedback-title" data-reveal>
-        <header class="home-section__heading">
-          <p class="section-kicker">ASIAKASPALAUTTEET</p>
-          <h2 id="feedback-title">Mitä asiakkaat sanovat</h2>
-          <p>Palautteet kirjoitetaan Discordissa ja ne päivittyvät tänne automaattisesti.</p>
-        </header>
-        <aside class="feedback-panel" aria-label="Asiakaspalautteet">
-          <div class="feedback-list" id="feedback-list" aria-live="polite">
-            <article class="feedback-item feedback-item--status">
-              <p>Ladataan palautteita...</p>
-            </article>
-          </div>
-          <div class="feedback-controls" id="feedback-controls" aria-label="Palautteiden selaus"></div>
-        </aside>
-      </section>
-
-      <section class="final-cta home-container" aria-labelledby="final-cta-title" data-reveal>
-        <div>
-          <p class="section-kicker">ALOITETAAN</p>
-          <h2 id="final-cta-title">Tehdäänkö sinullekin parempi Discord-palvelin?</h2>
-          <p>Rakennetaan yhteisöllesi moderni, toimiva ja omannäköinen kokonaisuus.</p>
-        </div>
-        <div class="final-cta__actions">
-          <a class="home-button home-button--primary" href="https://www.instagram.com/jasualeksii" target="_blank" rel="noopener noreferrer">Ota yhteyttä</a>
-          <a class="home-button home-button--secondary" href="https://discord.gg/MHqmuTnGms" target="_blank" rel="noopener noreferrer">Liity Discordiin</a>
-        </div>
-      </section>
-
-      <footer class="site-footer home-container">
-        <a class="site-footer__brand" href="/etusivu">Jasu | Discord</a>
-        <p>Discord-palvelimet, botit ja visuaalinen suunnittelu.</p>
-        <nav aria-label="Alatunniste">
-          <a href="/discord">Discord</a>
-          <a href="/bannerit">Bannerit</a>
-          <a href="/logot">Logot</a>
-        </nav>
-      </footer>
+        <div class="feedback-controls" id="feedback-controls" aria-label="Palautteiden selaus"></div>
+      </aside>
     </main>
 
     <section class="page discord-page" id="discord">
