@@ -11,12 +11,6 @@ function json(data, init = {}) {
   });
 }
 
-function getStaticRequest(request, pathname) {
-  const url = new URL(request.url);
-  url.pathname = pathname;
-  return new Request(url, request);
-}
-
 async function fetchDiscordCommands(env, scope) {
   const applicationId = env.DISCORD_APPLICATION_ID;
   const token = env.DISCORD_BOT_TOKEN;
@@ -273,12 +267,6 @@ export default {
         status: result.status,
         cacheControl: result.ok ? "public, max-age=45" : "no-store"
       });
-    }
-
-    const pagePath = url.pathname.replace(/\/$/, "") || "/";
-
-    if (["/", "/etusivu", "/bannerit", "/discord-komennot"].includes(pagePath)) {
-      return env.ASSETS.fetch(getStaticRequest(request, "/index.html"));
     }
 
     return env.ASSETS.fetch(request);
