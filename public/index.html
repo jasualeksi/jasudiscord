@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/styles.css">
     <script>
       document.documentElement.dataset.page = {
+        "/discord": "discord",
         "/bannerit": "banners",
         "/discord-komennot": "commands"
       }[window.location.pathname.replace(/\/$/, "")] || "home";
@@ -32,6 +33,7 @@
         </label>
         <nav class="topnav" aria-label="Päänavigaatio">
           <a href="/etusivu">Etusivu</a>
+          <a href="/discord">Discord</a>
           <a href="/bannerit">Bannerit</a>
           <a href="/discord-komennot">Discord komennot</a>
         </nav>
@@ -47,7 +49,14 @@
       </nav>
     </div>
 
-    <main class="page" id="top">
+    <main class="home-page" id="top">
+      <div class="home-hero">
+        <h1>Jasu | Discord</h1>
+        <p>Discord-botit, discord-servut, logot, bannerit, profiilikuvat</p>
+      </div>
+    </main>
+
+    <section class="page discord-page" id="discord">
       <img class="logo" src="/assets/logo.png" alt="Jasu Discord" fetchpriority="high">
       <article class="server-widget" id="server-widget">
         <div class="server-widget__icon">
@@ -65,7 +74,7 @@
           <span>Liity</span>
         </a>
       </article>
-    </main>
+    </section>
 
     <aside class="feedback-panel" aria-labelledby="feedback-title">
       <div class="feedback-panel__heading">

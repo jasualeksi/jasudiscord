@@ -18,11 +18,19 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+html[data-page="home"] .discord-page,
+html[data-page="home"] .feedback-panel,
 html[data-page="home"] .banners-section,
 html[data-page="home"] .commands-section,
+html[data-page="discord"] .home-page,
+html[data-page="discord"] .feedback-panel,
+html[data-page="discord"] .banners-section,
+html[data-page="discord"] .commands-section,
+html[data-page="banners"] .home-page,
 html[data-page="banners"] .page,
 html[data-page="banners"] .feedback-panel,
 html[data-page="banners"] .commands-section,
+html[data-page="commands"] .home-page,
 html[data-page="commands"] .page,
 html[data-page="commands"] .feedback-panel,
 html[data-page="commands"] .banners-section {
@@ -166,6 +174,7 @@ html[data-page="commands"] .banners-section {
 }
 
 html[data-page="home"] .topnav a[href="/etusivu"],
+html[data-page="discord"] .topnav a[href="/discord"],
 html[data-page="banners"] .topnav a[href="/bannerit"],
 html[data-page="commands"] .topnav a[href="/discord-komennot"] {
   border-color: rgb(188 248 255 / 62%);
@@ -421,6 +430,7 @@ html[data-page="commands"] .topnav a[href="/discord-komennot"] {
   line-height: 1.38;
 }
 
+.home-page,
 .page {
   position: relative;
   display: flex;
@@ -432,6 +442,29 @@ html[data-page="commands"] .topnav a[href="/discord-komennot"] {
   gap: clamp(10px, 2.5vmin, 18px);
   padding: max(20px, env(safe-area-inset-top)) max(20px, env(safe-area-inset-right)) max(20px, env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left));
   padding-top: max(94px, env(safe-area-inset-top));
+}
+
+.home-hero {
+  width: min(980px, 100%);
+  text-align: center;
+  text-shadow: 0 18px 36px rgb(0 0 0 / 52%);
+}
+
+.home-hero h1 {
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(48px, 10vw, 104px);
+  font-weight: 900;
+  line-height: 0.95;
+}
+
+.home-hero p {
+  width: min(760px, 100%);
+  margin: 18px auto 0;
+  color: rgb(220 249 255 / 88%);
+  font-size: clamp(16px, 3.2vw, 27px);
+  font-weight: 800;
+  line-height: 1.32;
 }
 
 .logo {
