@@ -467,7 +467,8 @@ body {
 
 .banner-showcase {
   display: grid;
-  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr));
+  gap: 14px;
 }
 
 .banner-card {
@@ -502,7 +503,7 @@ body {
 .banner-card__preview {
   display: block;
   width: 100%;
-  aspect-ratio: 1865 / 108;
+  aspect-ratio: 16 / 5;
 }
 
 .banner-card img {
@@ -538,13 +539,13 @@ body {
 }
 
 .banner-card__body {
-  padding: 10px 12px 11px;
+  padding: 14px 16px 16px;
 }
 
 .banner-card__body h2 {
-  margin: 0;
+  margin: 0 0 7px;
   color: #ffffff;
-  font-size: 15px;
+  font-size: 18px;
   line-height: 1.15;
 }
 
