@@ -2077,13 +2077,11 @@ body.reveal-ready [data-reveal].is-visible {
 
 @media (max-width: 768px) {
   html[data-page="home"] .nav-shell {
-    width: calc(100% - 20px);
-    max-width: 720px;
+    width: min(100% - 20px, 720px);
   }
 
   .home-container {
-    width: calc(100% - 28px);
-    max-width: 680px;
+    width: min(100% - 28px, 680px);
   }
 
   .landing-hero {
@@ -2143,15 +2141,6 @@ body.reveal-ready [data-reveal].is-visible {
   html[data-page="home"] .topbar {
     min-height: 46px;
     padding: 6px;
-  }
-
-  html[data-page="home"] .brand {
-    font-size: 0;
-  }
-
-  html[data-page="home"] .brand img {
-    width: 28px;
-    height: 28px;
   }
 
   .landing-hero {
