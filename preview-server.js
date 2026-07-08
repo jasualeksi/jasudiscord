@@ -22,6 +22,10 @@ http.createServer((request, response) => {
     urlPath = "/index.html";
   }
 
+  if (["/etusivu", "/bannerit", "/discord-komennot"].includes(urlPath.replace(/\/$/, ""))) {
+    urlPath = "/index.html";
+  }
+
   const file = path.resolve(root, `.${urlPath}`);
 
   if (!file.startsWith(root)) {

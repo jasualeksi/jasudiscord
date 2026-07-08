@@ -18,6 +18,17 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+html[data-page="home"] .banners-section,
+html[data-page="home"] .commands-section,
+html[data-page="banners"] .page,
+html[data-page="banners"] .feedback-panel,
+html[data-page="banners"] .commands-section,
+html[data-page="commands"] .page,
+html[data-page="commands"] .feedback-panel,
+html[data-page="commands"] .banners-section {
+  display: none;
+}
+
 .nav-shell {
   position: fixed;
   top: max(10px, env(safe-area-inset-top));
@@ -147,6 +158,13 @@ body {
   background: rgb(0 180 255 / 38%);
   filter: brightness(1.08);
   transform: translateY(-1px);
+}
+
+html[data-page="home"] .topnav a[href="/etusivu"],
+html[data-page="banners"] .topnav a[href="/bannerit"],
+html[data-page="commands"] .topnav a[href="/discord-komennot"] {
+  border-color: rgb(188 248 255 / 62%);
+  background: rgb(0 180 255 / 38%);
 }
 
 .server-widget {

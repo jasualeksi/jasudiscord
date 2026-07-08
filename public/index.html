@@ -8,18 +8,25 @@
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link rel="apple-touch-icon" href="assets/logo.png">
     <link rel="stylesheet" href="styles.css">
+    <script>
+      document.documentElement.dataset.page = {
+        "/bannerit": "banners",
+        "/discord-komennot": "commands"
+      }[window.location.pathname.replace(/\/$/, "")] || "home";
+    </script>
     <script src="commands.js" defer></script>
   </head>
   <body>
     <div class="nav-shell">
       <header class="topbar">
-        <a class="brand" href="#top" aria-label="Jasu Discord">
+        <a class="brand" href="/etusivu" aria-label="Jasu Discord">
           <img src="assets/logo.png" alt="">
           <span>Jasu〡Discord</span>
         </a>
         <nav class="topnav" aria-label="Päänavigaatio">
-          <a href="#banners">Bannerit</a>
-          <a href="#commands">Discord komennot</a>
+          <a href="/etusivu">Etusivu</a>
+          <a href="/bannerit">Bannerit</a>
+          <a href="/discord-komennot">Discord komennot</a>
         </nav>
       </header>
 
