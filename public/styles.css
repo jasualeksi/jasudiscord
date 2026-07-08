@@ -812,21 +812,22 @@ html[data-page="home"] .feedback-panel {
 
 .portfolio-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(auto-fill, minmax(118px, 1fr));
+  gap: 10px;
 }
 
 .portfolio-card {
   overflow: hidden;
-  border: 2px solid rgb(139 232 255 / 46%);
+  min-width: 0;
+  border: 1px solid rgb(139 232 255 / 38%);
   border-radius: 8px;
   background:
     linear-gradient(145deg, rgb(16 88 190 / 24%), rgb(2 18 48 / 60%)),
     rgb(4 18 46 / 48%);
   box-shadow:
-    0 16px 34px rgb(0 0 0 / 28%),
-    0 0 28px rgb(0 221 255 / 18%),
-    inset 0 1px 0 rgb(255 255 255 / 14%);
+    0 10px 22px rgb(0 0 0 / 22%),
+    0 0 18px rgb(0 221 255 / 12%),
+    inset 0 1px 0 rgb(255 255 255 / 12%);
   backdrop-filter: blur(10px);
   transition:
     border-color 160ms ease,
@@ -835,10 +836,10 @@ html[data-page="home"] .feedback-panel {
 }
 
 .portfolio-card:hover {
-  border-color: rgb(188 248 255 / 78%);
+  border-color: rgb(188 248 255 / 68%);
   box-shadow:
-    0 20px 42px rgb(0 0 0 / 32%),
-    0 0 42px rgb(0 221 255 / 28%),
+    0 14px 28px rgb(0 0 0 / 28%),
+    0 0 28px rgb(0 221 255 / 22%),
     inset 0 1px 0 rgb(255 255 255 / 20%);
   transform: translateY(-2px);
 }
@@ -875,10 +876,14 @@ html[data-page="home"] .feedback-panel {
 
 .portfolio-card h2 {
   margin: 0;
-  padding: 11px 12px 12px;
+  overflow: hidden;
+  padding: 8px 9px 9px;
   color: #ffffff;
-  font-size: 15px;
+  font-size: 12px;
+  font-weight: 900;
   line-height: 1.15;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .section-heading {
@@ -1296,6 +1301,11 @@ html[data-page="home"] .feedback-panel {
   html[data-page="home"] .feedback-panel {
     margin-top: 0;
     margin-bottom: 18px;
+  }
+
+  .portfolio-grid {
+    grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+    gap: 8px;
   }
 
   .logo {
