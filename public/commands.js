@@ -54,6 +54,24 @@ let feedbackIndex = 0;
 let feedbackTimer = null;
 let placeholderTimer = null;
 
+function setupExclusiveNavMenus() {
+  const toggles = document.querySelectorAll(".nav-more__toggle");
+
+  toggles.forEach((toggle) => {
+    toggle.addEventListener("change", () => {
+      if (!toggle.checked) {
+        return;
+      }
+
+      toggles.forEach((otherToggle) => {
+        if (otherToggle !== toggle) {
+          otherToggle.checked = false;
+        }
+      });
+    });
+  });
+}
+
 function escapeHtml(value) {
   return String(value)
     .replaceAll("&", "&amp;")
@@ -408,3 +426,4 @@ commandSearch.addEventListener("input", () => {
 loadCommands().then(loadServerWidget);
 loadFeedback();
 startCommandPlaceholderLoop();
+setupExclusiveNavMenus();
