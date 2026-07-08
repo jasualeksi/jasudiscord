@@ -19,7 +19,6 @@ body {
 }
 
 html[data-page="home"] .discord-page,
-html[data-page="home"] .feedback-panel,
 html[data-page="home"] .banners-section,
 html[data-page="home"] .commands-section,
 html[data-page="discord"] .home-page,
@@ -347,15 +346,22 @@ html[data-page="commands"] .topnav a[href="/discord-komennot"] {
 }
 
 .feedback-list {
-  display: grid;
-  max-height: 430px;
-  gap: 10px;
-  overflow: auto;
-  padding-right: 4px;
+  display: flex;
+  overflow: hidden;
+  padding-right: 0;
+  scroll-behavior: smooth;
+}
+
+.feedback-list__track {
+  display: flex;
+  width: 100%;
+  transition: transform 650ms ease;
 }
 
 .feedback-item {
   display: grid;
+  width: 100%;
+  min-width: 100%;
   grid-template-columns: auto minmax(0, 1fr);
   gap: 10px;
   padding: 10px;
@@ -367,6 +373,45 @@ html[data-page="commands"] .topnav a[href="/discord-komennot"] {
 
 .feedback-item--status {
   display: block;
+}
+
+.feedback-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 32px;
+  margin-top: 12px;
+}
+
+.feedback-control {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border: 1px solid rgb(111 224 255 / 24%);
+  border-radius: 8px;
+  color: #ffffff;
+  background: rgb(0 156 255 / 16%);
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.feedback-dot {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgb(218 248 255 / 34%);
+  cursor: pointer;
+}
+
+.feedback-dot.is-active {
+  background: rgb(132 235 255 / 94%);
+  box-shadow: 0 0 14px rgb(0 195 255 / 42%);
 }
 
 .feedback-avatar {
@@ -485,14 +530,7 @@ html[data-page="commands"] .topnav a[href="/discord-komennot"] {
   min-height: 100svh;
   margin-top: 0;
   padding: 84px max(20px, env(safe-area-inset-right)) max(56px, env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left));
-  background:
-    linear-gradient(
-      180deg,
-      rgb(2 10 26 / 0%) 0%,
-      rgb(2 12 34 / 34%) 18%,
-      rgb(2 12 34 / 72%) 46%,
-      rgb(2 12 34 / 88%) 100%
-    );
+  background: transparent;
 }
 
 .banners-section::before,
@@ -500,9 +538,7 @@ html[data-page="commands"] .topnav a[href="/discord-komennot"] {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background:
-    radial-gradient(circle at 22% 28%, rgb(0 204 255 / 14%), transparent 30%),
-    radial-gradient(circle at 78% 18%, rgb(34 118 255 / 18%), transparent 34%);
+  background: none;
   content: "";
 }
 

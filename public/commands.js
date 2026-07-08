@@ -4,6 +4,7 @@ const categoryTabs = document.querySelector("#category-tabs");
 const serverWidget = document.querySelector("#server-widget");
 const serverStats = document.querySelector("#server-stats");
 const feedbackList = document.querySelector("#feedback-list");
+const feedbackControls = document.querySelector("#feedback-controls");
 
 const inviteUrl = "https://discord.gg/MHqmuTnGms";
 const commandTypeLabels = {
@@ -48,6 +49,10 @@ const categoryRules = [
 let allCommands = [];
 let activeCategory = "all";
 let searchValue = "";
+let feedbackMessages = [];
+let feedbackIndex = 0;
+let feedbackTimer = null;
+let placeholderTimer = null;
 
 function escapeHtml(value) {
   return String(value)
@@ -110,6 +115,41 @@ function renderFeedbackStatus(text) {
       <p>${escapeHtml(text)}</p>
     </article>
   `;
+
+  if (feedbackControls) {
+    feedbackControls.innerHTML = "";
+  }
+}
+
+function updateFeedbackSlider() {
+  const track = feedbackList.querySelector(".feedback-list__track");
+
+  if (!track || !feedbackMessages.length) {
+    return;
+  }
+
+  track.style.transform = `translateX(-${feedbackIndex * 100}%)`;
+
+  feedbackControls.querySelectorAll("[data-feedback-index]").forEach((button) => {
+    button.classList.toggle("is-active", Number(button.dataset.feedbackIndex) === feedbackIndex);
+  });
+}
+
+function setFeedbackIndex(index) {
+  feedbackIndex = (index + feedbackMessages.length) % feedbackMessages.length;
+  updateFeedbackSlider();
+}
+
+function startFeedbackAutoplay() {
+  window.clearInterval(feedbackTimer);
+
+  if (feedbackMessages.length < 2) {
+    return;
+  }
+
+  feedbackTimer = window.setInterval(() => {
+    setFeedbackIndex(feedbackIndex + 1);
+  }, 4200);
 }
 
 function renderFeedback(messages) {
@@ -118,21 +158,94 @@ function renderFeedback(messages) {
     return;
   }
 
-  feedbackList.innerHTML = messages.map((message) => `
-    <article class="feedback-item">
-      <div class="feedback-avatar">
-        ${message.avatarUrl ? `<img src="${escapeHtml(message.avatarUrl)}" alt="">` : `<span>${escapeHtml(message.authorName.slice(0, 1).toUpperCase())}</span>`}
-      </div>
-      <div class="feedback-content">
-        <div class="feedback-meta">
-          <strong>${escapeHtml(message.authorName)}</strong>
-          <time datetime="${escapeHtml(message.createdAt)}">${escapeHtml(formatMessageTime(message.createdAt))}</time>
-        </div>
-        <p>${escapeHtml(message.content || "Liite tai embed-viesti")}</p>
-      </div>
-    </article>
-  `).join("");
+  feedbackMessages = messages;
+  feedbackIndex = 0;
+
+  feedbackList.innerHTML = `
+    <div class="feedback-list__track">
+      ${messages.map((message) => `
+        <article class="feedback-item">
+          <div class="feedback-avatar">
+            ${message.avatarUrl ? `<img src="${escapeHtml(message.avatarUrl)}" alt="">` : `<span>${escapeHtml(message.authorName.slice(0, 1).toUpperCase())}</span>`}
+          </div>
+          <div class="feedback-content">
+            <div class="feedback-meta">
+              <strong>${escapeHtml(message.authorName)}</strong>
+              <time datetime="${escapeHtml(message.createdAt)}">${escapeHtml(formatMessageTime(message.createdAt))}</time>
+            </div>
+            <p>${escapeHtml(message.content || "Liite tai embed-viesti")}</p>
+          </div>
+        </article>
+      `).join("")}
+    </div>
+  `;
+
+  feedbackControls.innerHTML = messages.length > 1 ? `
+    <button class="feedback-control" type="button" data-feedback-action="prev" aria-label="Edellinen palaute">&lt;</button>
+    ${messages.map((_, index) => `
+      <button class="feedback-dot${index === 0 ? " is-active" : ""}" type="button" data-feedback-index="${index}" aria-label="Palaute ${index + 1}"></button>
+    `).join("")}
+    <button class="feedback-control" type="button" data-feedback-action="next" aria-label="Seuraava palaute">&gt;</button>
+  ` : "";
+
+  updateFeedbackSlider();
+  startFeedbackAutoplay();
 }
+
+function startCommandPlaceholderLoop() {
+  const text = "Hae esim. addmoney";
+  let index = 0;
+  let deleting = false;
+
+  window.clearTimeout(placeholderTimer);
+
+  function tick() {
+    if (document.activeElement !== commandSearch && !commandSearch.value) {
+      commandSearch.placeholder = text.slice(0, index);
+    }
+
+    if (!deleting && index < text.length) {
+      index += 1;
+      placeholderTimer = window.setTimeout(tick, 95);
+      return;
+    }
+
+    if (!deleting && index === text.length) {
+      deleting = true;
+      placeholderTimer = window.setTimeout(tick, 1250);
+      return;
+    }
+
+    if (deleting && index > 0) {
+      index -= 1;
+      placeholderTimer = window.setTimeout(tick, 45);
+      return;
+    }
+
+    deleting = false;
+    placeholderTimer = window.setTimeout(tick, 420);
+  }
+
+  tick();
+}
+
+feedbackControls.addEventListener("click", (event) => {
+  const control = event.target.closest("button");
+
+  if (!control || !feedbackMessages.length) {
+    return;
+  }
+
+  if (control.dataset.feedbackAction === "prev") {
+    setFeedbackIndex(feedbackIndex - 1);
+  } else if (control.dataset.feedbackAction === "next") {
+    setFeedbackIndex(feedbackIndex + 1);
+  } else if (control.dataset.feedbackIndex) {
+    setFeedbackIndex(Number(control.dataset.feedbackIndex));
+  }
+
+  startFeedbackAutoplay();
+});
 
 function getFilteredCommands() {
   return allCommands.filter((command) => {
@@ -294,3 +407,4 @@ commandSearch.addEventListener("input", () => {
 
 loadCommands().then(loadServerWidget);
 loadFeedback();
+startCommandPlaceholderLoop();
