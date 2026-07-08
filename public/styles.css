@@ -639,11 +639,36 @@ html[data-page="commands"] .nav-more--extra .nav-more__summary::before {
   font-size: clamp(58px, 11vw, 118px);
   font-weight: 900;
   line-height: 0.95;
-  -webkit-text-stroke: 1px rgb(119 232 255 / 58%);
+  background: linear-gradient(
+    105deg,
+    #ffffff 0%,
+    #ffffff 40%,
+    #d7d7d7 46%,
+    #ffffff 50%,
+    #ffffff 100%
+  );
+  background-size: 260% 100%;
+  background-position: 130% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: title-light-sweep 4.5s ease-in-out infinite;
   text-shadow:
-    0 2px 0 rgb(19 105 132 / 90%),
-    0 8px 22px rgb(0 0 0 / 72%),
-    0 0 34px rgb(55 211 255 / 32%);
+    0 0 8px rgb(255 255 255 / 72%),
+    0 0 20px rgb(255 255 255 / 42%),
+    0 8px 22px rgb(0 0 0 / 66%);
+}
+
+@keyframes title-light-sweep {
+  0%,
+  18% {
+    background-position: 130% 0;
+  }
+
+  55%,
+  100% {
+    background-position: -130% 0;
+  }
 }
 
 .home-hero p {
