@@ -643,23 +643,25 @@ html[data-page="commands"] .nav-more--extra .nav-more__summary::before {
 .home-hero h1 {
   position: relative;
   margin: 0;
-  color: #ffffff;
+  color: #ffffff !important;
   font-family: "League Spartan", Arial, Helvetica, sans-serif;
   font-size: clamp(58px, 11vw, 118px);
   font-weight: 900;
   line-height: 0.95;
-  text-shadow: 0 4px 10px rgb(0 0 0 / 52%);
+  -webkit-text-fill-color: #ffffff;
+  text-shadow: 0 3px 7px rgb(0 0 0 / 42%);
 }
 
 .home-hero p {
   position: relative;
   width: min(760px, 100%);
   margin: 14px auto 0;
-  color: #ffffff;
+  color: #ffffff !important;
   font-family: "League Spartan", Arial, Helvetica, sans-serif;
   font-size: clamp(17px, 3.3vw, 30px);
   font-weight: 800;
   line-height: 1.32;
+  -webkit-text-fill-color: #ffffff;
 }
 
 .home-hero h1::after,
