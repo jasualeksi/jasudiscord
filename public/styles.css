@@ -632,68 +632,21 @@ html[data-page="commands"] .nav-more__summary::before {
   text-shadow: 0 18px 36px rgb(0 0 0 / 52%);
 }
 
-.home-hero__text {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: clamp(18px, 4vw, 44px);
-}
-
-.home-hero__text h1 {
+.home-hero h1 {
   margin: 0;
   color: #ffffff;
-  font-size: clamp(58px, 11vw, 132px);
+  font-size: clamp(58px, 11vw, 118px);
   font-weight: 900;
   line-height: 0.95;
 }
 
-.home-hero__text p {
+.home-hero p {
   width: min(760px, 100%);
   margin: 14px auto 0;
   color: rgb(220 249 255 / 88%);
   font-size: clamp(17px, 3.3vw, 30px);
   font-weight: 800;
   line-height: 1.32;
-}
-
-.home-preview {
-  position: relative;
-  width: min(1120px, 100%);
-  margin: 0 auto;
-  overflow: hidden;
-  border: 2px solid rgb(116 232 255 / 72%);
-  border-radius: 8px;
-  background: rgb(2 18 48 / 42%);
-  box-shadow:
-    0 24px 58px rgb(0 0 0 / 38%),
-    0 0 0 1px rgb(255 255 255 / 14%),
-    0 0 28px rgb(0 221 255 / 34%),
-    0 0 72px rgb(0 112 255 / 24%),
-    inset 0 1px 0 rgb(255 255 255 / 24%);
-}
-
-.home-preview::after {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background:
-    radial-gradient(circle at center, rgb(0 0 0 / 18%), rgb(0 0 0 / 36%)),
-    linear-gradient(180deg, rgb(1 7 18 / 8%), rgb(1 7 18 / 28%));
-  content: "";
-}
-
-.home-preview img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 16 / 7.2;
-  object-fit: cover;
-  object-position: center top;
-  filter: brightness(0.82) saturate(1.06);
-  transform: scale(1.04);
 }
 
 html[data-page="home"] .home-page {
@@ -1331,25 +1284,13 @@ html[data-page="home"] .feedback-panel {
     padding-bottom: 14px;
   }
 
-  .home-hero__text {
-    padding: 16px;
-  }
-
-  .home-hero__text h1 {
+  .home-hero h1 {
     font-size: clamp(40px, 13vw, 58px);
   }
 
-  .home-hero__text p {
+  .home-hero p {
     margin-top: 10px;
     font-size: 15px;
-  }
-
-  .home-preview {
-    width: 100%;
-  }
-
-  .home-preview img {
-    aspect-ratio: 16 / 10;
   }
 
   html[data-page="home"] .feedback-panel {
