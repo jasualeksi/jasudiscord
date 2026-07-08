@@ -666,7 +666,7 @@ html[data-page="home"] .feedback-panel {
   position: relative;
   z-index: 2;
   width: min(520px, calc(100% - 32px));
-  margin: 56px auto max(26px, env(safe-area-inset-bottom));
+  margin: 24px auto max(26px, env(safe-area-inset-bottom));
   padding: 13px;
 }
 
@@ -1433,7 +1433,7 @@ body.lightbox-open {
   }
 
   html[data-page="home"] .feedback-panel {
-    margin-top: 42px;
+    margin-top: 22px;
     margin-bottom: 18px;
   }
 
@@ -1468,7 +1468,7 @@ body.lightbox-open {
     top: auto;
     left: auto;
     width: min(520px, calc(100% - 32px));
-    margin: 64px auto 56px;
+    margin: 28px auto 56px;
   }
 }
 
