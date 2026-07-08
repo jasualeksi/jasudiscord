@@ -633,11 +633,17 @@ html[data-page="commands"] .nav-more__summary::before {
 }
 
 .home-hero h1 {
+  position: relative;
   margin: 0;
   color: #ffffff;
   font-size: clamp(58px, 11vw, 118px);
   font-weight: 900;
   line-height: 0.95;
+  -webkit-text-stroke: 1px rgb(119 232 255 / 58%);
+  text-shadow:
+    0 2px 0 rgb(19 105 132 / 90%),
+    0 8px 22px rgb(0 0 0 / 72%),
+    0 0 34px rgb(55 211 255 / 32%);
 }
 
 .home-hero p {
@@ -650,16 +656,17 @@ html[data-page="commands"] .nav-more__summary::before {
 }
 
 html[data-page="home"] .home-page {
-  min-height: auto;
+  min-height: 82vh;
+  min-height: 82svh;
   padding-top: max(92px, env(safe-area-inset-top));
-  padding-bottom: 20px;
+  padding-bottom: 34px;
 }
 
 html[data-page="home"] .feedback-panel {
   position: relative;
   z-index: 2;
   width: min(520px, calc(100% - 32px));
-  margin: 0 auto max(26px, env(safe-area-inset-bottom));
+  margin: 56px auto max(26px, env(safe-area-inset-bottom));
   padding: 13px;
 }
 
@@ -1411,8 +1418,9 @@ body.lightbox-open {
   }
 
   html[data-page="home"] .home-page {
+    min-height: 76svh;
     padding-top: 78px;
-    padding-bottom: 14px;
+    padding-bottom: 24px;
   }
 
   .home-hero h1 {
@@ -1425,7 +1433,7 @@ body.lightbox-open {
   }
 
   html[data-page="home"] .feedback-panel {
-    margin-top: 0;
+    margin-top: 42px;
     margin-bottom: 18px;
   }
 
@@ -1460,7 +1468,7 @@ body.lightbox-open {
     top: auto;
     left: auto;
     width: min(520px, calc(100% - 32px));
-    margin: 0 auto 56px;
+    margin: 64px auto 56px;
   }
 }
 
