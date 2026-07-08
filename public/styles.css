@@ -603,13 +603,15 @@ html[data-page="commands"] .nav-more__summary {
   width: min(1120px, 100%);
   margin: 0 auto;
   overflow: hidden;
-  border: 2px solid rgb(139 232 255 / 42%);
+  border: 2px solid rgb(116 232 255 / 72%);
   border-radius: 8px;
   background: rgb(2 18 48 / 42%);
   box-shadow:
-    0 24px 58px rgb(0 0 0 / 42%),
-    0 0 46px rgb(0 195 255 / 18%),
-    inset 0 1px 0 rgb(255 255 255 / 12%);
+    0 24px 58px rgb(0 0 0 / 38%),
+    0 0 0 1px rgb(255 255 255 / 14%),
+    0 0 28px rgb(0 221 255 / 34%),
+    0 0 72px rgb(0 112 255 / 24%),
+    inset 0 1px 0 rgb(255 255 255 / 24%);
 }
 
 .home-preview::after {
@@ -617,8 +619,8 @@ html[data-page="commands"] .nav-more__summary {
   inset: 0;
   z-index: 1;
   background:
-    linear-gradient(180deg, rgb(1 7 18 / 52%), rgb(1 7 18 / 72%)),
-    rgb(0 0 0 / 28%);
+    radial-gradient(circle at center, rgb(0 0 0 / 18%), rgb(0 0 0 / 36%)),
+    linear-gradient(180deg, rgb(1 7 18 / 8%), rgb(1 7 18 / 28%));
   content: "";
 }
 
@@ -628,7 +630,7 @@ html[data-page="commands"] .nav-more__summary {
   aspect-ratio: 16 / 7.2;
   object-fit: cover;
   object-position: center top;
-  filter: brightness(0.38) saturate(0.92);
+  filter: brightness(0.82) saturate(1.06);
   transform: scale(1.04);
 }
 
