@@ -1157,14 +1157,23 @@ html[data-page="home"] .feedback-panel {
     width: 100%;
   }
 
+  .nav-more__summary {
+    display: none;
+  }
+
   .nav-more__menu {
     position: static;
     min-width: 0;
-    margin-top: 7px;
-    padding: 0 0 0 8px;
+    max-height: none;
+    margin-top: 0;
+    padding: 0;
     border: 0;
     background: transparent;
     box-shadow: none;
+    opacity: 1;
+    overflow: visible;
+    pointer-events: auto;
+    transform: none;
     transform-origin: top left;
   }
 
