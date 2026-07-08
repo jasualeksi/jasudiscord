@@ -654,9 +654,8 @@ html[data-page="commands"] .nav-more--extra .nav-more__summary::before {
   -webkit-text-fill-color: transparent;
   animation: title-light-sweep 4.5s ease-in-out infinite;
   text-shadow:
-    0 0 8px rgb(255 255 255 / 72%),
-    0 0 20px rgb(255 255 255 / 42%),
-    0 8px 22px rgb(0 0 0 / 66%);
+    0 0 2px rgb(255 255 255 / 28%),
+    0 4px 10px rgb(0 0 0 / 52%);
 }
 
 @keyframes title-light-sweep {
