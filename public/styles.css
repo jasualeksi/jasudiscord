@@ -455,17 +455,6 @@ body {
   padding-bottom: 42px;
 }
 
-.commands-section {
-  margin-top: -1px;
-  background:
-    linear-gradient(
-      180deg,
-      rgb(2 12 34 / 88%) 0%,
-      rgb(2 12 34 / 82%) 32%,
-      rgb(2 12 34 / 88%) 100%
-    );
-}
-
 .commands-shell {
   width: min(1040px, 100%);
   margin: 0 auto;
@@ -512,7 +501,7 @@ body {
 
 .banner-card img {
   object-fit: cover;
-  transform: scale(1.08);
+  transform: scale(1.04);
   transform-origin: center;
 }
 
