@@ -512,6 +512,19 @@ html[data-page="commands"] .topnav a[href="/discord-komennot"] {
   line-height: 1.32;
 }
 
+html[data-page="home"] .home-page {
+  min-height: 78vh;
+  min-height: 78svh;
+  padding-bottom: 18px;
+}
+
+html[data-page="home"] .feedback-panel {
+  position: relative;
+  z-index: 2;
+  width: min(520px, calc(100% - 32px));
+  margin: 0 auto max(56px, env(safe-area-inset-bottom));
+}
+
 .logo {
   display: block;
   width: clamp(220px, 42vmin, 420px);
@@ -1039,6 +1052,14 @@ html[data-page="commands"] .topnav a[href="/discord-komennot"] {
 
   .feedback-list {
     max-height: 430px;
+  }
+
+  html[data-page="home"] .feedback-panel {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: min(520px, calc(100% - 32px));
+    margin: 0 auto 56px;
   }
 }
 
