@@ -297,7 +297,7 @@ html[data-page="banners"] .nav-more--portfolio .nav-more__summary,
 html[data-page="logos"] .nav-more--portfolio .nav-more__summary,
 html[data-page="avatars"] .nav-more--portfolio .nav-more__summary,
 html[data-page="commands"] .topnav a[href="/discord-komennot"],
-html[data-page="commands"] .nav-more__summary {
+html[data-page="commands"] .nav-more--extra .nav-more__summary {
   text-shadow:
     0 0 10px rgb(255 255 255 / 34%),
     0 0 18px rgb(132 235 255 / 24%);
@@ -312,7 +312,7 @@ html[data-page="banners"] .nav-more--portfolio .nav-more__summary::before,
 html[data-page="logos"] .nav-more--portfolio .nav-more__summary::before,
 html[data-page="avatars"] .nav-more--portfolio .nav-more__summary::before,
 html[data-page="commands"] .topnav a[href="/discord-komennot"]::after,
-html[data-page="commands"] .nav-more__summary::before {
+html[data-page="commands"] .nav-more--extra .nav-more__summary::before {
   opacity: 1;
   transform: scaleX(1);
 }
