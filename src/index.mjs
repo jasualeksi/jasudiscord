@@ -1,6 +1,12 @@
 const DISCORD_API = "https://discord.com/api/v10";
 const SESSION_COOKIE = "jasu_session";
 const OAUTH_STATE_COOKIE = "jasu_oauth_state";
+const COIN_PACKAGES = {
+  coins_5000: { coins: 5000, priceCents: 100 },
+  coins_20000: { coins: 20000, priceCents: 300 },
+  coins_50000: { coins: 50000, priceCents: 500 },
+  coins_100000: { coins: 100000, priceCents: 800 }
+};
 
 function randomToken(size = 24) {
   const bytes = crypto.getRandomValues(new Uint8Array(size));
@@ -51,6 +57,84 @@ async function signValue(value, secret) {
   );
   const signature = await crypto.subtle.sign("HMAC", key, new TextEncoder().encode(value));
   return bytesToBase64Url(new Uint8Array(signature));
+}
+
+async function signHex(value, secret) {
+  const key = await crypto.subtle.importKey(
+    "raw",
+    new TextEncoder().encode(secret),
+    { name: "HMAC", hash: "SHA-256" },
+    false,
+    ["sign"]
+  );
+  const signature = await crypto.subtle.sign("HMAC", key, new TextEncoder().encode(value));
+  return Array.from(new Uint8Array(signature), (byte) => byte.toString(16).padStart(2, "0")).join("");
+}
+
+function secureEqual(left, right) {
+  if (left.length !== right.length) {
+    return false;
+  }
+
+  let difference = 0;
+
+  for (let index = 0; index < left.length; index += 1) {
+    difference |= left.charCodeAt(index) ^ right.charCodeAt(index);
+  }
+
+  return difference === 0;
+}
+
+async function verifyStripeSignature(payload, signatureHeader, secret) {
+  const parts = Object.fromEntries(
+    (signatureHeader || "")
+      .split(",")
+      .map((part) => part.split("="))
+      .filter(([key, value]) => key && value)
+  );
+  const timestamp = Number(parts.t);
+
+  if (!timestamp || !parts.v1 || Math.abs(Date.now() / 1000 - timestamp) > 300) {
+    return false;
+  }
+
+  const expected = await signHex(`${timestamp}.${payload}`, secret);
+  return secureEqual(expected, parts.v1);
+}
+
+function paymentsConfigured(env) {
+  return Boolean(
+    env.STRIPE_SECRET_KEY &&
+    env.STRIPE_WEBHOOK_SECRET &&
+    env.PURCHASE_DELIVERY_SECRET &&
+    env.PURCHASE_DELIVERY_CHANNEL_ID &&
+    env.DISCORD_BOT_TOKEN
+  );
+}
+
+async function sendPurchaseToBot(env, eventId, userId, coins) {
+  const payload = textToBase64Url(JSON.stringify({
+    eventId,
+    userId,
+    coins,
+    createdAt: new Date().toISOString()
+  }));
+  const signature = await signValue(payload, env.PURCHASE_DELIVERY_SECRET);
+  const response = await fetch(
+    `${DISCORD_API}/channels/${env.PURCHASE_DELIVERY_CHANNEL_ID}/messages`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Bot ${env.DISCORD_BOT_TOKEN}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        content: `JASU_PURCHASE:${payload}.${signature}`
+      })
+    }
+  );
+
+  return response.ok;
 }
 
 async function createSession(user, secret) {
@@ -437,6 +521,7 @@ export default {
           env.DISCORD_CLIENT_SECRET &&
           env.SESSION_SECRET
         ),
+        paymentsConfigured: paymentsConfigured(env),
         authenticated: Boolean(user),
         user: user ? {
           id: user.id,
@@ -448,6 +533,92 @@ export default {
       }, {
         cacheControl: "no-store"
       });
+    }
+
+    if (url.pathname === "/api/checkout" && request.method === "POST") {
+      const user = await readSession(request, env.SESSION_SECRET);
+
+      if (!user) {
+        return json({ message: "Kirjaudu ensin Discordilla." }, { status: 401 });
+      }
+
+      if (!paymentsConfigured(env)) {
+        return json({ message: "Maksut eivät ole vielä käytössä." }, { status: 503 });
+      }
+
+      const body = await request.json().catch(() => ({}));
+      const product = COIN_PACKAGES[body.packageId];
+
+      if (!product) {
+        return json({ message: "Kolikkopakettia ei löytynyt." }, { status: 400 });
+      }
+
+      const form = new URLSearchParams({
+        mode: "payment",
+        success_url: `${url.origin}/kauppa?payment=success`,
+        cancel_url: `${url.origin}/kauppa?payment=cancelled`,
+        client_reference_id: user.id,
+        "line_items[0][quantity]": "1",
+        "line_items[0][price_data][currency]": "eur",
+        "line_items[0][price_data][unit_amount]": String(product.priceCents),
+        "line_items[0][price_data][product_data][name]": `${product.coins.toLocaleString("fi-FI")} Discord-kolikkoa`,
+        "metadata[user_id]": user.id,
+        "metadata[coins]": String(product.coins),
+        "metadata[package_id]": body.packageId
+      });
+      const stripeResponse = await fetch("https://api.stripe.com/v1/checkout/sessions", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${env.STRIPE_SECRET_KEY}`,
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: form
+      });
+      const checkout = await stripeResponse.json();
+
+      if (!stripeResponse.ok || !checkout.url) {
+        return json({ message: "Maksun avaaminen epäonnistui." }, { status: 502 });
+      }
+
+      return json({ url: checkout.url });
+    }
+
+    if (url.pathname === "/api/stripe-webhook" && request.method === "POST") {
+      if (!env.STRIPE_WEBHOOK_SECRET || !env.PURCHASE_DELIVERY_SECRET) {
+        return new Response("Webhook is not configured.", { status: 503 });
+      }
+
+      const payload = await request.text();
+      const validSignature = await verifyStripeSignature(
+        payload,
+        request.headers.get("Stripe-Signature"),
+        env.STRIPE_WEBHOOK_SECRET
+      );
+
+      if (!validSignature) {
+        return new Response("Invalid signature.", { status: 400 });
+      }
+
+      const event = JSON.parse(payload);
+
+      if (event.type === "checkout.session.completed" && event.data?.object?.payment_status === "paid") {
+        const session = event.data.object;
+        const packageId = session.metadata?.package_id;
+        const product = COIN_PACKAGES[packageId];
+        const userId = session.metadata?.user_id;
+
+        if (!product || !userId || Number(session.metadata?.coins) !== product.coins) {
+          return new Response("Invalid purchase metadata.", { status: 400 });
+        }
+
+        const delivered = await sendPurchaseToBot(env, event.id, userId, product.coins);
+
+        if (!delivered) {
+          return new Response("Delivery failed.", { status: 502 });
+        }
+      }
+
+      return new Response("ok");
     }
 
     if (url.pathname === "/api/commands") {

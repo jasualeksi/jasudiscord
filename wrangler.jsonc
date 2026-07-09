@@ -6,7 +6,8 @@
     "DISCORD_APPLICATION_ID": "1380477708831559873",
     "DISCORD_GUILD_ID": "1519042780364673044",
     "DISCORD_FEEDBACK_CHANNEL_ID": "1522395762976362576",
-    "DISCORD_INVITE_URL": "https://discord.gg/MHqmuTnGms"
+    "DISCORD_INVITE_URL": "https://discord.gg/MHqmuTnGms",
+    "PURCHASE_DELIVERY_CHANNEL_ID": "1524623236468441088"
   },
   "assets": {
     "directory": "./public",

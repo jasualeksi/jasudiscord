@@ -911,6 +911,22 @@ html[data-page="home"] .feedback-panel {
   cursor: not-allowed;
 }
 
+.coin-package button:not(:disabled) {
+  border-color: rgb(125 220 255 / 42%);
+  color: #ffffff;
+  background: rgb(9 120 190 / 78%);
+  box-shadow: 0 10px 24px rgb(0 80 160 / 24%);
+  cursor: pointer;
+  transition:
+    filter 160ms ease,
+    transform 160ms ease;
+}
+
+.coin-package button:not(:disabled):hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
 .shop-status {
   margin: 24px auto 0;
   color: rgb(218 248 255 / 62%);
