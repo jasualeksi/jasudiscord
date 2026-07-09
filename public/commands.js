@@ -9,6 +9,9 @@ const imageLightbox = document.querySelector("#image-lightbox");
 const imageLightboxImage = imageLightbox?.querySelector(".image-lightbox__image");
 const imageLightboxClose = imageLightbox?.querySelector(".image-lightbox__close");
 const imageLightboxBackdrop = imageLightbox?.querySelector(".image-lightbox__backdrop");
+const authLogin = document.querySelector("[data-auth-login]");
+const authLogout = document.querySelector("[data-auth-logout]");
+const shopStatus = document.querySelector("#shop-status");
 
 const inviteUrl = "https://discord.gg/MHqmuTnGms";
 const commandTypeLabels = {
@@ -74,6 +77,35 @@ function setupExclusiveNavMenus() {
       });
     });
   });
+}
+
+async function loadSession() {
+  const authState = new URLSearchParams(window.location.search).get("auth");
+
+  if (shopStatus && authState === "setup") {
+    shopStatus.textContent = "Discord-kirjautuminen odottaa Cloudflare-asetuksia.";
+  } else if (shopStatus && authState === "failed") {
+    shopStatus.textContent = "Discord-kirjautuminen epäonnistui. Yritä uudelleen.";
+  }
+
+  try {
+    const response = await fetch("/api/session", {
+      headers: {
+        "Accept": "application/json"
+      }
+    });
+    const session = await response.json();
+
+    if (!response.ok) {
+      return;
+    }
+
+    authLogin.hidden = session.authenticated;
+    authLogout.hidden = !session.authenticated;
+  } catch {
+    authLogin.hidden = false;
+    authLogout.hidden = true;
+  }
 }
 
 function setupImageLightbox() {
@@ -485,3 +517,4 @@ loadFeedback();
 startCommandPlaceholderLoop();
 setupExclusiveNavMenus();
 setupImageLightbox();
+loadSession();

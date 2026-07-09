@@ -1,4 +1,113 @@
 const DISCORD_API = "https://discord.com/api/v10";
+const SESSION_COOKIE = "jasu_session";
+const OAUTH_STATE_COOKIE = "jasu_oauth_state";
+
+function randomToken(size = 24) {
+  const bytes = crypto.getRandomValues(new Uint8Array(size));
+  return Array.from(bytes, (byte) => byte.toString(16).padStart(2, "0")).join("");
+}
+
+function parseCookies(request) {
+  return Object.fromEntries(
+    (request.headers.get("Cookie") || "")
+      .split(";")
+      .map((part) => part.trim().split("="))
+      .filter(([name, value]) => name && value)
+      .map(([name, ...value]) => [name, decodeURIComponent(value.join("="))])
+  );
+}
+
+function bytesToBase64Url(bytes) {
+  let binary = "";
+
+  for (const byte of bytes) {
+    binary += String.fromCharCode(byte);
+  }
+
+  return btoa(binary)
+    .replaceAll("+", "-")
+    .replaceAll("/", "_")
+    .replaceAll("=", "");
+}
+
+function textToBase64Url(value) {
+  return bytesToBase64Url(new TextEncoder().encode(value));
+}
+
+function base64UrlToText(value) {
+  const base64 = value.replaceAll("-", "+").replaceAll("_", "/");
+  const padded = base64.padEnd(Math.ceil(base64.length / 4) * 4, "=");
+  const binary = atob(padded);
+  return new TextDecoder().decode(Uint8Array.from(binary, (character) => character.charCodeAt(0)));
+}
+
+async function signValue(value, secret) {
+  const key = await crypto.subtle.importKey(
+    "raw",
+    new TextEncoder().encode(secret),
+    { name: "HMAC", hash: "SHA-256" },
+    false,
+    ["sign"]
+  );
+  const signature = await crypto.subtle.sign("HMAC", key, new TextEncoder().encode(value));
+  return bytesToBase64Url(new Uint8Array(signature));
+}
+
+async function createSession(user, secret) {
+  const payload = textToBase64Url(JSON.stringify({
+    id: user.id,
+    username: user.global_name || user.username,
+    avatar: user.avatar || "",
+    exp: Date.now() + (7 * 24 * 60 * 60 * 1000)
+  }));
+  return `${payload}.${await signValue(payload, secret)}`;
+}
+
+async function readSession(request, secret) {
+  if (!secret) {
+    return null;
+  }
+
+  const session = parseCookies(request)[SESSION_COOKIE];
+  const [payload, signature] = (session || "").split(".");
+
+  if (!payload || !signature || signature !== await signValue(payload, secret)) {
+    return null;
+  }
+
+  try {
+    const user = JSON.parse(base64UrlToText(payload));
+    return user.exp > Date.now() ? user : null;
+  } catch {
+    return null;
+  }
+}
+
+function cookie(name, value, options = {}) {
+  const parts = [
+    `${name}=${encodeURIComponent(value)}`,
+    "Path=/",
+    "HttpOnly",
+    "Secure",
+    "SameSite=Lax"
+  ];
+
+  if (options.maxAge !== undefined) {
+    parts.push(`Max-Age=${options.maxAge}`);
+  }
+
+  return parts.join("; ");
+}
+
+function redirect(location, headers = {}) {
+  return new Response(null, {
+    status: 302,
+    headers: {
+      Location: location,
+      ...headers
+    }
+  });
+}
 
 function json(data, init = {}) {
   return new Response(JSON.stringify(data), {
@@ -240,6 +349,101 @@ async function fetchDiscordFeedback(env) {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+
+    if (url.pathname === "/auth/discord") {
+      if (!env.DISCORD_APPLICATION_ID || !env.DISCORD_CLIENT_SECRET || !env.SESSION_SECRET) {
+        return redirect("/kauppa?auth=setup");
+      }
+
+      const state = randomToken();
+      const redirectUri = `${url.origin}/auth/callback`;
+      const authorizeUrl = new URL("https://discord.com/oauth2/authorize");
+      authorizeUrl.searchParams.set("client_id", env.DISCORD_APPLICATION_ID);
+      authorizeUrl.searchParams.set("response_type", "code");
+      authorizeUrl.searchParams.set("redirect_uri", redirectUri);
+      authorizeUrl.searchParams.set("scope", "identify");
+      authorizeUrl.searchParams.set("state", state);
+
+      return redirect(authorizeUrl.toString(), {
+        "Set-Cookie": cookie(OAUTH_STATE_COOKIE, state, { maxAge: 600 })
+      });
+    }
+
+    if (url.pathname === "/auth/callback") {
+      const cookies = parseCookies(request);
+      const code = url.searchParams.get("code");
+      const state = url.searchParams.get("state");
+
+      if (
+        !code ||
+        !state ||
+        state !== cookies[OAUTH_STATE_COOKIE] ||
+        !env.DISCORD_APPLICATION_ID ||
+        !env.DISCORD_CLIENT_SECRET ||
+        !env.SESSION_SECRET
+      ) {
+        return redirect("/kauppa?auth=failed");
+      }
+
+      const redirectUri = `${url.origin}/auth/callback`;
+      const tokenResponse = await fetch("https://discord.com/api/oauth2/token", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: new URLSearchParams({
+          client_id: env.DISCORD_APPLICATION_ID,
+          client_secret: env.DISCORD_CLIENT_SECRET,
+          grant_type: "authorization_code",
+          code,
+          redirect_uri: redirectUri
+        })
+      });
+
+      if (!tokenResponse.ok) {
+        return redirect("/kauppa?auth=failed");
+      }
+
+      const token = await tokenResponse.json();
+      const userResponse = await fetch(`${DISCORD_API}/users/@me`, {
+        headers: {
+          Authorization: `Bearer ${token.access_token}`
+        }
+      });
+
+      if (!userResponse.ok) {
+        return redirect("/kauppa?auth=failed");
+      }
+
+      const user = await userResponse.json();
+      const session = await createSession(user, env.SESSION_SECRET);
+
+      return redirect("/kauppa", {
+        "Set-Cookie": cookie(SESSION_COOKIE, session, { maxAge: 7 * 24 * 60 * 60 })
+      });
+    }
+
+    if (url.pathname === "/auth/logout") {
+      return redirect("/kauppa", {
+        "Set-Cookie": cookie(SESSION_COOKIE, "", { maxAge: 0 })
+      });
+    }
+
+    if (url.pathname === "/api/session") {
+      const user = await readSession(request, env.SESSION_SECRET);
+      return json({
+        authenticated: Boolean(user),
+        user: user ? {
+          id: user.id,
+          username: user.username,
+          avatarUrl: user.avatar
+            ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=64`
+            : ""
+        } : null
+      }, {
+        cacheControl: "no-store"
+      });
+    }
 
     if (url.pathname === "/api/commands") {
       const scope = url.searchParams.get("scope") || "all";

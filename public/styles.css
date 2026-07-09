@@ -676,6 +676,27 @@ html[data-page="commands"] .nav-more--extra .nav-more__summary::before {
   -webkit-text-fill-color: #ffffff;
 }
 
+.auth-link[hidden] {
+  display: none;
+}
+
+.topnav .auth-link {
+  padding-right: 10px;
+  padding-left: 10px;
+  border: 1px solid rgb(125 220 255 / 26%);
+  border-radius: 8px;
+  background: rgb(39 183 255 / 10%);
+}
+
+.topnav .auth-link::after {
+  display: none;
+}
+
+.topnav .auth-link--logout {
+  border-color: rgb(255 255 255 / 16%);
+  background: rgb(255 255 255 / 6%);
+}
+
 .home-hero h1::after,
 .home-hero p::after {
   position: absolute;

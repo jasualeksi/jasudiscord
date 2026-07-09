@@ -19,7 +19,7 @@
     <base href="/">
     <link rel="icon" type="image/png" href="/assets/favicon.png">
     <link rel="apple-touch-icon" href="/assets/logo.png">
-    <link rel="stylesheet" href="/styles.css?v=20260709-9">
+    <link rel="stylesheet" href="/styles.css?v=20260709-10">
     <script>
       document.documentElement.dataset.page = {
         "/discord": "discord",
@@ -30,7 +30,7 @@
         "/discord-komennot": "commands"
       }[window.location.pathname.replace(/\/$/, "")] || "home";
     </script>
-    <script src="/commands.js" defer></script>
+    <script src="/commands.js?v=20260709-1" defer></script>
   </head>
   <body>
     <div class="nav-shell">
@@ -65,6 +65,8 @@
               <a href="/discord-komennot">Discord komennot</a>
             </div>
           </div>
+          <a class="auth-link auth-link--login" href="/auth/discord" data-auth-login>Kirjaudu</a>
+          <a class="auth-link auth-link--logout" href="/auth/logout" data-auth-logout hidden>Kirjaudu ulos</a>
         </nav>
       </header>
 
@@ -160,7 +162,7 @@
           </article>
         </div>
 
-        <p class="shop-status">Stripe Checkout -maksut avataan, kun automaattinen kolikkotoimitus on yhdistetty.</p>
+        <p class="shop-status" id="shop-status">Stripe Checkout -maksut avataan, kun automaattinen kolikkotoimitus on yhdistetty.</p>
       </div>
     </section>
 
