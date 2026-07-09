@@ -649,7 +649,7 @@ html[data-page="commands"] .nav-more--extra .nav-more__summary::before {
   font-weight: 900;
   line-height: 0.95;
   -webkit-text-fill-color: #ffffff;
-  text-shadow: none;
+  text-shadow: 0 3px 7px rgb(0 0 0 / 38%);
 }
 
 .home-hero p {
@@ -662,6 +662,7 @@ html[data-page="commands"] .nav-more--extra .nav-more__summary::before {
   font-weight: 800;
   line-height: 1.32;
   -webkit-text-fill-color: #ffffff;
+  text-shadow: 0 2px 5px rgb(0 0 0 / 34%);
 }
 
 .home-hero h1::after,
