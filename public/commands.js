@@ -9,15 +9,6 @@ const imageLightbox = document.querySelector("#image-lightbox");
 const imageLightboxImage = imageLightbox?.querySelector(".image-lightbox__image");
 const imageLightboxClose = imageLightbox?.querySelector(".image-lightbox__close");
 const imageLightboxBackdrop = imageLightbox?.querySelector(".image-lightbox__backdrop");
-const authLogin = document.querySelector("[data-auth-login]");
-const authLogout = document.querySelector("[data-auth-logout]");
-const shopStatus = document.querySelector("#shop-status");
-const coinPackageButtons = document.querySelectorAll("[data-package-id]");
-let sessionState = {
-  authenticated: false,
-  paymentsConfigured: false
-};
-
 const inviteUrl = "https://discord.gg/MHqmuTnGms";
 const commandTypeLabels = {
   1: "slash",
@@ -83,94 +74,6 @@ function setupExclusiveNavMenus() {
     });
   });
 }
-
-async function loadSession() {
-  const authState = new URLSearchParams(window.location.search).get("auth");
-  const paymentState = new URLSearchParams(window.location.search).get("payment");
-
-  try {
-    const response = await fetch("/api/session", {
-      headers: {
-        "Accept": "application/json"
-      }
-    });
-    const session = await response.json();
-
-    if (!response.ok) {
-      return;
-    }
-
-    sessionState = session;
-
-    if (shopStatus && !session.configured) {
-      shopStatus.textContent = "Discord-kirjautuminen odottaa Cloudflare-asetuksia.";
-    } else if (shopStatus && authState === "failed") {
-      shopStatus.textContent = "Discord-kirjautuminen epäonnistui. Yritä uudelleen.";
-    } else if (shopStatus && paymentState === "success") {
-      shopStatus.textContent = "Maksu onnistui. Kolikot toimitetaan Discordiin hetken kuluttua.";
-    } else if (shopStatus && paymentState === "cancelled") {
-      shopStatus.textContent = "Maksu peruttiin eikä veloitusta tehty.";
-    } else if (shopStatus && !session.paymentsConfigured) {
-      shopStatus.textContent = "Stripe Checkout odottaa vielä maksupalvelun asetuksia.";
-    }
-
-    authLogin.hidden = session.authenticated;
-    authLogout.hidden = !session.authenticated;
-
-    coinPackageButtons.forEach((button) => {
-      button.disabled = !session.paymentsConfigured;
-      button.textContent = session.paymentsConfigured
-        ? (session.authenticated ? "Osta nyt" : "Kirjaudu ostaaksesi")
-        : "Maksut tulossa";
-    });
-
-    if (authState || paymentState) {
-      window.history.replaceState({}, "", window.location.pathname);
-    }
-  } catch {
-    authLogin.hidden = false;
-    authLogout.hidden = true;
-  }
-}
-
-coinPackageButtons.forEach((button) => {
-  button.addEventListener("click", async () => {
-    if (!sessionState.authenticated) {
-      window.location.href = "/auth/discord";
-      return;
-    }
-
-    button.disabled = true;
-    button.textContent = "Avataan maksua...";
-
-    try {
-      const response = await fetch("/api/checkout", {
-        method: "POST",
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          packageId: button.dataset.packageId
-        })
-      });
-      const result = await response.json();
-
-      if (!response.ok || !result.url) {
-        throw new Error(result.message || "Maksun avaaminen epäonnistui.");
-      }
-
-      window.location.href = result.url;
-    } catch (error) {
-      button.disabled = false;
-      button.textContent = "Osta nyt";
-
-      if (shopStatus) {
-        shopStatus.textContent = error.message;
-      }
-    }
-  });
-});
 
 function setupImageLightbox() {
   if (!imageLightbox || !imageLightboxImage || !imageLightboxClose || !imageLightboxBackdrop) {
@@ -581,4 +484,3 @@ loadFeedback();
 startCommandPlaceholderLoop();
 setupExclusiveNavMenus();
 setupImageLightbox();
-loadSession();

@@ -26,7 +26,6 @@
         "/bannerit": "banners",
         "/logot": "logos",
         "/profiilikuvat": "avatars",
-        "/kauppa": "shop",
         "/discord-komennot": "commands"
       }[window.location.pathname.replace(/\/$/, "")] || "home";
     </script>
@@ -48,7 +47,6 @@
         <nav class="topnav" aria-label="Päänavigaatio">
           <a href="/etusivu">Etusivu</a>
           <a href="/discord">Discord</a>
-          <a href="/kauppa">Kauppa</a>
           <div class="nav-more nav-more--portfolio">
             <input class="nav-more__toggle" id="nav-portfolio-toggle" type="checkbox" aria-label="Avaa portfolio valikko">
             <label class="nav-more__summary" for="nav-portfolio-toggle">Portfolio</label>
@@ -65,8 +63,6 @@
               <a href="/discord-komennot">Discord komennot</a>
             </div>
           </div>
-          <a class="auth-link auth-link--login" href="/auth/discord" data-auth-login>Kirjaudu</a>
-          <a class="auth-link auth-link--logout" href="/auth/logout" data-auth-logout hidden>Kirjaudu ulos</a>
         </nav>
       </header>
 
@@ -118,52 +114,6 @@
           <span>Liity</span>
         </a>
       </article>
-    </section>
-
-    <section class="shop-section" id="kauppa" aria-labelledby="shop-title">
-      <div class="shop-shell">
-        <header class="shop-heading">
-          <p>JASU | DISCORD</p>
-          <h1 id="shop-title">Kolikkokauppa</h1>
-          <span>Osta kolikoita Discord-palvelimen economyyn.</span>
-        </header>
-
-        <div class="coin-packages">
-          <article class="coin-package">
-            <span class="coin-package__label">START</span>
-            <strong>5 000</strong>
-            <p>kolikkoa</p>
-            <div class="coin-package__price">1 €</div>
-            <button type="button" data-package-id="coins_5000" disabled>Maksut tulossa</button>
-          </article>
-
-          <article class="coin-package">
-            <span class="coin-package__label">BASIC</span>
-            <strong>20 000</strong>
-            <p>kolikkoa</p>
-            <div class="coin-package__price">3 €</div>
-            <button type="button" data-package-id="coins_20000" disabled>Maksut tulossa</button>
-          </article>
-
-          <article class="coin-package coin-package--featured">
-            <span class="coin-package__label">SUOSITUIN</span>
-            <strong>50 000</strong>
-            <p>kolikkoa</p>
-            <div class="coin-package__price">5 €</div>
-            <button type="button" data-package-id="coins_50000" disabled>Maksut tulossa</button>
-          </article>
-
-          <article class="coin-package">
-            <span class="coin-package__label">MEGA</span>
-            <strong>100 000</strong>
-            <p>kolikkoa</p>
-            <div class="coin-package__price">8 €</div>
-            <button type="button" data-package-id="coins_100000" disabled>Maksut tulossa</button>
-          </article>
-        </div>
-
-        <p class="shop-status" id="shop-status">Stripe Checkout -maksut avataan, kun automaattinen kolikkotoimitus on yhdistetty.</p>
-      </div>
     </section>
 
     <section class="banners-section" id="banners" aria-labelledby="banners-title">
