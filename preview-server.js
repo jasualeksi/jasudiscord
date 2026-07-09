@@ -22,7 +22,7 @@ http.createServer((request, response) => {
     urlPath = "/index.html";
   }
 
-  if (["/etusivu", "/discord", "/bannerit", "/logot", "/profiilikuvat", "/discord-komennot"].includes(urlPath.replace(/\/$/, ""))) {
+  if (["/etusivu", "/discord", "/kauppa", "/bannerit", "/logot", "/profiilikuvat", "/discord-komennot"].includes(urlPath.replace(/\/$/, ""))) {
     urlPath = "/index.html";
   }
 

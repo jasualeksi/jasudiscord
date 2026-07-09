@@ -60,6 +60,16 @@ html[data-page="commands"] .portfolio-section {
   display: none;
 }
 
+html:not([data-page="shop"]) .shop-section,
+html[data-page="shop"] .home-page,
+html[data-page="shop"] .page,
+html[data-page="shop"] .feedback-panel,
+html[data-page="shop"] .banners-section,
+html[data-page="shop"] .portfolio-section,
+html[data-page="shop"] .commands-section {
+  display: none;
+}
+
 .nav-shell {
   position: fixed;
   top: max(10px, env(safe-area-inset-top));
@@ -298,6 +308,7 @@ html[data-page="commands"] .portfolio-section {
 
 html[data-page="home"] .topnav a[href="/etusivu"],
 html[data-page="discord"] .topnav a[href="/discord"],
+html[data-page="shop"] .topnav a[href="/kauppa"],
 html[data-page="banners"] .topnav a[href="/bannerit"],
 html[data-page="logos"] .topnav a[href="/logot"],
 html[data-page="avatars"] .topnav a[href="/profiilikuvat"],
@@ -313,6 +324,7 @@ html[data-page="commands"] .nav-more--extra .nav-more__summary {
 
 html[data-page="home"] .topnav a[href="/etusivu"]::after,
 html[data-page="discord"] .topnav a[href="/discord"]::after,
+html[data-page="shop"] .topnav a[href="/kauppa"]::after,
 html[data-page="banners"] .topnav a[href="/bannerit"]::after,
 html[data-page="logos"] .topnav a[href="/logot"]::after,
 html[data-page="avatars"] .topnav a[href="/profiilikuvat"]::after,
@@ -725,6 +737,7 @@ html[data-page="home"] .feedback-panel {
 }
 
 .banners-section,
+.shop-section,
 .portfolio-section,
 .commands-section {
   position: relative;
@@ -737,6 +750,7 @@ html[data-page="home"] .feedback-panel {
 }
 
 .banners-section::before,
+.shop-section::before,
 .portfolio-section::before,
 .commands-section::before {
   position: absolute;
@@ -749,6 +763,138 @@ html[data-page="home"] .feedback-panel {
 .banners-section {
   min-height: auto;
   padding-bottom: 42px;
+}
+
+.shop-section {
+  min-height: 100vh;
+  min-height: 100svh;
+}
+
+.shop-shell {
+  width: min(1100px, 100%);
+  margin: 0 auto;
+}
+
+.shop-heading {
+  width: min(680px, 100%);
+  margin: 22px auto 34px;
+  text-align: center;
+}
+
+.shop-heading > p {
+  margin: 0 0 10px;
+  color: rgb(125 220 255 / 88%);
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.shop-heading h1 {
+  margin: 0;
+  color: #ffffff;
+  font-family: "League Spartan", Arial, Helvetica, sans-serif;
+  font-size: clamp(42px, 7vw, 72px);
+  line-height: 1;
+}
+
+.shop-heading > span {
+  display: block;
+  margin-top: 14px;
+  color: rgb(218 248 255 / 74%);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.coin-packages {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.coin-package {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  min-height: 286px;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 16px 18px;
+  border: 1px solid rgb(125 220 255 / 20%);
+  border-radius: 8px;
+  background: rgb(4 24 52 / 72%);
+  box-shadow:
+    0 18px 42px rgb(0 0 0 / 26%),
+    inset 0 1px 0 rgb(255 255 255 / 10%);
+  text-align: center;
+  backdrop-filter: blur(12px);
+  transition:
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+.coin-package:hover {
+  border-color: rgb(125 220 255 / 42%);
+  transform: translateY(-3px);
+}
+
+.coin-package--featured {
+  border-color: rgb(125 220 255 / 52%);
+  background: rgb(7 44 88 / 80%);
+}
+
+.coin-package__label {
+  display: inline-flex;
+  min-height: 24px;
+  align-items: center;
+  padding: 0 8px;
+  border: 1px solid rgb(125 220 255 / 20%);
+  border-radius: 999px;
+  color: rgb(125 220 255 / 92%);
+  background: rgb(39 183 255 / 10%);
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.coin-package strong {
+  margin-top: 28px;
+  color: #ffffff;
+  font-family: "League Spartan", Arial, Helvetica, sans-serif;
+  font-size: clamp(31px, 3vw, 42px);
+  line-height: 1;
+}
+
+.coin-package > p {
+  margin: 5px 0 0;
+  color: rgb(218 248 255 / 68%);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.coin-package__price {
+  margin: 24px 0 18px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.coin-package button {
+  width: 100%;
+  min-height: 42px;
+  margin-top: auto;
+  border: 1px solid rgb(125 220 255 / 14%);
+  border-radius: 8px;
+  color: rgb(255 255 255 / 48%);
+  background: rgb(2 15 36 / 58%);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: not-allowed;
+}
+
+.shop-status {
+  margin: 24px auto 0;
+  color: rgb(218 248 255 / 62%);
+  font-size: 12px;
+  text-align: center;
 }
 
 .portfolio-section {
@@ -1519,5 +1665,55 @@ body.lightbox-open {
 @media (min-width: 900px) and (hover: hover) {
   body {
     background-attachment: fixed;
+  }
+}
+
+@media (max-width: 1024px) {
+  .coin-packages {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .shop-section {
+    padding-top: 76px;
+  }
+
+  .shop-heading {
+    margin-top: 12px;
+    margin-bottom: 26px;
+  }
+
+  .shop-heading h1 {
+    font-size: 44px;
+  }
+
+  .shop-heading > span {
+    font-size: 14px;
+  }
+
+  .coin-packages {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .coin-package {
+    min-height: 248px;
+    padding: 18px 12px 14px;
+  }
+
+  .coin-package strong {
+    margin-top: 22px;
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 420px) {
+  .coin-packages {
+    grid-template-columns: 1fr;
+  }
+
+  .coin-package {
+    min-height: 230px;
   }
 }
