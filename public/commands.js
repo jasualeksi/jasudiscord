@@ -82,12 +82,6 @@ function setupExclusiveNavMenus() {
 async function loadSession() {
   const authState = new URLSearchParams(window.location.search).get("auth");
 
-  if (shopStatus && authState === "setup") {
-    shopStatus.textContent = "Discord-kirjautuminen odottaa Cloudflare-asetuksia.";
-  } else if (shopStatus && authState === "failed") {
-    shopStatus.textContent = "Discord-kirjautuminen epäonnistui. Yritä uudelleen.";
-  }
-
   try {
     const response = await fetch("/api/session", {
       headers: {
@@ -100,8 +94,18 @@ async function loadSession() {
       return;
     }
 
+    if (shopStatus && !session.configured) {
+      shopStatus.textContent = "Discord-kirjautuminen odottaa Cloudflare-asetuksia.";
+    } else if (shopStatus && authState === "failed") {
+      shopStatus.textContent = "Discord-kirjautuminen epäonnistui. Yritä uudelleen.";
+    }
+
     authLogin.hidden = session.authenticated;
     authLogout.hidden = !session.authenticated;
+
+    if (authState) {
+      window.history.replaceState({}, "", window.location.pathname);
+    }
   } catch {
     authLogin.hidden = false;
     authLogout.hidden = true;

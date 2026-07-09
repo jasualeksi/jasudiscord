@@ -432,6 +432,11 @@ export default {
     if (url.pathname === "/api/session") {
       const user = await readSession(request, env.SESSION_SECRET);
       return json({
+        configured: Boolean(
+          env.DISCORD_APPLICATION_ID &&
+          env.DISCORD_CLIENT_SECRET &&
+          env.SESSION_SECRET
+        ),
         authenticated: Boolean(user),
         user: user ? {
           id: user.id,
