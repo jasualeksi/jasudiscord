@@ -1,0 +1,3 @@
+#!/bin/sh
+node scripts/generate-portfolio-assets.js
+git add public/portfolio-assets.json

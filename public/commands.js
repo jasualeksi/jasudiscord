@@ -9,6 +9,9 @@ const imageLightbox = document.querySelector("#image-lightbox");
 const imageLightboxImage = imageLightbox?.querySelector(".image-lightbox__image");
 const imageLightboxClose = imageLightbox?.querySelector(".image-lightbox__close");
 const imageLightboxBackdrop = imageLightbox?.querySelector(".image-lightbox__backdrop");
+const bannerShowcase = document.querySelector("#banner-showcase");
+const logosGrid = document.querySelector("#logos-grid");
+const avatarsGrid = document.querySelector("#avatars-grid");
 const inviteUrl = "https://discord.gg/MHqmuTnGms";
 const commandTypeLabels = {
   1: "slash",
@@ -172,6 +175,82 @@ function renderStatus(title, text) {
       <p>${escapeHtml(text)}</p>
     </article>
   `;
+}
+
+function renderPortfolioStatus(container, className, text) {
+  if (!container) {
+    return;
+  }
+
+  container.innerHTML = `
+    <article class="${className} ${className}--status">
+      ${className === "banner-card" ? `<div class="banner-card__body"><h2>${escapeHtml(text)}</h2></div>` : `<h2>${escapeHtml(text)}</h2>`}
+    </article>
+  `;
+}
+
+function renderBanners(items) {
+  if (!bannerShowcase) {
+    return;
+  }
+
+  if (!items.length) {
+    renderPortfolioStatus(bannerShowcase, "banner-card", "Ei bannereita vielä.");
+    return;
+  }
+
+  bannerShowcase.innerHTML = items.map((item) => `
+    <article class="banner-card">
+      <img src="${escapeHtml(item.src)}" alt="${escapeHtml(item.title)}">
+      <div class="banner-card__body">
+        <h2>${escapeHtml(item.title)}</h2>
+      </div>
+    </article>
+  `).join("");
+}
+
+function renderPortfolioGrid(container, items, emptyText) {
+  if (!container) {
+    return;
+  }
+
+  if (!items.length) {
+    renderPortfolioStatus(container, "portfolio-card", emptyText);
+    return;
+  }
+
+  container.innerHTML = items.map((item) => `
+    <article class="portfolio-card">
+      <div class="portfolio-card__media">
+        <img src="${escapeHtml(item.src)}" alt="${escapeHtml(item.title)}">
+      </div>
+      <h2>${escapeHtml(item.title)}</h2>
+      <a class="portfolio-card__action" href="${escapeHtml(item.src)}" target="_blank" rel="noopener noreferrer">Avaa Kuva</a>
+    </article>
+  `).join("");
+}
+
+async function loadPortfolioAssets() {
+  try {
+    const response = await fetch("/portfolio-assets.json", {
+      headers: {
+        "Accept": "application/json"
+      }
+    });
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error("Portfolio-listaa ei saatu ladattua.");
+    }
+
+    renderBanners(data.banners || []);
+    renderPortfolioGrid(logosGrid, data.logos || [], "Ei logoja vielä.");
+    renderPortfolioGrid(avatarsGrid, data.avatars || [], "Ei profiilikuvia vielä.");
+  } catch {
+    renderPortfolioStatus(bannerShowcase, "banner-card", "Portfolio-listaa ei saatu ladattua.");
+    renderPortfolioStatus(logosGrid, "portfolio-card", "Portfolio-listaa ei saatu ladattua.");
+    renderPortfolioStatus(avatarsGrid, "portfolio-card", "Portfolio-listaa ei saatu ladattua.");
+  }
 }
 
 function formatMessageTime(value) {
@@ -481,6 +560,7 @@ commandSearch.addEventListener("input", () => {
 
 loadCommands().then(loadServerWidget);
 loadFeedback();
+loadPortfolioAssets();
 startCommandPlaceholderLoop();
 setupExclusiveNavMenus();
 setupImageLightbox();

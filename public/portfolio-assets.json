@@ -1,0 +1,67 @@
+{
+  "banners": [
+    {
+      "title": "Fivem Banner 1",
+      "src": "/assets/banners/fivem-banner-1.gif"
+    },
+    {
+      "title": "Fivem Banner 2",
+      "src": "/assets/banners/fivem-banner-2.gif"
+    },
+    {
+      "title": "Fivem Banner 3",
+      "src": "/assets/banners/fivem-banner-3.gif"
+    }
+  ],
+  "logos": [
+    {
+      "title": "JASU 1",
+      "src": "/assets/logot/JASU_1.png"
+    },
+    {
+      "title": "JASU 3",
+      "src": "/assets/logot/JASU_3.png"
+    },
+    {
+      "title": "JASU 5",
+      "src": "/assets/logot/JASU_5.png"
+    },
+    {
+      "title": "JASU 6",
+      "src": "/assets/logot/JASU_6.png"
+    },
+    {
+      "title": "JASU 7",
+      "src": "/assets/logot/JASU_7.png"
+    },
+    {
+      "title": "JASU 8",
+      "src": "/assets/logot/JASU_8.png"
+    },
+    {
+      "title": "JASU 9",
+      "src": "/assets/logot/JASU_9.png"
+    },
+    {
+      "title": "JASU 10",
+      "src": "/assets/logot/JASU_10.png"
+    },
+    {
+      "title": "JASU 11",
+      "src": "/assets/logot/JASU_11.png"
+    },
+    {
+      "title": "JASU 14",
+      "src": "/assets/logot/JASU_14.png"
+    },
+    {
+      "title": "JASU 15",
+      "src": "/assets/logot/JASU_15.png"
+    },
+    {
+      "title": "JASU",
+      "src": "/assets/logot/JASU.jpg"
+    }
+  ],
+  "avatars": []
+}
