@@ -57,25 +57,25 @@ function safeChannelPart(value) {
 function ticketMessagePayload(type, userId, title, details) {
   const descriptions = {
     service: [
-      "## Ostoticket",
+      "## Osto – netistä avattu ticket",
       `<@${userId}>, kerro tähän ticketiin mitä tarvitset ja millaisesta projektista on kyse.`,
       "",
       "Voit kertoa jo valmiiksi tarvitsetko Discord-botin, serverin rakentamista, logoja, bannereita tai muuta grafiikkaa. Kerro myös mahdollisimman paljon yksityiskohtia ideastasi."
     ],
     general: [
-      "## Yleinen",
+      "## Yleinen – netistä avattu ticket",
       `<@${userId}>, kerro tähän ticketiin mistä on kyse.`,
       "",
       "Tämä ticket on yleisille kysymyksille, palautteelle ja muille asioille, jotka eivät kuulu muihin ticket-luokkiin."
     ],
     partnership: [
-      "## Yhteistyöpyyntö",
+      "## Yhteistyö – netistä avattu ticket",
       `<@${userId}>, kerro tähän ticketiin millaista yhteistyötä haluaisit tehdä.`,
       "",
       "Laita tähän yhteistyöidea ja vähän tietoa siitä mitä haet. Voit laittaa myös Discord-linkin, jos se liittyy yhteistyöhön."
     ],
     application: [
-      "## Hae yhteisöön",
+      "## Hae yhteisöön – netistä avattu ticket",
       `<@${userId}>, kerro mihin tehtävään haluaisit hakea ja mitä osaat.`,
       "",
       "Voit hakea esimerkiksi logojen tekijäksi, palvelimien tekijäksi, bottien tekijäksi tai ylläpitäjäksi. Kerro myös, jos sinulla on jotain muuta hyödyllistä osaamista."
