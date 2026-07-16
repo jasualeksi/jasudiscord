@@ -501,10 +501,12 @@ async function loadServerWidget() {
 
     const icon = serverWidget.querySelector(".server-widget__icon img");
     const title = serverWidget.querySelector(".server-widget__content h2");
-    const join = serverWidget.querySelector(".server-widget__join");
+    const join = serverWidget.querySelector(".server-widget__join, .server-widget__footer a");
 
     title.textContent = data.name || "Jasu〡Discord";
-    join.href = data.inviteUrl || inviteUrl;
+    if (join) {
+      join.href = data.inviteUrl || inviteUrl;
+    }
 
     if (data.iconUrl) {
       icon.src = data.iconUrl;
