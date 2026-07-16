@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#8b8b8b">
-    <title>Jasu〡Discord</title>
+    <title>Jasu | Discord</title>
     <meta name="description" content="Discord botit & Palvelimet | Logot, bannerit, profiilikuvat">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Jasu | Discord">
@@ -19,7 +19,7 @@
     <base href="/">
     <link rel="icon" type="image/png" href="/assets/favicon.png">
     <link rel="apple-touch-icon" href="/assets/logo.png">
-    <link rel="stylesheet" href="/styles.css?v=20260709-11">
+    <link rel="stylesheet" href="/styles.css?v=20260716-1">
     <script>
       document.documentElement.dataset.page = {
         "/discord": "discord",
@@ -36,7 +36,7 @@
       <header class="topbar">
         <a class="brand" href="/etusivu" aria-label="Jasu Discord">
           <img src="/assets/logo.png" alt="">
-          <span>Jasu〡Discord</span>
+          <span>Jasu | Discord</span>
         </a>
         <input class="nav-toggle" id="nav-toggle" type="checkbox" aria-label="Avaa valikko">
         <label class="nav-toggle-button" for="nav-toggle" aria-hidden="true">
@@ -46,7 +46,7 @@
         </label>
         <nav class="topnav" aria-label="Päänavigaatio">
           <a href="/etusivu">Etusivu</a>
-          <a href="/discord">liity discordiin</a>
+          <a href="/discord">Liity Discordiin</a>
           <div class="nav-more nav-more--portfolio">
             <input class="nav-more__toggle" id="nav-portfolio-toggle" type="checkbox" aria-label="Avaa portfolio valikko">
             <label class="nav-more__summary" for="nav-portfolio-toggle">Portfolio</label>
@@ -77,23 +77,98 @@
     </div>
 
     <main class="home-page" id="top">
-      <div class="home-hero">
-        <h1 data-text="Jasu | Discord">Jasu | Discord</h1>
-        <p data-text="Discord botit & Palvelimet | Logot, bannerit, profiilikuvat">Discord botit & Palvelimet | Logot, bannerit, profiilikuvat</p>
-      </div>
+      <section class="home-hero" aria-labelledby="home-title">
+        <div class="home-hero__copy">
+          <p class="eyebrow">TILAUSTYÖT DISCORDIIN JA MUUALLE</p>
+          <h1 id="home-title">Discord-botit, palvelimet ja grafiikat.</h1>
+          <p class="home-hero__lead">Tehdään juuri sellainen kuin tarvitset. Kerro idea ticketissä, niin katsotaan toteutus ja hinta.</p>
+          <div class="home-actions">
+            <a class="button button--primary" href="https://discord.gg/MHqmuTnGms" target="_blank" rel="noopener noreferrer">
+              <img src="/assets/discord-white-icon.png" alt="">
+              Avaa ticket
+            </a>
+            <a class="button button--secondary" href="#palvelut">Katso palvelut</a>
+          </div>
+        </div>
+        <div class="home-hero__visual" aria-hidden="true">
+          <div class="hero-logo-ring"></div>
+          <img src="/assets/logo.png" alt="">
+        </div>
+      </section>
+
+      <section class="services-section" id="palvelut" aria-labelledby="services-title">
+        <div class="home-section-heading">
+          <p class="eyebrow">PALVELUT</p>
+          <h2 id="services-title">Mitä teen</h2>
+        </div>
+        <div class="services-grid">
+          <article class="service-card service-card--bot">
+            <span class="service-card__number">01</span>
+            <h3>Discord-botit</h3>
+            <p>Teen Discord-botteja tilauksesta omien toiveiden mukaan. Myös valmiin botin päivittäminen ja uusien ominaisuuksien lisääminen onnistuu.</p>
+            <ul>
+              <li>Moderointi, ticketit ja lokit</li>
+              <li>Economy, levelit ja giveawayt</li>
+              <li>Omat komennot ja muut ominaisuudet</li>
+            </ul>
+          </article>
+          <article class="service-card service-card--server">
+            <span class="service-card__number">02</span>
+            <h3>Discord-palvelimet</h3>
+            <p>Teen Discord-palvelimia alusta asti tai laitan nykyisen serverin kuntoon. Esimerkiksi RP-serverin, peliyhteisön tai myyntipalvelimen Discord.</p>
+            <ul>
+              <li>Kanavat ja kategoriat</li>
+              <li>Roolit ja oikeudet</li>
+              <li>Selkeä, valmis kokonaisuus</li>
+            </ul>
+          </article>
+          <article class="service-card service-card--graphics">
+            <span class="service-card__number">03</span>
+            <h3>Grafiikat</h3>
+            <p>Teen logoja, bannereita ja profiilikuvia asiakkaan toiveiden mukaan henkilökohtaiseen tai kaupalliseen käyttöön.</p>
+            <ul>
+              <li>Logot</li>
+              <li>Bannerit</li>
+              <li>Profiilikuvat</li>
+            </ul>
+          </article>
+        </div>
+        <div class="service-cta">
+          <p>Kerro ticketissä mitä tarvitset ja millaisesta projektista on kyse.</p>
+          <a href="https://discord.gg/MHqmuTnGms" target="_blank" rel="noopener noreferrer">Siirry Discordiin <span aria-hidden="true">→</span></a>
+        </div>
+      </section>
+
+      <section class="home-portfolio" aria-labelledby="home-portfolio-title">
+        <div class="home-section-heading">
+          <p class="eyebrow">PORTFOLIO</p>
+          <h2 id="home-portfolio-title">Katso aiempia töitä</h2>
+        </div>
+        <div class="portfolio-links">
+          <a href="/bannerit"><span>Bannerit</span><small>Katso työt</small></a>
+          <a href="/logot"><span>Logot</span><small>Katso työt</small></a>
+          <a href="/profiilikuvat"><span>Profiilikuvat</span><small>Katso työt</small></a>
+        </div>
+      </section>
 
       <aside class="feedback-panel" aria-labelledby="feedback-title">
         <div class="feedback-panel__heading">
-          <p>ASIAKAS PALAUTTEET</p>
+          <div>
+            <p class="eyebrow">ASIAKASPALAUTTEET</p>
+            <h2 id="feedback-title">Mitä asiakkaat ovat sanoneet</h2>
+          </div>
         </div>
-        <p class="feedback-panel__intro">Palautteet kirjoitetaan Discordissa ja ne päivittyvät tänne automaattisesti.</p>
+        <p class="feedback-panel__intro">Palautteet tulevat suoraan Discordista ja päivittyvät tänne automaattisesti.</p>
         <div class="feedback-list" id="feedback-list" aria-live="polite">
-          <article class="feedback-item feedback-item--status">
-            <p>Ladataan palautteita...</p>
-          </article>
+          <article class="feedback-item feedback-item--status"><p>Ladataan palautteita...</p></article>
         </div>
         <div class="feedback-controls" id="feedback-controls" aria-label="Palautteiden selaus"></div>
       </aside>
+
+      <footer class="site-footer">
+        <a class="brand" href="/etusivu"><img src="/assets/logo.png" alt=""><span>Jasu | Discord</span></a>
+        <p>Discord-botit, palvelimet ja grafiikat tilauksesta.</p>
+      </footer>
     </main>
 
     <section class="page discord-page" id="discord">
