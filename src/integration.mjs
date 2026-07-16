@@ -54,6 +54,56 @@ function safeChannelPart(value) {
   return value.toLowerCase().normalize("NFKD").replace(/[^a-z0-9åäö-]/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, "").slice(0, 35) || "kayttaja";
 }
 
+function ticketMessagePayload(type, userId, title, details) {
+  const descriptions = {
+    service: [
+      "## Ostoticket",
+      `<@${userId}>, kerro tähän ticketiin mitä tarvitset ja millaisesta projektista on kyse.`,
+      "",
+      "Voit kertoa jo valmiiksi tarvitsetko Discord-botin, serverin rakentamista, logoja, bannereita tai muuta grafiikkaa. Kerro myös mahdollisimman paljon yksityiskohtia ideastasi."
+    ],
+    general: [
+      "## Yleinen",
+      `<@${userId}>, kerro tähän ticketiin mistä on kyse.`,
+      "",
+      "Tämä ticket on yleisille kysymyksille, palautteelle ja muille asioille, jotka eivät kuulu muihin ticket-luokkiin."
+    ],
+    partnership: [
+      "## Yhteistyöpyyntö",
+      `<@${userId}>, kerro tähän ticketiin millaista yhteistyötä haluaisit tehdä.`,
+      "",
+      "Laita tähän yhteistyöidea ja vähän tietoa siitä mitä haet. Voit laittaa myös Discord-linkin, jos se liittyy yhteistyöhön."
+    ],
+    application: [
+      "## Hae yhteisöön",
+      `<@${userId}>, kerro mihin tehtävään haluaisit hakea ja mitä osaat.`,
+      "",
+      "Voit hakea esimerkiksi logojen tekijäksi, palvelimien tekijäksi, bottien tekijäksi tai ylläpitäjäksi. Kerro myös, jos sinulla on jotain muuta hyödyllistä osaamista."
+    ]
+  };
+  const content = [
+    ...(descriptions[type] || descriptions.service),
+    "",
+    `**${title}**`,
+    details,
+    "",
+    "-# Vastaan sinulle heti kun ehdin."
+  ].join("\n");
+
+  return {
+    flags: 32768,
+    allowed_mentions: { users: [userId] },
+    components: [{
+      type: 17,
+      components: [
+        { type: 10, content },
+        { type: 14, divider: true, spacing: 1 },
+        { type: 1, components: [{ type: 2, custom_id: "service_ticket_close", label: "Sulje", style: 4 }] }
+      ]
+    }]
+  };
+}
+
 async function currentUser(request, env) {
   if (!env.DB) return null;
   const sessionId = getCookie(request, SESSION_COOKIE);
@@ -155,7 +205,15 @@ async function createTicket(request, env) {
   });
   if (!channelResponse.ok) return responseJson({ message: "Ticket-kanavaa ei saatu luotua.", discordStatus: channelResponse.status }, 502);
   const channel = await channelResponse.json();
-  await fetch(`${DISCORD_API}/channels/${channel.id}/messages`, { method: "POST", headers: discordHeaders(env), body: JSON.stringify({ content: `<@${user.id}>\n## Nettisivulta avattu ${config.label}-ticket\n**${title}**\n${details}` }) });
+  const messageResponse = await fetch(`${DISCORD_API}/channels/${channel.id}/messages`, {
+    method: "POST",
+    headers: discordHeaders(env),
+    body: JSON.stringify(ticketMessagePayload(body.type, user.id, title, details))
+  });
+  if (!messageResponse.ok) {
+    await fetch(`${DISCORD_API}/channels/${channel.id}`, { method: "DELETE", headers: discordHeaders(env) }).catch(() => null);
+    return responseJson({ message: "Ticketin aloitusviestiä ei saatu luotua.", discordStatus: messageResponse.status }, 502);
+  }
   const now = Date.now();
   await env.DB.prepare("INSERT INTO orders (user_id,ticket_type,channel_id,title,details,status,created_at,updated_at) VALUES (?,?,?,?,?,'received',?,?)").bind(user.id, body.type, channel.id, title, details, now, now).run();
   return responseJson({ ok: true, channelId: channel.id, channelUrl: `https://discord.com/channels/${env.DISCORD_GUILD_ID}/${channel.id}` }, 201);
