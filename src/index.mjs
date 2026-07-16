@@ -241,7 +241,24 @@ async function fetchDiscordFeedback(env) {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
-    const integrationResponse = await handleIntegrationRequest(request, env);
+    let integrationResponse;
+
+    try {
+      integrationResponse = await handleIntegrationRequest(request, env);
+    } catch (error) {
+      console.error("Integration route failed", {
+        path: url.pathname,
+        name: error?.name,
+        message: error?.message,
+        stack: error?.stack
+      });
+
+      return json({
+        title: "Nettisivun integraatio epäonnistui",
+        message: error?.message || "Tuntematon Worker-virhe.",
+        path: url.pathname
+      }, { status: 500 });
+    }
 
     if (integrationResponse) {
       return integrationResponse;
