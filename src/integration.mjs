@@ -71,7 +71,7 @@ async function startLogin(request, env) {
     return responseJson({ message: "Discord-kirjautumisen salaisuudet puuttuvat." }, 503);
   }
   const state = crypto.randomUUID();
-  const redirectUri = `${new URL(request.url).origin}/api/auth/discord/callback`;
+  const redirectUri = `${new URL(request.url).origin}/auth/callback`;
   const params = new URLSearchParams({ client_id: env.DISCORD_APPLICATION_ID, response_type: "code", redirect_uri: redirectUri, scope: "identify guilds.members.read", state });
   return new Response(null, { status: 302, headers: { Location: `https://discord.com/oauth2/authorize?${params}`, "Set-Cookie": `jasu_oauth_state=${state}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=600` } });
 }
@@ -81,7 +81,7 @@ async function finishLogin(request, env) {
   const url = new URL(request.url);
   const state = url.searchParams.get("state") || "";
   if (!state || state !== getCookie(request, "jasu_oauth_state")) return responseJson({ message: "Kirjautumispyyntö vanheni. Yritä uudelleen." }, 400);
-  const redirectUri = `${url.origin}/api/auth/discord/callback`;
+  const redirectUri = `${url.origin}/auth/callback`;
   const tokenResponse = await fetch(`${DISCORD_API}/oauth2/token`, {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -174,7 +174,7 @@ async function getLeaderboards(env) {
 export async function handleIntegrationRequest(request, env) {
   const url = new URL(request.url);
   if (url.pathname === "/api/auth/discord" && request.method === "GET") return startLogin(request, env);
-  if (url.pathname === "/api/auth/discord/callback" && request.method === "GET") return finishLogin(request, env);
+  if (url.pathname === "/auth/callback" && request.method === "GET") return finishLogin(request, env);
   if (url.pathname === "/api/auth/logout" && request.method === "POST") return logout(request, env);
   if (url.pathname === "/api/customer" && request.method === "GET") return getCustomer(request, env);
   if (url.pathname === "/api/tickets" && request.method === "POST") return createTicket(request, env);
