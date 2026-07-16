@@ -79,13 +79,13 @@
     <main class="home-page" id="top">
       <section class="home-hero" aria-labelledby="home-title">
         <div class="home-hero__copy">
-          <p class="eyebrow">TILAUSTYÖT DISCORDIIN JA MUUALLE</p>
-          <h1 id="home-title">Discord-botit, palvelimet ja grafiikat.</h1>
-          <p class="home-hero__lead">Tehdään juuri sellainen kuin tarvitset. Kerro idea ticketissä, niin katsotaan toteutus ja hinta.</p>
+          <p class="eyebrow">JASU | DISCORD</p>
+          <h1 id="home-title">Botit. Serverit. Grafiikat.</h1>
+          <p class="home-hero__lead">Kaikki Discordiin samasta paikasta.</p>
           <div class="home-actions">
             <a class="button button--primary" href="https://discord.gg/MHqmuTnGms" target="_blank" rel="noopener noreferrer">
               <img src="/assets/discord-white-icon.png" alt="">
-              Avaa ticket
+              Tilaa Discordissa
             </a>
             <a class="button button--secondary" href="#palvelut">Katso palvelut</a>
           </div>
@@ -99,13 +99,13 @@
       <section class="services-section" id="palvelut" aria-labelledby="services-title">
         <div class="home-section-heading">
           <p class="eyebrow">PALVELUT</p>
-          <h2 id="services-title">Mitä teen</h2>
+          <h2 id="services-title">Saatavilla</h2>
         </div>
         <div class="services-grid">
           <article class="service-card service-card--bot">
             <span class="service-card__number">01</span>
             <h3>Discord-botit</h3>
-            <p>Teen Discord-botteja tilauksesta omien toiveiden mukaan. Myös valmiin botin päivittäminen ja uusien ominaisuuksien lisääminen onnistuu.</p>
+            <p>Oma Discord-botti juuri niillä ominaisuuksilla mitä tarvitset. Myös vanhan botin päivitykset onnistuvat.</p>
             <ul>
               <li>Moderointi, ticketit ja lokit</li>
               <li>Economy, levelit ja giveawayt</li>
@@ -115,7 +115,7 @@
           <article class="service-card service-card--server">
             <span class="service-card__number">02</span>
             <h3>Discord-palvelimet</h3>
-            <p>Teen Discord-palvelimia alusta asti tai laitan nykyisen serverin kuntoon. Esimerkiksi RP-serverin, peliyhteisön tai myyntipalvelimen Discord.</p>
+            <p>Uusi Discord alusta asti tai vanha serveri kuntoon. Esimerkiksi RP-, peli- tai myyntipalvelin.</p>
             <ul>
               <li>Kanavat ja kategoriat</li>
               <li>Roolit ja oikeudet</li>
@@ -125,7 +125,7 @@
           <article class="service-card service-card--graphics">
             <span class="service-card__number">03</span>
             <h3>Grafiikat</h3>
-            <p>Teen logoja, bannereita ja profiilikuvia asiakkaan toiveiden mukaan henkilökohtaiseen tai kaupalliseen käyttöön.</p>
+            <p>Logot, bannerit ja profiilikuvat halutulla tyylillä.</p>
             <ul>
               <li>Logot</li>
               <li>Bannerit</li>
@@ -134,8 +134,8 @@
           </article>
         </div>
         <div class="service-cta">
-          <p>Kerro ticketissä mitä tarvitset ja millaisesta projektista on kyse.</p>
-          <a href="https://discord.gg/MHqmuTnGms" target="_blank" rel="noopener noreferrer">Siirry Discordiin <span aria-hidden="true">→</span></a>
+          <p>Kiinnostuitko?</p>
+          <a href="https://discord.gg/MHqmuTnGms" target="_blank" rel="noopener noreferrer">Avaa ticket <span aria-hidden="true">→</span></a>
         </div>
       </section>
 
@@ -172,23 +172,36 @@
     </main>
 
     <section class="page discord-page" id="discord">
-      <img class="logo" src="/assets/logo.png" alt="Jasu Discord" fetchpriority="high">
-      <article class="server-widget" id="server-widget">
-        <div class="server-widget__icon">
-          <img src="/assets/logo.png" alt="">
+      <div class="discord-shell">
+        <div class="discord-copy">
+          <p class="eyebrow">JASU | DISCORD</p>
+          <h1>Tuu messiin.</h1>
+          <p>Palvelimelta löydät ticketit tilauksille, botin pelit ja muut jutut mitä sinne tulee.</p>
+          <a class="discord-join-button" href="https://discord.gg/MHqmuTnGms" target="_blank" rel="noopener noreferrer">
+            <img src="/assets/discord-white-icon.png" alt="">
+            Liity palvelimelle
+            <span aria-hidden="true">→</span>
+          </a>
         </div>
-        <div class="server-widget__content">
-          <p>Discord palvelin</p>
-          <h2>Jasu〡Discord</h2>
-          <div class="server-widget__stats" id="server-stats">
-            <span>Komennot synkattu</span>
-          </div>
+        <div class="discord-card-wrap">
+          <div class="discord-orbit" aria-hidden="true"></div>
+          <article class="server-widget" id="server-widget">
+            <div class="server-widget__banner"></div>
+            <div class="server-widget__main">
+              <div class="server-widget__icon"><img src="/assets/logo.png" alt=""></div>
+              <div class="server-widget__content">
+                <p>DISCORD-PALVELIN</p>
+                <h2>Jasu | Discord</h2>
+                <div class="server-widget__stats" id="server-stats"><span>Haetaan tietoja...</span></div>
+              </div>
+            </div>
+            <div class="server-widget__footer">
+              <span><i></i> Palvelin avoinna</span>
+              <a href="https://discord.gg/MHqmuTnGms" target="_blank" rel="noopener noreferrer">discord.gg/MHqmuTnGms</a>
+            </div>
+          </article>
         </div>
-        <a class="server-widget__join" href="https://discord.gg/MHqmuTnGms" target="_blank" rel="noopener noreferrer" aria-label="Liity Discordiin">
-          <img src="/assets/discord-white-icon.png" alt="">
-          <span>Liity</span>
-        </a>
-      </article>
+      </div>
     </section>
 
     <section class="banners-section" id="banners" aria-labelledby="banners-title">
