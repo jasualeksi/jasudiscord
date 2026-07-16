@@ -232,11 +232,14 @@ function renderPortfolioGrid(container, items, emptyText) {
 
 async function loadPortfolioAssets() {
   try {
-    const response = await fetch("/portfolio-assets.json", {
+    let response = await fetch("/api/portfolio", {
       headers: {
         "Accept": "application/json"
       }
     });
+    if (!response.ok) {
+      response = await fetch("/portfolio-assets.json", { headers: { "Accept": "application/json" } });
+    }
     const data = await response.json();
 
     if (!response.ok) {

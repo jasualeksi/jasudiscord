@@ -60,6 +60,21 @@ html[data-page="commands"] .portfolio-section {
   display: none;
 }
 
+html:not([data-page="account"]) .account-section,
+html:not([data-page="leaderboard"]) .leaderboard-section,
+html[data-page="account"] .home-page,
+html[data-page="account"] .page,
+html[data-page="account"] .banners-section,
+html[data-page="account"] .portfolio-section,
+html[data-page="account"] .commands-section,
+html[data-page="leaderboard"] .home-page,
+html[data-page="leaderboard"] .page,
+html[data-page="leaderboard"] .banners-section,
+html[data-page="leaderboard"] .portfolio-section,
+html[data-page="leaderboard"] .commands-section {
+  display: none;
+}
+
 
 .nav-shell {
   position: fixed;

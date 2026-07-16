@@ -1,3 +1,5 @@
+import { handleIntegrationRequest } from "./integration.mjs";
+
 const DISCORD_API = "https://discord.com/api/v10";
 function json(data, init = {}) {
   return new Response(JSON.stringify(data), {
@@ -239,6 +241,11 @@ async function fetchDiscordFeedback(env) {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+    const integrationResponse = await handleIntegrationRequest(request, env);
+
+    if (integrationResponse) {
+      return integrationResponse;
+    }
 
     if (url.pathname === "/api/commands") {
       const scope = url.searchParams.get("scope") || "all";
