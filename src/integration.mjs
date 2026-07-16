@@ -224,7 +224,9 @@ async function fetchPortfolio(env) {
     const response = await fetch(`${DISCORD_API}/channels/${channelId}/messages?limit=50`, { headers: discordHeaders(env) });
     if (!response.ok) return [key, []];
     const messages = await response.json();
-    const items = messages.flatMap(message => (message.attachments || []).filter(file => file.content_type?.startsWith("image/")).map(file => ({ id: file.id, src: file.url, title: file.description || file.filename.replace(/\.[^.]+$/, ""), createdAt: message.timestamp })));
+    const items = messages.flatMap(message => (message.attachments || []).filter(file =>
+      file.content_type?.startsWith("image/") || /\.(png|jpe?g|gif|webp)$/i.test(file.filename || "")
+    ).map(file => ({ id: file.id, src: file.url, title: file.description || file.filename.replace(/\.[^.]+$/, ""), createdAt: message.timestamp })));
     return [key, items];
   }));
   return responseJson(Object.fromEntries(groups), 200, { "Cache-Control": "public, max-age=60" });

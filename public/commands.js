@@ -232,19 +232,22 @@ function renderPortfolioGrid(container, items, emptyText) {
 
 async function loadPortfolioAssets() {
   try {
-    let response = await fetch("/api/portfolio", {
-      headers: {
-        "Accept": "application/json"
-      }
-    });
-    if (!response.ok) {
-      response = await fetch("/portfolio-assets.json", { headers: { "Accept": "application/json" } });
-    }
-    const data = await response.json();
-
-    if (!response.ok) {
-      throw new Error("Portfolio-listaa ei saatu ladattua.");
-    }
+    const [discordResponse, localResponse] = await Promise.all([
+      fetch("/api/portfolio", { headers: { "Accept": "application/json" } }).catch(() => null),
+      fetch("/portfolio-assets.json", { headers: { "Accept": "application/json" } })
+    ]);
+    if (!localResponse.ok) throw new Error("Paikallista portfolio-listaa ei saatu ladattua.");
+    const localData = await localResponse.json();
+    const discordData = discordResponse?.ok ? await discordResponse.json() : {};
+    const mergeItems = (discordItems = [], localItems = []) => {
+      const items = [...discordItems, ...localItems];
+      return items.filter((item, index) => items.findIndex(candidate => candidate.src === item.src) === index);
+    };
+    const data = {
+      banners: mergeItems(discordData.banners, localData.banners),
+      logos: mergeItems(discordData.logos, localData.logos),
+      avatars: mergeItems(discordData.avatars, localData.avatars)
+    };
 
     renderBanners(data.banners || []);
     renderPortfolioGrid(logosGrid, data.logos || [], "Ei logoja vielä.");
