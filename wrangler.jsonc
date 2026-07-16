@@ -9,14 +9,6 @@
     "DISCORD_INVITE_URL": "https://discord.gg/MHqmuTnGms",
     "TICKET_STAFF_ROLE_ID": "1526666001301897349"
   },
-  "d1_databases": [
-    {
-      "binding": "DB",
-      "database_name": "jasudiscord",
-      "database_id": "REPLACE_AFTER_D1_CREATE",
-      "migrations_dir": "migrations"
-    }
-  ],
   "assets": {
     "directory": "./public",
     "binding": "ASSETS",
