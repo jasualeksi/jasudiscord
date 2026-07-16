@@ -66,6 +66,18 @@ function requireDatabase(env) {
   return env.DB ? null : responseJson({ message: "Tietokantaa ei ole vielä yhdistetty." }, 503);
 }
 
+async function ensureSchema(env) {
+  await env.DB.batch([
+    env.DB.prepare("CREATE TABLE IF NOT EXISTS sessions (id TEXT PRIMARY KEY, user_id TEXT NOT NULL, username TEXT NOT NULL, avatar_url TEXT NOT NULL DEFAULT '', expires_at INTEGER NOT NULL, created_at INTEGER NOT NULL)"),
+    env.DB.prepare("CREATE INDEX IF NOT EXISTS sessions_user_id_idx ON sessions(user_id)"),
+    env.DB.prepare("CREATE INDEX IF NOT EXISTS sessions_expires_at_idx ON sessions(expires_at)"),
+    env.DB.prepare("CREATE TABLE IF NOT EXISTS orders (id INTEGER PRIMARY KEY AUTOINCREMENT, user_id TEXT NOT NULL, ticket_type TEXT NOT NULL, channel_id TEXT NOT NULL UNIQUE, title TEXT NOT NULL, details TEXT NOT NULL, status TEXT NOT NULL DEFAULT 'received', created_at INTEGER NOT NULL, updated_at INTEGER NOT NULL)"),
+    env.DB.prepare("CREATE INDEX IF NOT EXISTS orders_user_id_idx ON orders(user_id)"),
+    env.DB.prepare("CREATE INDEX IF NOT EXISTS orders_status_idx ON orders(status)"),
+    env.DB.prepare("CREATE TABLE IF NOT EXISTS bot_snapshots (key TEXT PRIMARY KEY, payload TEXT NOT NULL, updated_at INTEGER NOT NULL)")
+  ]);
+}
+
 async function startLogin(request, env) {
   if (!env.DISCORD_APPLICATION_ID || !env.DISCORD_CLIENT_SECRET) {
     return responseJson({ message: "Discord-kirjautumisen salaisuudet puuttuvat." }, 503);
@@ -78,6 +90,7 @@ async function startLogin(request, env) {
 
 async function finishLogin(request, env) {
   const missingDb = requireDatabase(env); if (missingDb) return missingDb;
+  await ensureSchema(env);
   const url = new URL(request.url);
   const state = url.searchParams.get("state") || "";
   if (!state || state !== getCookie(request, "jasu_oauth_state")) return responseJson({ message: "Kirjautumispyyntö vanheni. Yritä uudelleen." }, 400);
@@ -107,6 +120,7 @@ async function logout(request, env) {
 
 async function getCustomer(request, env) {
   const missingDb = requireDatabase(env); if (missingDb) return missingDb;
+  await ensureSchema(env);
   const user = await currentUser(request, env);
   if (!user) return responseJson({ authenticated: false }, 401);
   const { results } = await env.DB.prepare("SELECT id,ticket_type,channel_id,title,status,created_at,updated_at FROM orders WHERE user_id = ? ORDER BY created_at DESC").bind(user.id).all();
@@ -115,6 +129,7 @@ async function getCustomer(request, env) {
 
 async function createTicket(request, env) {
   const missingDb = requireDatabase(env); if (missingDb) return missingDb;
+  await ensureSchema(env);
   const user = await currentUser(request, env);
   if (!user) return responseJson({ message: "Kirjaudu ensin Discordilla." }, 401);
   const body = await request.json().catch(() => ({}));
@@ -160,6 +175,7 @@ async function fetchPortfolio(env) {
 async function syncBot(request, env) {
   if (!env.BOT_SYNC_SECRET || request.headers.get("Authorization") !== `Bearer ${env.BOT_SYNC_SECRET}`) return responseJson({ message: "Ei oikeuksia." }, 401);
   const missingDb = requireDatabase(env); if (missingDb) return missingDb;
+  await ensureSchema(env);
   const payload = await request.json();
   await env.DB.prepare("INSERT INTO bot_snapshots (key,payload,updated_at) VALUES ('leaderboards',?,?) ON CONFLICT(key) DO UPDATE SET payload=excluded.payload,updated_at=excluded.updated_at").bind(JSON.stringify(payload), Date.now()).run();
   return responseJson({ ok: true });
@@ -167,6 +183,7 @@ async function syncBot(request, env) {
 
 async function getLeaderboards(env) {
   const missingDb = requireDatabase(env); if (missingDb) return missingDb;
+  await ensureSchema(env);
   const row = await env.DB.prepare("SELECT payload,updated_at FROM bot_snapshots WHERE key='leaderboards'").first();
   return responseJson(row ? { ...JSON.parse(row.payload), updatedAt: row.updated_at } : { money: [], xp: [], invites: [], games: [], updatedAt: null });
 }
