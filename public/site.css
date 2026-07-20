@@ -433,16 +433,50 @@ html[data-page="leaderboard"] .leaderboard-section { display: block; }
 .section-heading::before, .integration-heading > p { display: block; margin: 0 0 16px; color: #777; font-size: 9px; font-weight: 900; letter-spacing: .2em; content: "JASUDISCORD.COM / PORTFOLIO"; }
 .integration-heading > p { content: none; }
 .integration-heading span { display: block; margin-top: 14px; color: #888; }
-.banner-showcase, .portfolio-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; }
+.banner-showcase { display: grid; gap: 12px; }
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(172px, 1fr));
+  gap: 14px;
+}
 .banner-card, .portfolio-card { border: 1px solid var(--line); border-radius: var(--radius); background: #0a0a0a; overflow: hidden; }
-.banner-card img { width: 100%; aspect-ratio: 4/1; object-fit: cover; }
-.banner-card__body { padding: 18px; }
-.banner-card h2, .portfolio-card h2 { margin: 0; font: 900 18px/1 "League Spartan",Arial,sans-serif; text-transform: uppercase; }
-.portfolio-card { padding: 12px; }
+.banner-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1865 / 108;
+  object-fit: cover;
+}
+.banner-card__body { padding: 10px 12px 11px; }
+.banner-card h2, .portfolio-card h2 { margin: 0; font: 900 14px/1.15 "League Spartan",Arial,sans-serif; text-transform: uppercase; }
+.portfolio-card { min-width: 0; }
 .portfolio-card__media { display: grid; aspect-ratio: 1/1; place-items: center; border-radius: 11px; background: #050505; overflow: hidden; }
-.portfolio-card__media img { width: 100%; height: 100%; object-fit: contain; }
-.portfolio-card h2 { padding: 18px 5px 11px; }
-.portfolio-card__action { display: flex; min-height: 44px; align-items: center; justify-content: center; border-radius: 9px; color: #050505; background: #fff; font-size: 10px; font-weight: 900; text-transform: uppercase; }
+.portfolio-card__media img {
+  display: block;
+  width: 92%;
+  height: 92%;
+  object-fit: contain;
+  filter: drop-shadow(0 18px 26px rgba(0,0,0,.38));
+}
+.portfolio-card h2 {
+  margin: 0;
+  overflow: hidden;
+  padding: 10px 11px 8px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.portfolio-card__action {
+  display: flex;
+  min-height: 36px;
+  align-items: center;
+  justify-content: center;
+  margin: 0 11px 12px;
+  border-radius: 8px;
+  color: #050505;
+  background: #fff;
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
 
 .commands-toolbar { display: grid; grid-template-columns: 1fr 2fr; gap: 12px; margin-bottom: 22px; }
 .command-search { display: grid; gap: 8px; color: #777; font-size: 9px; font-weight: 900; letter-spacing: .16em; }
@@ -541,7 +575,7 @@ html[data-page="leaderboard"] .leaderboard-section { display: block; }
   .portfolio-links a { min-height: 190px; }
   .discord-page, .banners-section, .portfolio-section, .commands-section, .integration-page { width: calc(100% - 20px); padding-top: 92px; }
   .discord-shell { grid-template-columns: 1fr; gap: 50px; padding: 48px 30px; }
-  .banner-showcase, .portfolio-grid, .commands-grid { grid-template-columns: repeat(2,1fr); }
+  .commands-grid { grid-template-columns: repeat(2,1fr); }
   .commands-toolbar { grid-template-columns: 1fr; }
 }
 
@@ -570,7 +604,8 @@ html[data-page="leaderboard"] .leaderboard-section { display: block; }
   .discord-copy h1 { font-size: 52px; }
   .server-widget__main { padding-inline: 18px; }
   .server-widget__footer { align-items: flex-start; flex-direction: column; padding-inline: 18px; }
-  .banner-showcase, .portfolio-grid, .commands-grid, .account-grid, .leaderboard-grid { grid-template-columns: 1fr; }
+  .commands-grid, .account-grid, .leaderboard-grid { grid-template-columns: 1fr; }
+  .portfolio-grid { grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); }
   .login-card { grid-template-columns: 1fr; }
   .login-card > img { width: 50px; }
   .login-card a { width: 100%; }
