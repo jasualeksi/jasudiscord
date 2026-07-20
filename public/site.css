@@ -113,7 +113,7 @@ html[data-page="commands"] .commands-section { display: block; }
   flex-direction: column;
   padding: 120px 20px 150px;
   text-align: center;
-  transform: translateY(-52px);
+  transform: none;
 }
 .profile-image {
   display: grid;
@@ -178,7 +178,7 @@ html[data-page="commands"] .commands-section { display: block; }
 .button--dark { color: #fff; background: #08090d; }
 .scroll-cue {
   position: absolute;
-  bottom: 88px;
+  bottom: 34px;
   left: 50%;
   display: flex;
   align-items: center;
@@ -320,53 +320,69 @@ html[data-page="commands"] .commands-section { display: block; }
 .floating-nav {
   position: fixed;
   z-index: 100;
-  bottom: max(18px, env(safe-area-inset-bottom));
+  top: 18px;
+  bottom: auto;
   left: 50%;
   display: flex;
+  width: min(calc(100% - 420px), 590px);
   align-items: center;
-  gap: 4px;
-  padding: 7px;
+  justify-content: center;
+  gap: 5px;
+  padding: 6px;
   border: 1px solid var(--line);
-  border-radius: 18px;
-  background: rgba(13,14,19,.78);
-  box-shadow: 0 18px 65px rgba(0,0,0,.48);
+  border-radius: 16px;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.055), transparent 55%),
+    rgba(10,11,15,.78);
+  box-shadow:
+    0 18px 60px rgba(0,0,0,.38),
+    inset 0 1px rgba(255,255,255,.06);
   transform: translateX(-50%);
-  backdrop-filter: blur(22px);
+  backdrop-filter: blur(24px) saturate(135%);
 }
 .floating-nav > a, .portfolio-nav > label {
   display: flex;
-  min-width: 104px;
-  min-height: 48px;
+  min-width: 0;
+  min-height: 46px;
+  flex: 1;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 0 15px;
-  border-radius: 12px;
+  padding: 0 20px;
+  border-radius: 11px;
   color: #b7b8be;
   cursor: pointer;
   font-size: 11px;
   font-weight: 800;
-  transition: color .2s ease, background .2s ease;
+  transition: color .22s ease, background .22s ease, transform .22s ease;
 }
-.floating-nav > a:hover, .portfolio-nav > label:hover { color: #fff; background: rgba(255,255,255,.08); }
+.floating-nav > a:hover, .portfolio-nav > label:hover {
+  color: #fff;
+  background: rgba(255,255,255,.075);
+  transform: translateY(-1px);
+}
 .floating-nav > a.is-current { color: #08090d; background: #f3f3f0; }
 .floating-nav > a.is-current span { color: #73747b; }
+.portfolio-nav > label.is-current { color: #08090d; background: #f3f3f0; }
+.portfolio-nav > label.is-current span { color: #73747b; }
 .floating-nav span { color: #656670; font-size: 8px; }
-.portfolio-nav { position: relative; }
+.portfolio-nav { position: relative; display: flex; flex: 1; }
+.portfolio-nav > label { width: 100%; }
 .portfolio-nav > input { position: absolute; opacity: 0; pointer-events: none; }
 .portfolio-nav__menu {
   position: absolute;
-  bottom: 62px;
+  top: 58px;
+  bottom: auto;
   left: 50%;
   display: grid;
-  width: 180px;
+  width: 210px;
   padding: 7px;
   border: 1px solid var(--line);
   border-radius: 14px;
   background: rgba(13,14,19,.95);
   box-shadow: 0 20px 50px rgba(0,0,0,.45);
   opacity: 0;
-  transform: translate(-50%, 8px);
+  transform: translate(-50%, -8px);
   pointer-events: none;
   transition: opacity .2s ease, transform .2s ease;
   backdrop-filter: blur(20px);
@@ -487,7 +503,8 @@ html[data-page="commands"] .commands-section { display: block; }
 }
 
 @media (max-width: 900px) {
-  .site-mark { top: 16px; left: 18px; }
+  .site-mark { display: none; }
+  .floating-nav { width: min(calc(100% - 20px), 590px); }
   .section-title--row { align-items: flex-start; flex-direction: column; }
   .portfolio-menu { grid-template-columns: 1fr; }
   .portfolio-menu a { min-height: 230px; }
@@ -506,7 +523,7 @@ html[data-page="commands"] .commands-section { display: block; }
   .hero h1 { font-size: clamp(55px, 18vw, 78px); }
   .hero__actions { width: 100%; flex-direction: column; }
   .button { width: 100%; }
-  .scroll-cue { bottom: 88px; }
+  .scroll-cue { bottom: 34px; }
   .intro, .portfolio-home, .feedback-panel { padding-top: 100px; }
   .section-title { margin-bottom: 40px; }
   .section-title h2, .cta h2 { font-size: 46px; }
@@ -516,8 +533,7 @@ html[data-page="commands"] .commands-section { display: block; }
   .feedback-item { min-height: 0; padding: 17px; }
   .site-footer { align-items: flex-start; flex-direction: column; gap: 12px; }
   .site-footer span { margin-right: 0; }
-  .floating-nav { width: calc(100% - 20px); justify-content: stretch; }
-  .floating-nav > a, .portfolio-nav { flex: 1; }
+  .floating-nav { top: max(10px, env(safe-area-inset-top)); width: calc(100% - 20px); justify-content: stretch; }
   .floating-nav > a, .portfolio-nav > label { min-width: 0; padding-inline: 8px; }
   .floating-nav span { display: none; }
   .page { width: calc(100% - 24px); padding-top: 95px; }

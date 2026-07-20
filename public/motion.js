@@ -69,4 +69,12 @@
         const currentPath = window.location.pathname.replace(/\/$/, '') || '/etusivu';
         link.classList.toggle('is-current', targetPath === currentPath);
     });
+
+    const portfolioLabel = document.querySelector('.portfolio-nav > label');
+    if (portfolioLabel) {
+        portfolioLabel.classList.toggle(
+            'is-current',
+            ['banners', 'logos', 'avatars'].includes(root.dataset.page)
+        );
+    }
 })();
