@@ -5,16 +5,16 @@
     root.classList.add('motion-ready');
 
     const revealSelector = [
-        '.home-section-heading',
-        '.service-card',
-        '.service-cta',
-        '.portfolio-links a',
+        '.section-title',
+        '.service-list article',
+        '.portfolio-menu a',
+        '.cta',
         '.feedback-panel',
-        '.section-heading',
+        '.portfolio-heading',
         '.banner-card',
         '.portfolio-card',
         '.command-card',
-        '.discord-copy',
+        '.page-hero > div',
         '.server-widget'
     ].join(',');
 
@@ -37,12 +37,10 @@
         ? null
         : new IntersectionObserver((entries, observer) => {
             entries.forEach((entry) => {
-                if (!entry.isIntersecting) return;
-                entry.target.classList.add('is-visible');
-                observer.unobserve(entry.target);
+                entry.target.classList.toggle('is-visible', entry.isIntersecting);
             });
         }, {
-            rootMargin: '0px 0px -7% 0px',
+            rootMargin: '-4% 0px -7% 0px',
             threshold: 0.08
         });
 
@@ -66,22 +64,9 @@
 
     if (reducedMotion) return;
 
-    let pointerFrame = 0;
-    window.addEventListener('pointermove', (event) => {
-        if (pointerFrame) return;
-
-        pointerFrame = window.requestAnimationFrame(() => {
-            root.style.setProperty('--mouse-x', `${event.clientX}px`);
-            root.style.setProperty('--mouse-y', `${event.clientY}px`);
-            pointerFrame = 0;
-        });
-    }, { passive: true });
-
-    document.querySelectorAll('.service-card').forEach((card) => {
-        card.addEventListener('pointermove', (event) => {
-            const bounds = card.getBoundingClientRect();
-            card.style.setProperty('--card-x', `${event.clientX - bounds.left}px`);
-            card.style.setProperty('--card-y', `${event.clientY - bounds.top}px`);
-        }, { passive: true });
+    document.querySelectorAll('.floating-nav a').forEach((link) => {
+        const targetPath = new URL(link.href, window.location.origin).pathname.replace(/\/$/, '');
+        const currentPath = window.location.pathname.replace(/\/$/, '') || '/etusivu';
+        link.classList.toggle('is-current', targetPath === currentPath);
     });
 })();

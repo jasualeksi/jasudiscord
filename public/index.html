@@ -3,23 +3,18 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="theme-color" content="#050505">
+    <meta name="theme-color" content="#08090d">
     <title>Jasu | Discord</title>
-    <meta name="description" content="Discord botit & Palvelimet | Logot, bannerit, profiilikuvat">
+    <meta name="description" content="Discord-botit, palvelimet ja grafiikat tilauksesta.">
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Jasu | Discord">
     <meta property="og:title" content="Jasu | Discord">
-    <meta property="og:description" content="Discord botit & Palvelimet | Logot, bannerit, profiilikuvat">
-    <meta property="og:url" content="https://jasudiscord.com/etusivu">
-    <meta property="og:locale" content="fi_FI">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Jasu | Discord">
-    <meta name="twitter:description" content="Discord botit & Palvelimet | Logot, bannerit, profiilikuvat">
+    <meta property="og:description" content="Discord-botit, palvelimet ja grafiikat tilauksesta.">
+    <meta property="og:image" content="/assets/jasudiscord-background.jpg">
     <link rel="canonical" href="https://jasudiscord.com/etusivu">
     <base href="/">
     <link rel="icon" type="image/png" href="/assets/favicon.png">
     <link rel="apple-touch-icon" href="/assets/logo.png">
-    <link rel="stylesheet" href="/site.css?v=20260720-3">
+    <link rel="stylesheet" href="/site.css?v=20260720-4">
     <script>
       document.documentElement.dataset.page = {
         "/discord": "discord",
@@ -30,282 +25,215 @@
       }[window.location.pathname.replace(/\/$/, "")] || "home";
     </script>
     <script src="/commands.js?v=20260709-3" defer></script>
-    <script src="/motion.js?v=20260720-1" defer></script>
+    <script src="/motion.js?v=20260720-2" defer></script>
   </head>
   <body>
-    <div class="nav-shell">
-      <header class="topbar">
-        <a class="brand" href="/etusivu" aria-label="Jasu Discord">
-          <img src="/assets/logo.png" alt="">
-          <span>Jasu | Discord</span>
-        </a>
-        <input class="nav-toggle" id="nav-toggle" type="checkbox" aria-label="Avaa valikko">
-        <label class="nav-toggle-button" for="nav-toggle" aria-hidden="true">
-          <span></span>
-          <span></span>
-          <span></span>
-        </label>
-        <nav class="topnav" aria-label="Päänavigaatio">
-          <a href="/etusivu">Etusivu</a>
-          <a href="/discord">Liity Discordiin</a>
-          <div class="nav-more nav-more--portfolio">
-            <input class="nav-more__toggle" id="nav-portfolio-toggle" type="checkbox" aria-label="Avaa portfolio valikko">
-            <label class="nav-more__summary" for="nav-portfolio-toggle">Portfolio</label>
-            <div class="nav-more__menu">
-              <a href="/bannerit">Bannerit</a>
-              <a href="/logot">Logot</a>
-              <a href="/profiilikuvat">Profiilikuvat</a>
-            </div>
-          </div>
-          <div class="nav-more nav-more--extra">
-            <input class="nav-more__toggle" id="nav-more-toggle" type="checkbox" aria-label="Avaa muuta valikko">
-            <label class="nav-more__summary" for="nav-more-toggle">Muuta</label>
-            <div class="nav-more__menu">
-              <a href="/discord-komennot">Discord komennot</a>
-            </div>
-          </div>
-        </nav>
-      </header>
-
-      <nav class="social-nav" aria-label="Sosiaalinen media">
-        <a href="https://www.instagram.com/jasualeksii" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-          <img src="/assets/instagram-icon.png" alt="">
-        </a>
-        <a href="https://snapchat.com/t/mPUf5DsN" target="_blank" rel="noopener noreferrer" aria-label="Snapchat">
-          <img src="/assets/snapchat-icon.png" alt="">
-        </a>
-      </nav>
-    </div>
+    <header class="site-mark">
+      <a href="/etusivu" aria-label="Jasu Discord etusivu">
+        <img src="/assets/logo.png" alt="">
+        <span>Jasu | Discord</span>
+      </a>
+    </header>
 
     <main class="home-page" id="top">
-      <section class="home-hero" aria-labelledby="home-title">
-        <div class="home-hero__backdrop" aria-hidden="true"></div>
-        <div class="home-hero__copy">
-          <span class="hero-kicker">DIGITAALISET TILAUSTYÖT / 2026</span>
-          <img class="home-hero__logo" src="/assets/logo.png" alt="">
-          <h1 id="home-title">Jasu | Discord</h1>
-          <p class="home-hero__lead">Discord-botit, palvelimet ja grafiikat tilauksesta.</p>
-          <div class="home-actions">
-            <a class="button button--primary" href="https://discord.gg/MHqmuTnGms" target="_blank" rel="noopener noreferrer"><img src="/assets/discord-white-icon.png" alt="">Avaa Discord</a>
-            <a class="button button--ghost" href="#palvelut">Katso tuotteet</a>
+      <section class="hero" aria-labelledby="home-title">
+        <div class="hero__shade"></div>
+        <div class="hero__content">
+          <div class="profile-image">
+            <img src="/assets/logo.png" alt="Jasu Discord">
+          </div>
+          <p class="eyebrow">JASUDISCORD.COM</p>
+          <h1 id="home-title">Ideasta valmiiksi.</h1>
+          <p class="hero__lead">Discord-botit, palvelimet ja grafiikat siistinä kokonaisuutena — juuri sun tarpeisiin.</p>
+          <div class="hero__actions">
+            <a class="button button--light" href="https://discord.gg/MHqmuTnGms" target="_blank" rel="noopener noreferrer">
+              <img src="/assets/discord-white-icon.png" alt="">
+              Liity Discordiin
+            </a>
+            <a class="button button--glass" href="#portfolio">Portfolio</a>
           </div>
         </div>
-        <div class="hero-console" aria-hidden="true">
-          <div class="hero-console__top"><span>JASUDISCORD.COM</span><i></i><span>AVOINNA</span></div>
-          <div class="hero-console__mark">JD</div>
-          <div class="hero-console__lines">
-            <span>DISCORD-BOTIT</span><span>PALVELIMET</span><span>GRAFIIKAT</span><span>1–48 H</span>
-          </div>
-        </div>
+        <a class="scroll-cue" href="#palvelut" aria-label="Selaa palveluihin">
+          <span>Selaa</span>
+          <i></i>
+        </a>
       </section>
 
-      <div class="service-marquee" aria-hidden="true">
-        <div>
-          <span>DISCORD BOTIT</span><i></i><span>DISCORD PALVELIMET</span><i></i><span>LOGOT &amp; BANNERIT</span><i></i><span>PROFIILIKUVAT</span><i></i><span>TOIMITUS 1–48 H</span><i></i>
-          <span>DISCORD BOTIT</span><i></i><span>DISCORD PALVELIMET</span><i></i><span>LOGOT &amp; BANNERIT</span><i></i><span>PROFIILIKUVAT</span><i></i><span>TOIMITUS 1–48 H</span><i></i>
-        </div>
-      </div>
-
-      <section class="quick-links" aria-label="Pikalinkit">
-        <a href="#palvelut"><strong>Palvelut</strong><span>Katso mitä teen</span></a>
-        <a href="/discord"><strong>Discord</strong><span>Liity palvelimelle</span></a>
-        <a href="/logot"><strong>Portfolio</strong><span>Katso aiempia töitä</span></a>
-      </section>
-
-      <section class="services-section" id="palvelut" aria-labelledby="services-title">
-        <div class="home-section-heading">
+      <section class="intro section-shell" id="palvelut">
+        <div class="section-title">
           <p class="eyebrow">PALVELUT</p>
-          <h2 id="services-title">Mitä teen</h2>
+          <h2>Kaikki mitä Discord tarvitsee.</h2>
         </div>
-        <div class="services-grid">
-          <article class="service-card service-card--bot">
-            <span class="service-card__number">01</span>
-            <h3>Discord-botit</h3>
-            <p>Oma Discord-botti juuri niillä ominaisuuksilla mitä tarvitset. Myös vanhan botin päivitykset onnistuvat.</p>
-            <ul>
-              <li>Moderointi, ticketit ja lokit</li>
-              <li>Economy, levelit ja giveawayt</li>
-              <li>Omat komennot ja muut ominaisuudet</li>
-            </ul>
+        <div class="service-list">
+          <article>
+            <span>01</span>
+            <div>
+              <h3>Discord-botit</h3>
+              <p>Custom-komennot, moderointi, ticketit, economy, lokit ja muut ominaisuudet.</p>
+            </div>
           </article>
-          <article class="service-card service-card--server">
-            <span class="service-card__number">02</span>
-            <h3>Discord-palvelimet</h3>
-            <p>Uusi Discord alusta asti tai vanha serveri kuntoon. Esimerkiksi RP-, peli- tai myyntipalvelin.</p>
-            <ul>
-              <li>Kanavat ja kategoriat</li>
-              <li>Roolit ja oikeudet</li>
-              <li>Selkeä, valmis kokonaisuus</li>
-            </ul>
+          <article>
+            <span>02</span>
+            <div>
+              <h3>Discord-palvelimet</h3>
+              <p>Kanavat, kategoriat, roolit ja oikeudet valmiiksi toimivana kokonaisuutena.</p>
+            </div>
           </article>
-          <article class="service-card service-card--graphics">
-            <span class="service-card__number">03</span>
-            <h3>Grafiikat</h3>
-            <p>Logot, bannerit ja profiilikuvat halutulla tyylillä.</p>
-            <ul>
-              <li>Logot</li>
-              <li>Bannerit</li>
-              <li>Profiilikuvat</li>
-            </ul>
+          <article>
+            <span>03</span>
+            <div>
+              <h3>Grafiikat</h3>
+              <p>Logot, bannerit ja profiilikuvat halutulla tyylillä ja käyttötarkoituksella.</p>
+            </div>
           </article>
-          <article class="service-card service-card--fivem">
-            <span class="service-card__number">04</span>
-            <h3>FiveM-grafiikat</h3>
-            <p>Custom-liivit palvelimen tai hahmon oman tyylin mukaan.</p>
-            <ul>
-              <li>Omat värit ja tekstit</li>
-              <li>Logot ja tunnukset</li>
-              <li>Poliisi, EMS, jengit ja muut</li>
-            </ul>
-          </article>
-          <article class="service-card service-card--pricing">
-            <span class="service-card__number">05</span>
-            <h3>Hinnat</h3>
-            <p>Kiinteää hinnastoa ei ole. Hinta riippuu työn koosta ja vaativuudesta.</p>
-            <ul>
-              <li>Useimmat työt noin 10–100 €</li>
-              <li>Toimitus yleensä 1–48 h</li>
-              <li>Hinta sovitaan ennen aloitusta</li>
-            </ul>
-          </article>
-        </div>
-        <div class="service-cta">
-          <p>Tilaukset hoidetaan Discordissa.</p>
-          <a href="https://discord.gg/MHqmuTnGms" target="_blank" rel="noopener noreferrer">Avaa ticket <span aria-hidden="true">→</span></a>
         </div>
       </section>
 
-      <section class="home-portfolio" aria-labelledby="home-portfolio-title">
-        <div class="home-section-heading">
-          <p class="eyebrow">PORTFOLIO</p>
-          <h2 id="home-portfolio-title">Katso aiempia töitä</h2>
-        </div>
-        <div class="portfolio-links">
-          <a href="/bannerit"><span>Bannerit</span><small>Katso työt</small></a>
-          <a href="/logot"><span>Logot</span><small>Katso työt</small></a>
-          <a href="/profiilikuvat"><span>Profiilikuvat</span><small>Katso työt</small></a>
-        </div>
-      </section>
-
-      <aside class="feedback-panel" aria-labelledby="feedback-title">
-        <div class="feedback-panel__heading">
+      <section class="portfolio-home section-shell" id="portfolio">
+        <div class="section-title section-title--row">
           <div>
-            <p class="eyebrow">ASIAKASPALAUTTEET</p>
-            <h2 id="feedback-title">Mitä asiakkaat ovat sanoneet</h2>
+            <p class="eyebrow">PORTFOLIO</p>
+            <h2>Valittuja töitä.</h2>
           </div>
+          <p>Tutustu aiempiin toteutuksiin kategorioittain.</p>
         </div>
-        <p class="feedback-panel__intro">Palautteet suoraan Discordista.</p>
+        <div class="portfolio-menu">
+          <a href="/logot">
+            <span>Logot</span>
+            <small>Avaa portfolio</small>
+            <i>01</i>
+          </a>
+          <a href="/bannerit">
+            <span>Bannerit</span>
+            <small>Avaa portfolio</small>
+            <i>02</i>
+          </a>
+          <a href="/profiilikuvat">
+            <span>Profiilikuvat</span>
+            <small>Avaa portfolio</small>
+            <i>03</i>
+          </a>
+        </div>
+      </section>
+
+      <section class="cta section-shell">
+        <p class="eyebrow">ALOITETAAN</p>
+        <h2>Onko sulla idea?</h2>
+        <p>Kerro mitä tarvitset. Sovitaan hinta ennen työn aloitusta ja hoidetaan loput Discordissa.</p>
+        <a class="button button--dark" href="https://discord.gg/MHqmuTnGms" target="_blank" rel="noopener noreferrer">Avaa Discord</a>
+      </section>
+
+      <aside class="feedback-panel section-shell" aria-labelledby="feedback-title">
+        <div class="section-title">
+          <p class="eyebrow">ASIAKASPALAUTTEET</p>
+          <h2 id="feedback-title">Mitä asiakkaat sanovat.</h2>
+        </div>
         <div class="feedback-list" id="feedback-list" aria-live="polite">
           <article class="feedback-item feedback-item--status"><p>Ladataan palautteita...</p></article>
         </div>
         <div class="feedback-controls" id="feedback-controls" aria-label="Palautteiden selaus"></div>
       </aside>
 
-      <footer class="site-footer">
-        <a class="brand" href="/etusivu"><img src="/assets/logo.png" alt=""><span>Jasu | Discord</span></a>
-        <p>Discord-botit, palvelimet ja grafiikat tilauksesta.</p>
+      <footer class="site-footer section-shell">
+        <span>© 2026 Jasu | Discord</span>
+        <a href="https://www.instagram.com/jasualeksii" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://snapchat.com/t/mPUf5DsN" target="_blank" rel="noopener noreferrer">Snapchat</a>
       </footer>
     </main>
 
     <section class="page discord-page" id="discord">
-      <div class="discord-shell">
-        <div class="discord-copy">
+      <div class="page-hero">
+        <div>
           <p class="eyebrow">JASU | DISCORD</p>
-          <h1>Jasu | Discord</h1>
-          <p>Tilaukset, ticketit, botin pelit ja palvelimen muut jutut samassa paikassa.</p>
-          <a class="discord-join-button" href="https://discord.gg/MHqmuTnGms" target="_blank" rel="noopener noreferrer">
-            <img src="/assets/discord-white-icon.png" alt="">
-            Liity palvelimelle
-            <span aria-hidden="true">→</span>
-          </a>
+          <h1>Liity mukaan.</h1>
+          <p>Tilaukset, ticketit ja yhteisö löytyvät samasta paikasta.</p>
+          <a class="button button--light" href="https://discord.gg/MHqmuTnGms" target="_blank" rel="noopener noreferrer">Avaa Discord</a>
         </div>
-        <div class="discord-card-wrap">
-          <div class="discord-orbit" aria-hidden="true"></div>
-          <article class="server-widget" id="server-widget">
-            <div class="server-widget__banner"></div>
-            <div class="server-widget__main">
-              <div class="server-widget__icon"><img src="/assets/logo.png" alt=""></div>
-              <div class="server-widget__content">
-                <p>DISCORD-PALVELIN</p>
-                <h2>Jasu | Discord</h2>
-                <div class="server-widget__stats" id="server-stats"><span>Haetaan tietoja...</span></div>
-              </div>
-            </div>
-            <div class="server-widget__footer">
-              <span><i></i> Palvelin avoinna</span>
-              <a href="https://discord.gg/MHqmuTnGms" target="_blank" rel="noopener noreferrer">discord.gg/MHqmuTnGms</a>
-            </div>
-          </article>
-        </div>
+        <article class="server-widget" id="server-widget">
+          <img src="/assets/logo.png" alt="">
+          <div>
+            <small>DISCORD-PALVELIN</small>
+            <h2>Jasu | Discord</h2>
+            <div id="server-stats"><span>Haetaan tietoja...</span></div>
+          </div>
+        </article>
       </div>
     </section>
 
-    <section class="banners-section" id="banners" aria-labelledby="banners-title">
-      <div class="banners-shell">
-        <div class="section-heading">
-          <h1 id="banners-title">Mun tekemät bannerit</h1>
-        </div>
-        <div class="banner-showcase" id="banner-showcase" aria-live="polite">
-          <article class="banner-card banner-card--status">
-            <div class="banner-card__body">
-              <h2>Ladataan bannereita...</h2>
-            </div>
-          </article>
-        </div>
+    <section class="page portfolio-page banners-section" id="banners" aria-labelledby="banners-title">
+      <div class="portfolio-heading">
+        <p class="eyebrow">PORTFOLIO / 01</p>
+        <h1 id="banners-title">Bannerit</h1>
+        <p>Mun tekemiä bannereita.</p>
+      </div>
+      <div class="banner-showcase" id="banner-showcase" aria-live="polite">
+        <article class="banner-card banner-card--status"><h2>Ladataan bannereita...</h2></article>
       </div>
     </section>
 
-    <section class="portfolio-section logos-section" id="logot" aria-labelledby="logos-title">
-      <div class="portfolio-shell">
-        <div class="section-heading">
-          <h1 id="logos-title">Mun tekemät logot</h1>
-        </div>
-        <div class="portfolio-grid" id="logos-grid" aria-live="polite">
-          <article class="portfolio-card portfolio-card--status">
-            <h2>Ladataan logoja...</h2>
-          </article>
-        </div>
+    <section class="page portfolio-page logos-section" id="logot" aria-labelledby="logos-title">
+      <div class="portfolio-heading">
+        <p class="eyebrow">PORTFOLIO / 02</p>
+        <h1 id="logos-title">Logot</h1>
+        <p>Mun tekemiä logoja.</p>
+      </div>
+      <div class="portfolio-grid" id="logos-grid" aria-live="polite">
+        <article class="portfolio-card portfolio-card--status"><h2>Ladataan logoja...</h2></article>
       </div>
     </section>
 
-    <section class="portfolio-section avatars-section" id="profiilikuvat" aria-labelledby="avatars-title">
-      <div class="portfolio-shell">
-        <div class="section-heading">
-          <h1 id="avatars-title">Mun tekemät profiilikuvat</h1>
-        </div>
-        <div class="portfolio-grid" id="avatars-grid" aria-live="polite">
-          <article class="portfolio-card portfolio-card--status">
-            <h2>Ladataan profiilikuvia...</h2>
-          </article>
-        </div>
+    <section class="page portfolio-page avatars-section" id="profiilikuvat" aria-labelledby="avatars-title">
+      <div class="portfolio-heading">
+        <p class="eyebrow">PORTFOLIO / 03</p>
+        <h1 id="avatars-title">Profiilikuvat</h1>
+        <p>Mun tekemiä profiilikuvia.</p>
+      </div>
+      <div class="portfolio-grid" id="avatars-grid" aria-live="polite">
+        <article class="portfolio-card portfolio-card--status"><h2>Ladataan profiilikuvia...</h2></article>
       </div>
     </section>
 
-    <section class="commands-section" id="commands" aria-labelledby="commands-title">
-      <div class="commands-shell">
-        <div class="section-heading">
-          <h1 id="commands-title">Discord palvelimen komennot</h1>
-        </div>
-        <div class="commands-toolbar">
-          <label class="command-search">
-            <span>Komento haku</span>
-            <input id="command-search" type="search" placeholder="Hae esim. addmoney" autocomplete="off">
-          </label>
-          <div class="category-tabs" id="category-tabs" aria-label="Komentokategoriat"></div>
-        </div>
-        <div class="commands-grid" id="commands-list" aria-live="polite">
-          <article class="command-card command-card--status">
-            <h2>Ladataan komentoja...</h2>
-            <p>Haetaan botin nykyiset komennot Discordista.</p>
-          </article>
-        </div>
+    <section class="page commands-section" id="commands" aria-labelledby="commands-title">
+      <div class="portfolio-heading">
+        <p class="eyebrow">DISCORD</p>
+        <h1 id="commands-title">Komennot</h1>
+      </div>
+      <div class="commands-toolbar">
+        <label class="command-search">
+          <span>Komento haku</span>
+          <input id="command-search" type="search" placeholder="Hae komentoa" autocomplete="off">
+        </label>
+        <div class="category-tabs" id="category-tabs" aria-label="Komentokategoriat"></div>
+      </div>
+      <div class="commands-grid" id="commands-list" aria-live="polite">
+        <article class="command-card command-card--status"><p>Ladataan komentoja...</p></article>
       </div>
     </section>
+
+    <nav class="floating-nav" aria-label="Päänavigaatio">
+      <a href="/etusivu">
+        <span>01</span>
+        Etusivu
+      </a>
+      <a href="/discord">
+        <span>02</span>
+        Discord
+      </a>
+      <div class="portfolio-nav">
+        <input id="portfolio-toggle" type="checkbox">
+        <label for="portfolio-toggle"><span>03</span>Portfolio</label>
+        <div class="portfolio-nav__menu">
+          <a href="/logot">Logot</a>
+          <a href="/bannerit">Bannerit</a>
+          <a href="/profiilikuvat">Profiilikuvat</a>
+        </div>
+      </div>
+    </nav>
 
     <div class="image-lightbox" id="image-lightbox" aria-hidden="true">
       <button class="image-lightbox__backdrop" type="button" aria-label="Sulje kuva"></button>
       <div class="image-lightbox__panel" role="dialog" aria-modal="true" aria-label="Avattu kuva">
-        <button class="image-lightbox__close" type="button" aria-label="Sulje kuva">x</button>
+        <button class="image-lightbox__close" type="button" aria-label="Sulje kuva">×</button>
         <img class="image-lightbox__image" src="" alt="">
       </div>
     </div>
