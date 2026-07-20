@@ -9,6 +9,16 @@ function formatIntegrationDate(value) {
   return new Intl.DateTimeFormat("fi-FI", { day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit" }).format(new Date(value));
 }
 
+async function readIntegrationJson(response, fallbackMessage) {
+  const contentType = response.headers.get("content-type") || "";
+
+  if (!contentType.includes("application/json")) {
+    throw new Error(fallbackMessage);
+  }
+
+  return response.json();
+}
+
 function renderLogin() {
   accountContent.innerHTML = `
     <article class="login-card">
@@ -53,7 +63,7 @@ async function submitTicket(event) {
   const body = Object.fromEntries(new FormData(form));
   try {
     const response = await fetch("/api/tickets", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
-    const data = await response.json();
+    const data = await readIntegrationJson(response, "Ticket-palveluun ei saatu yhteyttä.");
     if (!response.ok) throw new Error(data.message || "Ticketin luominen epäonnistui.");
     message.innerHTML = `Ticket luotu. <a href="${integrationEscape(data.channelUrl)}" target="_blank" rel="noopener noreferrer">Avaa Discordissa</a>`;
     form.reset();
@@ -70,7 +80,7 @@ async function loadAccount() {
   try {
     const response = await fetch("/api/customer");
     if (response.status === 401) return renderLogin();
-    const data = await response.json();
+    const data = await readIntegrationJson(response, "Oman sivun tietoja ei saatu juuri nyt.");
     if (!response.ok) throw new Error(data.message || "Omia tietoja ei saatu.");
     renderAccount(data);
   } catch (error) {
@@ -87,7 +97,7 @@ async function loadLeaderboards() {
   if (!leaderboardContent || document.documentElement.dataset.page !== "leaderboard") return;
   try {
     const response = await fetch("/api/leaderboards");
-    const data = await response.json();
+    const data = await readIntegrationJson(response, "Leaderboardeja ei saatu juuri nyt.");
     if (!response.ok) throw new Error(data.message || "Leaderboardeja ei saatu.");
     leaderboardContent.innerHTML = `<div class="leaderboard-grid">${["money", "xp", "invites", "games"].map(name => renderBoard(name, data[name] || [])).join("")}</div>${data.updatedAt ? `<p class="leaderboard-updated">Päivitetty ${formatIntegrationDate(data.updatedAt)}</p>` : ""}`;
   } catch (error) {
