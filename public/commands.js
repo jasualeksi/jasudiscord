@@ -317,11 +317,8 @@ function renderFeedback(messages) {
     return;
   }
 
-  feedbackMessages = messages;
-  feedbackIndex = 0;
-
   feedbackList.innerHTML = `
-    <div class="feedback-list__track">
+    <div class="feedback-grid">
       ${messages.map((message) => `
         <article class="feedback-item">
           <div class="feedback-avatar">
@@ -339,16 +336,9 @@ function renderFeedback(messages) {
     </div>
   `;
 
-  feedbackControls.innerHTML = messages.length > 1 ? `
-    <button class="feedback-control" type="button" data-feedback-action="prev" aria-label="Edellinen palaute">&lt;</button>
-    ${messages.map((_, index) => `
-      <button class="feedback-dot${index === 0 ? " is-active" : ""}" type="button" data-feedback-index="${index}" aria-label="Palaute ${index + 1}"></button>
-    `).join("")}
-    <button class="feedback-control" type="button" data-feedback-action="next" aria-label="Seuraava palaute">&gt;</button>
-  ` : "";
-
-  updateFeedbackSlider();
-  startFeedbackAutoplay();
+  feedbackMessages = messages;
+  feedbackControls.innerHTML = "";
+  window.clearInterval(feedbackTimer);
 }
 
 function startCommandPlaceholderLoop() {

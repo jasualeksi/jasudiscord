@@ -276,33 +276,33 @@ html[data-page="commands"] .commands-section { display: block; }
 .cta > p:not(.eyebrow) { max-width: 570px; margin: 22px auto 30px; color: #55565e; line-height: 1.65; }
 
 .feedback-panel { padding-bottom: 30px; }
-.feedback-list { overflow: hidden; }
-.feedback-list__track { display: flex; width: 100%; gap: 12px; transition: transform .65s cubic-bezier(.22,.8,.2,1); }
+.feedback-list { overflow: visible; }
+.feedback-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
 .feedback-item {
   display: grid;
-  width: 100%;
-  min-width: 100%;
-  min-height: 190px;
-  grid-template-columns: auto 1fr;
-  gap: 18px;
-  padding: 30px;
+  min-width: 0;
+  min-height: 145px;
+  grid-template-columns: 36px 1fr;
+  gap: 12px;
+  padding: 18px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--surface);
 }
 .feedback-avatar img, .feedback-avatar span {
   display: grid;
-  width: 48px;
-  height: 48px;
+  width: 36px;
+  height: 36px;
   place-items: center;
   border-radius: 50%;
   object-fit: cover;
   background: #23242b;
 }
-.feedback-meta { display: flex; justify-content: space-between; gap: 20px; }
-.feedback-meta time { color: #74757e; font-size: 10px; }
-.feedback-content p, .feedback-item p { color: #c1c2c7; line-height: 1.65; }
-.feedback-controls { display: flex; justify-content: center; gap: 6px; margin-top: 16px; }
+.feedback-meta { display: grid; gap: 4px; }
+.feedback-meta strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.feedback-meta time { color: #74757e; font-size: 9px; }
+.feedback-content p, .feedback-item p { margin-bottom: 0; color: #c1c2c7; font-size: 12px; line-height: 1.55; }
+.feedback-controls { display: none; }
 .feedback-controls button { width: 25px; height: 4px; padding: 0; border: 0; border-radius: 9px; background: #363740; }
 .feedback-controls button[aria-current="true"], .feedback-controls button.is-active { background: #fff; }
 .site-footer {
@@ -494,6 +494,7 @@ html[data-page="commands"] .commands-section { display: block; }
   .cta { padding: 70px 30px; }
   .page-hero { grid-template-columns: 1fr; gap: 50px; padding: 55px 35px; }
   .commands-grid { grid-template-columns: repeat(2,1fr); }
+  .feedback-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 600px) {
@@ -511,7 +512,8 @@ html[data-page="commands"] .commands-section { display: block; }
   .section-title h2, .cta h2 { font-size: 46px; }
   .service-list article { grid-template-columns: 42px 1fr; }
   .cta { width: calc(100% - 24px); margin-top: 100px; padding: 58px 24px; }
-  .feedback-item { padding: 22px; }
+  .feedback-grid { grid-template-columns: 1fr; }
+  .feedback-item { min-height: 0; padding: 17px; }
   .site-footer { align-items: flex-start; flex-direction: column; gap: 12px; }
   .site-footer span { margin-right: 0; }
   .floating-nav { width: calc(100% - 20px); justify-content: stretch; }
