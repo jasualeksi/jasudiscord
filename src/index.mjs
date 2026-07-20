@@ -1,4 +1,4 @@
-import { handleIntegrationRequest } from "./integration.mjs";
+import { handlePortfolioRequest } from "./portfolio.mjs";
 
 const DISCORD_API = "https://discord.com/api/v10";
 function json(data, init = {}) {
@@ -241,12 +241,26 @@ async function fetchDiscordFeedback(env) {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
-    let integrationResponse;
+    let portfolioResponse;
+
+    if (["/oma-sivu", "/leaderboard"].includes(url.pathname)) {
+      return Response.redirect(`${url.origin}/etusivu`, 302);
+    }
+
+    if (
+      url.pathname.startsWith("/api/auth/") ||
+      ["/auth/callback", "/api/customer", "/api/tickets", "/api/leaderboards", "/api/bot/sync"].includes(url.pathname)
+    ) {
+      return json({
+        title: "Toiminto poistettu",
+        message: "Discord-kirjautuminen, Oma sivu ja nettisivun leaderboard on poistettu."
+      }, { status: 404 });
+    }
 
     try {
-      integrationResponse = await handleIntegrationRequest(request, env);
+      portfolioResponse = await handlePortfolioRequest(request, env);
     } catch (error) {
-      console.error("Integration route failed", {
+      console.error("Portfolio route failed", {
         path: url.pathname,
         name: error?.name,
         message: error?.message,
@@ -254,14 +268,14 @@ export default {
       });
 
       return json({
-        title: "Nettisivun integraatio epäonnistui",
+        title: "Portfolion lataus epäonnistui",
         message: error?.message || "Tuntematon Worker-virhe.",
         path: url.pathname
       }, { status: 500 });
     }
 
-    if (integrationResponse) {
-      return integrationResponse;
+    if (portfolioResponse) {
+      return portfolioResponse;
     }
 
     if (url.pathname === "/api/commands") {

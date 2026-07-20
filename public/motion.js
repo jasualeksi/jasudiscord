@@ -15,10 +15,7 @@
         '.portfolio-card',
         '.command-card',
         '.discord-copy',
-        '.server-widget',
-        '.integration-heading',
-        '.account-content',
-        '.leaderboard-content'
+        '.server-widget'
     ].join(',');
 
     const prepareReveal = (element, index = 0) => {

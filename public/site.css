@@ -138,15 +138,13 @@ img { display: block; max-width: 100%; }
 .social-nav img { width: 19px; height: 19px; object-fit: contain; filter: grayscale(1) brightness(1.9); }
 .nav-toggle-button { display: none; }
 
-.home-page, .page, .banners-section, .portfolio-section, .commands-section, .integration-page { display: none; }
+.home-page, .page, .banners-section, .portfolio-section, .commands-section { display: none; }
 html[data-page="home"] .home-page,
 html[data-page="discord"] .discord-page,
 html[data-page="banners"] .banners-section,
 html[data-page="logos"] .logos-section,
 html[data-page="avatars"] .avatars-section,
-html[data-page="commands"] .commands-section,
-html[data-page="account"] .account-section,
-html[data-page="leaderboard"] .leaderboard-section { display: block; }
+html[data-page="commands"] .commands-section { display: block; }
 
 .home-page {
   width: min(calc(100% - 36px), var(--max));
@@ -299,7 +297,7 @@ html[data-page="leaderboard"] .leaderboard-section { display: block; }
   border-bottom: 1px solid var(--line);
 }
 .eyebrow { margin: 0; color: #777; font-size: 9px; font-weight: 900; letter-spacing: .22em; }
-.home-section-heading h2, .feedback-panel h2, .section-heading h1, .integration-heading h1 {
+.home-section-heading h2, .feedback-panel h2, .section-heading h1 {
   margin: 0;
   color: #fff;
   font: 900 clamp(42px, 6vw, 76px)/.86 "League Spartan", Arial, sans-serif;
@@ -392,7 +390,7 @@ html[data-page="leaderboard"] .leaderboard-section { display: block; }
 .feedback-controls button[aria-current="true"], .feedback-controls button.is-active { background: #fff; }
 .site-footer { display: flex; min-height: 120px; align-items: center; justify-content: space-between; margin-top: 110px; border-top: 1px solid var(--line); color: #666; font-size: 11px; }
 
-.discord-page, .banners-section, .portfolio-section, .commands-section, .integration-page {
+.discord-page, .banners-section, .portfolio-section, .commands-section {
   width: min(calc(100% - 36px), var(--max));
   min-height: 100vh;
   margin: 0 auto;
@@ -428,11 +426,9 @@ html[data-page="leaderboard"] .leaderboard-section { display: block; }
 .server-widget__footer { display: flex; justify-content: space-between; gap: 15px; padding: 18px 26px; border-top: 1px solid var(--line); color: #888; font-size: 10px; }
 .server-widget__footer i { display: inline-block; width: 7px; height: 7px; margin-right: 6px; border-radius: 50%; background: #fff; }
 
-.banners-shell, .portfolio-shell, .commands-shell, .integration-shell { width: 100%; }
-.section-heading, .integration-heading { margin-bottom: 44px; padding: 38px 0 25px; border-bottom: 1px solid var(--line); }
-.section-heading::before, .integration-heading > p { display: block; margin: 0 0 16px; color: #777; font-size: 9px; font-weight: 900; letter-spacing: .2em; content: "JASUDISCORD.COM / PORTFOLIO"; }
-.integration-heading > p { content: none; }
-.integration-heading span { display: block; margin-top: 14px; color: #888; }
+.banners-shell, .portfolio-shell, .commands-shell { width: 100%; }
+.section-heading { margin-bottom: 44px; padding: 38px 0 25px; border-bottom: 1px solid var(--line); }
+.section-heading::before { display: block; margin: 0 0 16px; color: #777; font-size: 9px; font-weight: 900; letter-spacing: .2em; content: "JASUDISCORD.COM / PORTFOLIO"; }
 .banner-showcase { display: grid; gap: 12px; }
 .portfolio-grid {
   display: grid;
@@ -480,7 +476,7 @@ html[data-page="leaderboard"] .leaderboard-section { display: block; }
 
 .commands-toolbar { display: grid; grid-template-columns: 1fr 2fr; gap: 12px; margin-bottom: 22px; }
 .command-search { display: grid; gap: 8px; color: #777; font-size: 9px; font-weight: 900; letter-spacing: .16em; }
-.command-search input, .ticket-form input, .ticket-form select, .ticket-form textarea {
+.command-search input {
   width: 100%;
   border: 1px solid var(--line);
   border-radius: 10px;
@@ -489,7 +485,7 @@ html[data-page="leaderboard"] .leaderboard-section { display: block; }
   background: #0b0b0b;
 }
 .command-search input { min-height: 52px; padding: 0 16px; }
-.command-search input:focus, .ticket-form input:focus, .ticket-form select:focus, .ticket-form textarea:focus { border-color: #fff; }
+.command-search input:focus { border-color: #fff; }
 .category-tabs { display: flex; flex-wrap: wrap; align-items: end; gap: 6px; }
 .category-tabs button { min-height: 38px; padding: 0 13px; border: 1px solid var(--line); border-radius: 8px; color: #aaa; background: #0c0c0c; font-size: 10px; font-weight: 800; }
 .category-tabs button.is-active { color: #050505; background: #fff; }
@@ -498,45 +494,6 @@ html[data-page="leaderboard"] .leaderboard-section { display: block; }
 .command-card h2 { margin: 0; font: 900 19px/1 "League Spartan",Arial,sans-serif; }
 .command-card p { color: #929292; font-size: 12px; line-height: 1.5; }
 .command-card code { padding: 4px 7px; border-radius: 5px; color: #050505; background: #fff; }
-
-.integration-status, .login-card, .account-bar, .ticket-form, .orders-panel, .leaderboard-card {
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: #0a0a0a;
-}
-.integration-status { padding: 30px; color: #999; }
-.login-card { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 22px; padding: 28px; }
-.login-card > img { width: 64px; }
-.login-card h2 { margin: 0 0 7px; font: 900 24px/1 "League Spartan",Arial,sans-serif; text-transform: uppercase; }
-.login-card p { margin: 0; color: #888; font-size: 12px; }
-.login-card a, .ticket-form button, #logout-button { display: inline-flex; min-height: 46px; align-items: center; justify-content: center; gap: 8px; padding: 0 17px; border: 0; border-radius: 9px; color: #050505; background: #fff; font-size: 10px; font-weight: 900; text-transform: uppercase; cursor: pointer; }
-.login-card a img { width: 18px; filter: brightness(0); }
-.account-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; padding: 18px; }
-.account-user { display: flex; align-items: center; gap: 12px; }
-.account-user img { width: 46px; height: 46px; border-radius: 50%; }
-.account-user span, .form-heading span, .order-row span { display: block; color: #777; font-size: 9px; font-weight: 900; letter-spacing: .15em; }
-.account-user strong { display: block; margin-top: 4px; }
-.account-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.ticket-form, .orders-panel { padding: 25px; }
-.form-heading h2 { margin: 7px 0 22px; font: 900 25px/1 "League Spartan",Arial,sans-serif; text-transform: uppercase; }
-.ticket-form { display: grid; gap: 13px; }
-.ticket-form label { display: grid; gap: 7px; color: #999; font-size: 10px; font-weight: 800; }
-.ticket-form input, .ticket-form select { min-height: 46px; padding: 0 13px; }
-.ticket-form textarea { min-height: 130px; padding: 13px; resize: vertical; }
-.form-message { min-height: 18px; margin: 0; color: #aaa; font-size: 11px; }
-.orders-list { display: grid; gap: 7px; }
-.order-row { display: flex; align-items: center; justify-content: space-between; padding: 15px; border: 1px solid var(--line); border-radius: 10px; }
-.order-row strong, .order-row small { display: block; margin-top: 5px; }
-.order-row small { color: #666; font-size: 9px; }
-.order-row b { padding: 7px 9px; border-radius: 7px; color: #050505; background: #fff; font-size: 9px; }
-.empty-orders { color: #777; }
-.leaderboard-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; }
-.leaderboard-card { padding: 22px; }
-.leaderboard-card h2 { margin: 0 0 16px; font: 900 22px/1 "League Spartan",Arial,sans-serif; text-transform: uppercase; }
-.leader-row { display: grid; grid-template-columns: 25px 36px 1fr auto; align-items: center; gap: 10px; padding: 10px 0; border-top: 1px solid var(--line); }
-.leader-row img, .leader-avatar { display: grid; width: 34px; height: 34px; place-items: center; border-radius: 50%; object-fit: cover; background: #222; }
-.leader-row em { color: #aaa; font-size: 11px; font-style: normal; }
-.leaderboard-updated { color: #666; font-size: 10px; text-align: right; }
 
 .image-lightbox { position: fixed; z-index: 200; inset: 0; display: none; place-items: center; padding: 24px; }
 .image-lightbox.is-open { display: grid; }
@@ -573,7 +530,7 @@ html[data-page="leaderboard"] .leaderboard-section { display: block; }
   .service-card:nth-child(5) { grid-column: 1/-1; }
   .portfolio-links { grid-template-columns: 1fr; }
   .portfolio-links a { min-height: 190px; }
-  .discord-page, .banners-section, .portfolio-section, .commands-section, .integration-page { width: calc(100% - 20px); padding-top: 92px; }
+  .discord-page, .banners-section, .portfolio-section, .commands-section { width: calc(100% - 20px); padding-top: 92px; }
   .discord-shell { grid-template-columns: 1fr; gap: 50px; padding: 48px 30px; }
   .commands-grid { grid-template-columns: repeat(2,1fr); }
   .commands-toolbar { grid-template-columns: 1fr; }
@@ -592,7 +549,7 @@ html[data-page="leaderboard"] .leaderboard-section { display: block; }
   .hero-console__mark { font-size: 82px; }
   .services-section, .home-portfolio, .feedback-panel { margin-top: 86px; }
   .home-section-heading { grid-template-columns: 1fr; gap: 12px; }
-  .home-section-heading h2, .feedback-panel h2, .section-heading h1, .integration-heading h1 { font-size: 42px; }
+  .home-section-heading h2, .feedback-panel h2, .section-heading h1 { font-size: 42px; }
   .services-grid { grid-template-columns: 1fr; }
   .service-card, .service-card:nth-child(4), .service-card:nth-child(5) { min-height: 280px; grid-column: auto; padding: 22px; }
   .service-card__number { margin-bottom: 40px; }
@@ -604,12 +561,12 @@ html[data-page="leaderboard"] .leaderboard-section { display: block; }
   .discord-copy h1 { font-size: 52px; }
   .server-widget__main { padding-inline: 18px; }
   .server-widget__footer { align-items: flex-start; flex-direction: column; padding-inline: 18px; }
-  .commands-grid, .account-grid, .leaderboard-grid { grid-template-columns: 1fr; }
+  .commands-grid { grid-template-columns: 1fr; }
   .portfolio-grid { grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); }
   .login-card { grid-template-columns: 1fr; }
   .login-card > img { width: 50px; }
   .login-card a { width: 100%; }
-  .section-heading, .integration-heading { padding-top: 22px; }
+  .section-heading { padding-top: 22px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

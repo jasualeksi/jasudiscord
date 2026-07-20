@@ -26,13 +26,10 @@
         "/bannerit": "banners",
         "/logot": "logos",
         "/profiilikuvat": "avatars",
-        "/discord-komennot": "commands",
-        "/oma-sivu": "account",
-        "/leaderboard": "leaderboard"
+        "/discord-komennot": "commands"
       }[window.location.pathname.replace(/\/$/, "")] || "home";
     </script>
     <script src="/commands.js?v=20260709-3" defer></script>
-    <script src="/integration.js?v=20260720-2" defer></script>
     <script src="/motion.js?v=20260720-1" defer></script>
   </head>
   <body>
@@ -65,8 +62,6 @@
             <label class="nav-more__summary" for="nav-more-toggle">Muuta</label>
             <div class="nav-more__menu">
               <a href="/discord-komennot">Discord komennot</a>
-              <a href="/leaderboard">Leaderboard</a>
-              <a href="/oma-sivu">Oma sivu</a>
             </div>
           </div>
         </nav>
@@ -303,32 +298,6 @@
             <h2>Ladataan komentoja...</h2>
             <p>Haetaan botin nykyiset komennot Discordista.</p>
           </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="integration-page account-section" id="account" aria-labelledby="account-title">
-      <div class="integration-shell">
-        <header class="integration-heading">
-          <p>JASU | DISCORD</p>
-          <h1 id="account-title">Oma sivu</h1>
-          <span>Kirjaudu Discordilla, avaa ticket ja seuraa tilauksiasi.</span>
-        </header>
-        <div id="account-content" class="account-content">
-          <div class="integration-status">Tarkistetaan kirjautumista...</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="integration-page leaderboard-section" id="leaderboard" aria-labelledby="leaderboard-title">
-      <div class="integration-shell">
-        <header class="integration-heading">
-          <p>BOTIN TILASTOT</p>
-          <h1 id="leaderboard-title">Leaderboard</h1>
-          <span>Economy-, level-, invite- ja pelitilastot suoraan botilta.</span>
-        </header>
-        <div id="leaderboard-content" class="leaderboard-content">
-          <div class="integration-status">Ladataan leaderboardeja...</div>
         </div>
       </div>
     </section>

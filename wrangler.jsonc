@@ -6,21 +6,12 @@
     "DISCORD_APPLICATION_ID": "1380477708831559873",
     "DISCORD_GUILD_ID": "1519042780364673044",
     "DISCORD_FEEDBACK_CHANNEL_ID": "1522395762976362576",
-    "DISCORD_INVITE_URL": "https://discord.gg/MHqmuTnGms",
-    "TICKET_STAFF_ROLE_ID": "1526666001301897349"
+    "DISCORD_INVITE_URL": "https://discord.gg/MHqmuTnGms"
   },
-  "d1_databases": [
-    {
-      "binding": "DB",
-      "database_name": "jasudiscord",
-      "database_id": "566f92c9-d11b-4a18-a5a4-68de42dccbca",
-      "migrations_dir": "migrations"
-    }
-  ],
   "assets": {
     "directory": "./public",
     "binding": "ASSETS",
     "not_found_handling": "single-page-application",
-    "run_worker_first": ["/api/*", "/auth/*"]
+    "run_worker_first": ["/api/*"]
   }
 }
