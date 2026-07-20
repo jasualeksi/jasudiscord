@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="theme-color" content="#8b8b8b">
+    <meta name="theme-color" content="#050505">
     <title>Jasu | Discord</title>
     <meta name="description" content="Discord botit & Palvelimet | Logot, bannerit, profiilikuvat">
     <meta property="og:type" content="website">
@@ -21,6 +21,7 @@
     <link rel="apple-touch-icon" href="/assets/logo.png">
     <link rel="stylesheet" href="/styles.css?v=20260716-1">
     <link rel="stylesheet" href="/redesign.css?v=20260716-1">
+    <link rel="stylesheet" href="/mono.css?v=20260720-1">
     <script>
       document.documentElement.dataset.page = {
         "/discord": "discord",
@@ -34,6 +35,7 @@
     </script>
     <script src="/commands.js?v=20260709-3" defer></script>
     <script src="/integration.js?v=20260716-1" defer></script>
+    <script src="/motion.js?v=20260720-1" defer></script>
   </head>
   <body>
     <div class="nav-shell">
@@ -86,14 +88,30 @@
       <section class="home-hero" aria-labelledby="home-title">
         <div class="home-hero__backdrop" aria-hidden="true"></div>
         <div class="home-hero__copy">
+          <span class="hero-kicker">JASUDISCORD.COM / TILAUSTYÖT</span>
           <img class="home-hero__logo" src="/assets/logo.png" alt="">
           <h1 id="home-title">Jasu | Discord</h1>
-          <p class="home-hero__lead">Botit, palvelimet ja grafiikat</p>
+          <p class="home-hero__lead">Botit, palvelimet, grafiikat ja FiveM-liivit.</p>
           <div class="home-actions">
-            <a class="button button--primary" href="https://discord.gg/MHqmuTnGms" target="_blank" rel="noopener noreferrer"><img src="/assets/discord-white-icon.png" alt="">Liity Discordiin</a>
+            <a class="button button--primary" href="https://discord.gg/MHqmuTnGms" target="_blank" rel="noopener noreferrer"><img src="/assets/discord-white-icon.png" alt="">Avaa Discord</a>
+            <a class="button button--ghost" href="#palvelut">Katso tuotteet</a>
+          </div>
+        </div>
+        <div class="hero-console" aria-hidden="true">
+          <div class="hero-console__top"><span>JASU / 2026</span><i></i><span>ONLINE</span></div>
+          <div class="hero-console__mark">J</div>
+          <div class="hero-console__lines">
+            <span>DISCORD BOTIT</span><span>PALVELIMET</span><span>GRAFIIKAT</span><span>FIVEM</span>
           </div>
         </div>
       </section>
+
+      <div class="service-marquee" aria-hidden="true">
+        <div>
+          <span>DISCORD BOTIT</span><i></i><span>DISCORD PALVELIMET</span><i></i><span>LOGOT &amp; BANNERIT</span><i></i><span>FIVEM-LIIVIT</span><i></i><span>TOIMITUS 1–48 H</span><i></i>
+          <span>DISCORD BOTIT</span><i></i><span>DISCORD PALVELIMET</span><i></i><span>LOGOT &amp; BANNERIT</span><i></i><span>FIVEM-LIIVIT</span><i></i><span>TOIMITUS 1–48 H</span><i></i>
+        </div>
+      </div>
 
       <section class="quick-links" aria-label="Pikalinkit">
         <a href="#palvelut"><strong>Palvelut</strong><span>Katso mitä teen</span></a>
@@ -104,7 +122,7 @@
       <section class="services-section" id="palvelut" aria-labelledby="services-title">
         <div class="home-section-heading">
           <p class="eyebrow">PALVELUT</p>
-          <h2 id="services-title">Saatavilla</h2>
+          <h2 id="services-title">Mitä teen</h2>
         </div>
         <div class="services-grid">
           <article class="service-card service-card--bot">
@@ -137,9 +155,29 @@
               <li>Profiilikuvat</li>
             </ul>
           </article>
+          <article class="service-card service-card--fivem">
+            <span class="service-card__number">04</span>
+            <h3>FiveM-liivit</h3>
+            <p>Custom-liivit palvelimen tai hahmon oman tyylin mukaan.</p>
+            <ul>
+              <li>Omat värit ja tekstit</li>
+              <li>Logot ja tunnukset</li>
+              <li>Poliisi, EMS, jengit ja muut</li>
+            </ul>
+          </article>
+          <article class="service-card service-card--pricing">
+            <span class="service-card__number">05</span>
+            <h3>Hinnat</h3>
+            <p>Kiinteää hinnastoa ei ole. Hinta riippuu työn koosta ja vaativuudesta.</p>
+            <ul>
+              <li>Useimmat työt noin 10–100 €</li>
+              <li>Toimitus yleensä 1–48 h</li>
+              <li>Hinta sovitaan ennen aloitusta</li>
+            </ul>
+          </article>
         </div>
         <div class="service-cta">
-          <p>Kiinnostuitko?</p>
+          <p>Tilaukset hoidetaan Discordissa.</p>
           <a href="https://discord.gg/MHqmuTnGms" target="_blank" rel="noopener noreferrer">Avaa ticket <span aria-hidden="true">→</span></a>
         </div>
       </section>
@@ -163,7 +201,7 @@
             <h2 id="feedback-title">Mitä asiakkaat ovat sanoneet</h2>
           </div>
         </div>
-        <p class="feedback-panel__intro">Palautteet tulevat suoraan Discordista ja päivittyvät tänne automaattisesti.</p>
+        <p class="feedback-panel__intro">Palautteet suoraan Discordista.</p>
         <div class="feedback-list" id="feedback-list" aria-live="polite">
           <article class="feedback-item feedback-item--status"><p>Ladataan palautteita...</p></article>
         </div>
@@ -172,7 +210,7 @@
 
       <footer class="site-footer">
         <a class="brand" href="/etusivu"><img src="/assets/logo.png" alt=""><span>Jasu | Discord</span></a>
-        <p>Discord-botit, palvelimet ja grafiikat tilauksesta.</p>
+        <p>Botit, palvelimet, grafiikat ja FiveM-liivit.</p>
       </footer>
     </main>
 
@@ -180,8 +218,8 @@
       <div class="discord-shell">
         <div class="discord-copy">
           <p class="eyebrow">JASU | DISCORD</p>
-          <h1>Tuu messiin.</h1>
-          <p>Palvelimelta löydät ticketit tilauksille, botin pelit ja muut jutut mitä sinne tulee.</p>
+          <h1>Jasu | Discord</h1>
+          <p>Tilaukset, ticketit, botin pelit ja palvelimen muut jutut samassa paikassa.</p>
           <a class="discord-join-button" href="https://discord.gg/MHqmuTnGms" target="_blank" rel="noopener noreferrer">
             <img src="/assets/discord-white-icon.png" alt="">
             Liity palvelimelle
