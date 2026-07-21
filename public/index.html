@@ -212,23 +212,27 @@
     </section>
 
     <nav class="floating-nav" aria-label="Päänavigaatio">
-      <a href="/etusivu">
-        <span>01</span>
-        Etusivu
+      <a class="floating-nav__brand" href="/etusivu" aria-label="Jasu Discord etusivu">
+        <img src="/assets/logo.png" alt="">
+        <strong>Jasu <i>|</i> Discord</strong>
       </a>
-      <a href="/discord">
-        <span>02</span>
-        Discord
-      </a>
-      <div class="portfolio-nav">
-        <input id="portfolio-toggle" type="checkbox">
-        <label for="portfolio-toggle"><span>03</span>Portfolio</label>
-        <div class="portfolio-nav__menu">
-          <a href="/logot">Logot</a>
-          <a href="/bannerit">Bannerit</a>
-          <a href="/profiilikuvat">Profiilikuvat</a>
+      <div class="floating-nav__links">
+        <a href="/etusivu">Etusivu</a>
+        <a href="/discord">Discord</a>
+        <div class="portfolio-nav">
+          <input id="portfolio-toggle" type="checkbox">
+          <label for="portfolio-toggle">Portfolio <span>⌄</span></label>
+          <div class="portfolio-nav__menu">
+            <a href="/logot"><span>01</span>Logot</a>
+            <a href="/bannerit"><span>02</span>Bannerit</a>
+            <a href="/profiilikuvat"><span>03</span>Profiilikuvat</a>
+          </div>
         </div>
       </div>
+      <a class="floating-nav__cta" href="https://discord.gg/MHqmuTnGms" target="_blank" rel="noopener noreferrer">
+        Liity palvelimelle
+        <span>↗</span>
+      </a>
     </nav>
 
     <div class="image-lightbox" id="image-lightbox" aria-hidden="true">
