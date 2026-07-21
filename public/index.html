@@ -5,16 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#08090d">
     <title>Jasu | Discord</title>
-    <meta name="description" content="Discord-botit, palvelimet ja grafiikat tilauksesta.">
+    <meta name="description" content="Discord-botit, palvelimet, nettisivut, grafiikat ja FiveM-liivit tilauksesta.">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Jasu | Discord">
-    <meta property="og:description" content="Discord-botit, palvelimet ja grafiikat tilauksesta.">
+    <meta property="og:description" content="Discord-botit, palvelimet, nettisivut, grafiikat ja FiveM-liivit tilauksesta.">
     <meta property="og:image" content="/assets/jasudiscord-background.jpg">
     <link rel="canonical" href="https://jasudiscord.com/etusivu">
     <base href="/">
     <link rel="icon" type="image/png" href="/assets/favicon.png">
     <link rel="apple-touch-icon" href="/assets/logo.png">
-    <link rel="stylesheet" href="/site.css?v=20260720-4">
+    <link rel="preload" href="/assets/league-spartan.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/jasudiscord-background.jpg" as="image" fetchpriority="high">
+    <link rel="stylesheet" href="/site.css?v=20260721-1">
     <script>
       document.documentElement.dataset.page = {
         "/discord": "discord",
@@ -24,7 +26,7 @@
         "/discord-komennot": "commands"
       }[window.location.pathname.replace(/\/$/, "")] || "home";
     </script>
-    <script src="/commands.js?v=20260709-3" defer></script>
+    <script src="/commands.js?v=20260721-1" defer></script>
     <script src="/motion.js?v=20260720-2" defer></script>
     <script src="/smooth-scroll.js?v=20260720-1" defer></script>
   </head>
@@ -41,10 +43,10 @@
         <div class="hero__shade"></div>
         <div class="hero__content">
           <div class="profile-image">
-            <img src="/assets/logo.png" alt="Jasu Discord">
+            <img src="/assets/logo.png" alt="Jasu Discord" width="104" height="104" fetchpriority="high">
           </div>
           <h1 id="home-title">Jasu | Discord</h1>
-          <p class="hero__lead">Discord-botit, palvelimet, logot ja muut tuotteet.</p>
+          <p class="hero__lead">Botit, Discord-palvelimet, nettisivut, grafiikat ja FiveM-liivit tilauksesta.</p>
           <div class="hero__actions">
             <a class="button button--light" href="https://discord.gg/MHqmuTnGms" target="_blank" rel="noopener noreferrer">
               <img src="/assets/discord-white-icon.png" alt="">
@@ -62,28 +64,37 @@
       <section class="intro section-shell" id="palvelut">
         <div class="section-title">
           <p class="eyebrow">PALVELUT</p>
-          <h2>Botit, serverit ja grafiikat.</h2>
+          <h2>Mitä teen.</h2>
         </div>
         <div class="service-list">
           <article>
-            <span>01</span>
             <div>
               <h3>Discord-botit</h3>
               <p>Custom-komennot, moderointi, ticketit, economy, lokit ja muut ominaisuudet.</p>
             </div>
           </article>
           <article>
-            <span>02</span>
             <div>
               <h3>Discord-palvelimet</h3>
               <p>Kanavat, kategoriat, roolit ja oikeudet valmiiksi toimivana kokonaisuutena.</p>
             </div>
           </article>
           <article>
-            <span>03</span>
             <div>
               <h3>Grafiikat</h3>
               <p>Logot, bannerit ja profiilikuvat halutulla tyylillä ja käyttötarkoituksella.</p>
+            </div>
+          </article>
+          <article>
+            <div>
+              <h3>Nettisivut</h3>
+              <p>Selkeät ja puhelimella toimivat sivut yritykselle, yhteisölle, portfolioksi tai tuotteiden esittelyyn.</p>
+            </div>
+          </article>
+          <article>
+            <div>
+              <h3>FiveM-liivit</h3>
+              <p>Custom-liivit omilla väreillä, teksteillä, logoilla ja tunnuksilla palvelimen tyyliin sopivaksi.</p>
             </div>
           </article>
         </div>
@@ -101,17 +112,14 @@
           <a href="/logot">
             <span>Logot</span>
             <small>Avaa portfolio</small>
-            <i>01</i>
           </a>
           <a href="/bannerit">
             <span>Bannerit</span>
             <small>Avaa portfolio</small>
-            <i>02</i>
           </a>
           <a href="/profiilikuvat">
             <span>Profiilikuvat</span>
             <small>Avaa portfolio</small>
-            <i>03</i>
           </a>
         </div>
       </section>
@@ -162,7 +170,7 @@
 
     <section class="page portfolio-page banners-section" id="banners" aria-labelledby="banners-title">
       <div class="portfolio-heading">
-        <p class="eyebrow">PORTFOLIO / 01</p>
+        <p class="eyebrow">PORTFOLIO</p>
         <h1 id="banners-title">Bannerit</h1>
         <p>Mun tekemiä bannereita.</p>
       </div>
@@ -173,7 +181,7 @@
 
     <section class="page portfolio-page logos-section" id="logot" aria-labelledby="logos-title">
       <div class="portfolio-heading">
-        <p class="eyebrow">PORTFOLIO / 02</p>
+        <p class="eyebrow">PORTFOLIO</p>
         <h1 id="logos-title">Logot</h1>
         <p>Mun tekemiä logoja.</p>
       </div>
@@ -184,7 +192,7 @@
 
     <section class="page portfolio-page avatars-section" id="profiilikuvat" aria-labelledby="avatars-title">
       <div class="portfolio-heading">
-        <p class="eyebrow">PORTFOLIO / 03</p>
+        <p class="eyebrow">PORTFOLIO</p>
         <h1 id="avatars-title">Profiilikuvat</h1>
         <p>Mun tekemiä profiilikuvia.</p>
       </div>
@@ -222,9 +230,9 @@
           <input id="portfolio-toggle" type="checkbox">
           <label for="portfolio-toggle">Portfolio <span>⌄</span></label>
           <div class="portfolio-nav__menu">
-            <a href="/logot"><span>01</span>Logot</a>
-            <a href="/bannerit"><span>02</span>Bannerit</a>
-            <a href="/profiilikuvat"><span>03</span>Profiilikuvat</a>
+            <a href="/logot">Logot</a>
+            <a href="/bannerit">Bannerit</a>
+            <a href="/profiilikuvat">Profiilikuvat</a>
           </div>
         </div>
       </div>

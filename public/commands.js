@@ -201,7 +201,7 @@ function renderBanners(items) {
 
   bannerShowcase.innerHTML = items.map((item) => `
     <article class="banner-card">
-      <img src="${escapeHtml(item.src)}" alt="${escapeHtml(item.title)}">
+      <img src="${escapeHtml(item.src)}" alt="${escapeHtml(item.title)}" loading="lazy" decoding="async">
       <div class="banner-card__body">
         <h2>${escapeHtml(item.title)}</h2>
       </div>
@@ -222,7 +222,7 @@ function renderPortfolioGrid(container, items, emptyText) {
   container.innerHTML = items.map((item) => `
     <article class="portfolio-card">
       <div class="portfolio-card__media">
-        <img src="${escapeHtml(item.src)}" alt="${escapeHtml(item.title)}">
+        <img src="${escapeHtml(item.src)}" alt="${escapeHtml(item.title)}" loading="lazy" decoding="async">
       </div>
       <h2>${escapeHtml(item.title)}</h2>
       <a class="portfolio-card__action" href="${escapeHtml(item.src)}" target="_blank" rel="noopener noreferrer">Avaa Kuva</a>
@@ -322,7 +322,7 @@ function renderFeedback(messages) {
       ${messages.map((message) => `
         <article class="feedback-item">
           <div class="feedback-avatar">
-            ${message.avatarUrl ? `<img src="${escapeHtml(message.avatarUrl)}" alt="">` : `<span>${escapeHtml(message.authorName.slice(0, 1).toUpperCase())}</span>`}
+            ${message.avatarUrl ? `<img src="${escapeHtml(message.avatarUrl)}" alt="" loading="lazy" decoding="async">` : `<span>${escapeHtml(message.authorName.slice(0, 1).toUpperCase())}</span>`}
           </div>
           <div class="feedback-content">
             <div class="feedback-meta">
